@@ -15,6 +15,10 @@ Requires Python 3 and `tox <https://pypi.org/project/tox/>`_.
     # Build just HTML output
     tox -- html
 
+
+NOTE: add an empty .nojekyll file to the final html folder for github pages to load css files.
+
+
 reStructuredText help
 =====================
 
