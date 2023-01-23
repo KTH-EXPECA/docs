@@ -5,6 +5,8 @@ Welcome to Chameleon
 What is Chameleon?
 ==================
 
+Hello world!
+
 Chameleon is an NSF-funded testbed system for Computer Science experimentation.
 It is designed to be deeply reconfigurable, with a wide variety of capabilities
 for researching systems, networking, distributed and cluster computing and
