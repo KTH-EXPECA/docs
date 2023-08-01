@@ -32,7 +32,3 @@ security. The ExPECA testbed includes:
 
 Through the Chameleon-based user interface, radio resources and "worker" hosts can be reserved for experimentation, and networking be defined for communication.
 Docker containerized applications can be allocated to "worker" hosts.
-
-Performance monitoring of the testbed is achieved by a combination of Prometheus time series database, open source and customized metrics
-exporters for Prometheus, and visualization dashboards using Grafana Cloud.
-
