@@ -2,9 +2,6 @@
 Welcome to ExPECA
 =================
 
-What is ExPECA?
-===============
-
 ExPECA (Experimental Platform for Edge Computing Applications) is a project
 targeting the development and provisioning of an edge computing infrastructure
 for research into novel applications and network architectures.
