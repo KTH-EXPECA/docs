@@ -24,6 +24,7 @@ for researching systems, networking, distributed and cluster computing and
 security. The ExPECA testbed includes:
 
 * 4 "radio dots," which are the radio base stations for the EP5G system
+* A set of servers that run EP5G CN (Core Network) and RAN (Radio Access Network) applications
 * 11 SDR (Software Defined Radio) units, which can be programmed for various capabilities (5G base station, WiFi, etc)
 * 9 Advantech 5G routers, which can act as UE (User Equipment) radio access
 * 10 "worker" hosts (bare metal servers), where Docker containerized applications can run, as determined by Openstack orchestration
