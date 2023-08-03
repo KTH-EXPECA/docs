@@ -66,6 +66,7 @@ specified. We will create a single day reservation for a worker node.
 #. In the sidebar, click *Reservations* -> *Leases*
 #. Click on the *+ Create Lease* button in the toolbar
 #. Type *my_first_lease* for the lease name
+#. Check the *Devices* -> *Reserve Devices* box
 #. Find the *Devices* -> *Resource Properties* section. In the dropdown below *vendor*, select *Dell*
 #. Click the *Create* button
 
