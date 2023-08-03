@@ -7,119 +7,79 @@
 Getting started
 ================
 
-This guide will walk you through the initial steps of getting an account,
-joining a project and working with your first instance.
+This guide will walk you through the initial steps of getting an account
+and working with your first instance.
 
 .. contents:: :local:
 
 .. _getting-started-user:
 
-Step 1: Log in to Chameleon
-===========================
+Step 1: Get a user account
+==========================
 
-Just click the “Log in” button situated in the top right corner of `our main page
-<https://www.chameleoncloud.org>`_ -- you probably won’t even need to create an account! 
+To get a user account, send an email to <expecamail> with
 
-If your institution is a member of `InCommon`_ (most US research and education
-institutions are) -- or if you have a Google account -- you can log in with your
-institutional/Google credentials via the federated login. Otherwise, the log in process 
-will guide you to create an account (:ref:`read more about logging into Chameleon
-via federated login <federation>`).
+* "ExPECA account request" in the subject header
+* Name
+* Phone number
+* Email address
+* Reason for the account request
 
-On your first Chameleon login you will be asked to accept `terms and conditions
-<https://auth.chameleoncloud.org/auth/realms/chameleon/terms>`_ of use. Please,
-note that as part of those terms and conditions you are requested to acknowledge
-Chameleon in publications produced using the testbed: see our FAQ for
-information on `how to reference Chameleon in your publications
-<https://www.chameleoncloud.org/learn/frequently-asked-questions/#toc-how-should-i-reference-chameleon->`_
-and the suggested `acknowledgement text
-<https://www.chameleoncloud.org/learn/frequently-asked-questions/#toc-how-should-i-acknowledge-chameleon-in-my-publications->`_.
+After your request has been granted, we will then send you a reply with your login credentials.
 
-Once you log in, you will be able to :ref:`edit your Chameleon profile
-<profile-page>`, sign up for webinars, and participate in our community.
-However, to actually use the testbed you will first need to **join or create a
-project** (see below).
+Step 2: Log in to the ExPECA testbed
+====================================
 
-.. _getting-started-project:
+Just click the “Access the Testbed” button situated at the top of the `ExPECA main page
+<https://expeca.proj.kth.se/>`_ and use your received credentials for login.
 
-Step 2: Create or join a project
-================================
+Step 3: Start using the ExPECA testbed
+======================================
 
-To get access to Chameleon resources, you will need to be associated with a
-**project** that is assigned a **resource allocation**.
-
-If you want to **join an existing Chameleon project**, you will need to ask the PI
-of the project to add your username. You can find your username in `your Chameleon profile
-<https://www.chameleoncloud.org/user/profile/>`_--it is also displayed in the
-top-right corner when you are logged in.
-
-If you want to **create a project**, you will first either need to obtain a PI
-status or work with somebody who has PI status. To determine if you can obtain
-PI status, please see a :ref:`list of PI eligibility criteria <pi-eligibility>`.
-If you do not meet these criteria (e.g., students generally do not), you will
-need to ask your advisor or other scientist supervising your research to create
-the project for you. You can request PI status by checking a box in `your
-Chameleon profile <https://www.chameleoncloud.org/user/profile/>`_. Chameleon PI
-status requests are typically reviewed within one business day.
-
-Once you have PI status, you may apply for a new project with an initial
-allocation. A project application typically consists of a short description of
-your intended research and takes one business day to process. Once your project
-has been approved, you will be able to utilize the testbed sites.
-
-Step 3: Start using Chameleon!
-==============================
-
-Congratulations, you are now ready to launch your first instance! Instances are
-much like what you may expect to find in a virtual machine, except here the
-instances are on bare metal nodes - the core feature of Chameleon. A bare metal
-node is a whole physical server that you have exclusive access to. An instance
-is going to be a bare metal node that has been launched with an operating system
-image. Follow these steps to make a reservation for a node, launch an instance
+Congratulations, you are now ready to launch your first instance! 
+Instances are "worker nodes", servers in the testbed, where you do not have full access 
+to the actual server, but you can allocate and run Docker containerized applications on them.
+When you reserve a "worker node," you have exclusive access to the underlying server.
+Follow these steps to make a reservation for a worker node, launch an instance
 and log in to it.
 
-.. note::
+The ExPECA dashboard
+--------------------
 
-   Chameleon also offers a multi-tenant, virtualized cloud, with fewer
-   functionalities and a smaller scale. See :ref:`kvm` for more details.
+The dashboard shows a summary of your project's current resource usage and looks something like this:
 
-The Chameleon dashboard
------------------------
-
-Chameleon resources are available at multiple sites, e.g., |CHI@TACC| and
-|CHI@UC|. When you access one of the sites, you are first taken to a dashboard,
-which shows a summary of your project's current resource usage and get quick
-access to each of the sites. The dashboard looks something like this:
-
-.. figure:: dashboard.png
-   :alt: The Chameleon Dashboard's resource usage summary
+.. figure:: dashboard2.png
+   :alt: The ExPECA dashboard's resource usage summary
    :figclass: screenshot
 
-   An overview of your project's current resource usage
+   An overview of your current resource usage
 
 Reserving a node
 ----------------
 
-First, we need to reserve a node for our use. Chameleon provides bare metal
-access to nodes. When you create a reservation for one or more nodes, only you
+First, we need to reserve a worker node for our use. ExPECA provides access to allocate and run
+Docker containerized applications on nodes.
+When you create a reservation for one or more nodes, only you
 and other users on your project will be able to use those nodes for the time
-specified. We will create a single day reservation for a compute node, which are
-the most common types of nodes available on Chameleon.
+specified. We will create a single day reservation for a worker node.
 
-#. In the sidebar, click *Reservations*, then click *Leases*
+#. In the sidebar, click *Reservations* -> *Leases*
 #. Click on the *+ Create Lease* button in the toolbar
 #. Type *my_first_lease* for the lease name
-#. Find the *Resource Properties* section. In the dropdown below *node_type*, select *compute_skylake*
+#. Find the *Devices* -> *Resource Properties* section. In the dropdown below *vendor*, select *Dell*
 #. Click the *Create* button
 
-.. figure:: create_lease.png
+.. figure:: create_lease2.png
   :alt: The Create Lease dialog
   :figclass: screenshot
 
-  The Create Lease dialog - be sure to select compute_skylake in the dropdown below node_type
+.. figure:: create_lease3.png
+  :alt: The Create Lease dialog
+  :figclass: screenshot
 
-The reservation will start shortly, at which point you can launch an instance on
-a bare metal node.
+  The Create Lease dialog - be sure to select Dell in the dropdown below vendor
+
+The reservation will start shortly, at which point you can launch an instance.
 
 .. note::
 
@@ -130,7 +90,7 @@ a bare metal node.
 .. important::
 
    Do not attempt to stack reservations to circumvent the 7-day lease
-   limitation. Your leases may be deleted. Please refer to our `best practices
+   limitation. Your leases may be deleted. Please refer to the `best practices
    <https://www.chameleoncloud.org/learn/frequently-asked-questions/#toc-what-are-the-best-practices-of-chameleon-usage->`_
    if you require a longer reservation.
 
