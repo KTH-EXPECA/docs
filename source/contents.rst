@@ -11,7 +11,7 @@ Welcome to ExPECA
 
 .. toctree::
    :maxdepth: 1
-   :caption: Reservations
+   :caption: Testbed operation
 
    reservation-worker/index
 
