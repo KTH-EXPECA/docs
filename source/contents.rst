@@ -11,6 +11,12 @@ Welcome to Chameleon
 
 .. toctree::
    :maxdepth: 1
+   :caption: Use Cases
+
+   getting-started/case-1
+
+.. toctree::
+   :maxdepth: 1
    :caption: Users and Projects
 
    user/federation
