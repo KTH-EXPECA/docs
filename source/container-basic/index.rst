@@ -28,7 +28,7 @@ Step 2: Create a container
   :alt: Create container, first screen
   :figclass: screenshot
 
-* Under *Scheduler Hints* tab, add "reservation" as .. hint
+* Under *Scheduler Hints* tab, add "reservation" as hint
 
 .. figure:: create_container02.png
   :alt: Create container, second screen
