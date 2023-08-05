@@ -13,7 +13,7 @@ Welcome to Chameleon
    :maxdepth: 1
    :caption: Use Cases
 
-   getting-started/case-1
+   case-1/index
 
 .. toctree::
    :maxdepth: 1
