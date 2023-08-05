@@ -1,6 +1,6 @@
-=====================
-Welcome to Chameleon
-=====================
+=================
+Welcome to ExPECA
+=================
 
 .. toctree::
    :maxdepth: 1
