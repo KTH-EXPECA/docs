@@ -11,44 +11,7 @@ Welcome to Chameleon
 
 .. toctree::
    :maxdepth: 1
-   :caption: Use Cases
+   :caption: Reservations
 
-   case-1/index
+   reservation-worker/index
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Users and Projects
-
-   user/federation
-   user/pi_eligibility
-   user/project
-   user/profile
-   user/help
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Testbed interfaces
-
-   technical/gui
-   technical/cli
-   technical/jupyter
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Technical guide
-
-   technical/index
-   technical/discovery
-   technical/reservations
-   technical/baremetal
-   technical/images
-   technical/metrics
-   technical/complex
-   technical/swift
-   technical/shares
-   technical/networks
-   technical/fpga
-   technical/ep
-   technical/sharing
-   technical/daypass
-   technical/kvm
