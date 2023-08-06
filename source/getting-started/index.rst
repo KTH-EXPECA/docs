@@ -33,10 +33,6 @@ Step 3: Start using the ExPECA testbed
 
 Congratulations, you are now ready to start using the testbed! 
 When you have logged in, you will first see the ExPECA dashboard.
-
-The ExPECA dashboard
---------------------
-
 The dashboard shows a summary of your project's current resource usage and looks something like this:
 
 .. figure:: dashboard2.png
