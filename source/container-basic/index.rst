@@ -1,8 +1,8 @@
 .. _container-basic:
 
-==========================================
-Running a basic container on a worker node
-==========================================
+=========================
+Running a basic container
+=========================
 
 This guide will walk you through the steps of running a very basic container on a worker node.
 
