@@ -15,5 +15,6 @@ Welcome to ExPECA
 
    reservation-worker/index
    reservation-sdr/index
+   reservation-advantech/index
    container-basic/index
 

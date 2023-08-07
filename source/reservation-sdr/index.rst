@@ -22,7 +22,7 @@ Step 2: Reserving an SDR
 
 We need to reserve an SDR for our use.
 When you create a reservation for one or more SDR units, only you
-and other users on your project will be able to use those nodes for the time
+and other users on your project will be able to use those SDR units for the time
 specified. We will create a single day reservation for an SDR.
 
 * In the sidebar, click *Reservations* -> *Leases*
