@@ -14,5 +14,6 @@ Welcome to ExPECA
    :caption: Testbed operation
 
    reservation-worker/index
+   reservation-sdr/index
    container-basic/index
 
