@@ -18,4 +18,5 @@ Welcome to ExPECA
    reservation-advantech/index
    reservation-ep5g/index
    container-basic/index
+   network-ep5g/index
 
