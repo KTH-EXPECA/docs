@@ -100,7 +100,7 @@ Step 2: Create a router
 
 * Now go back to *Routers* on the left panel. Click on your newly defined router, and under *Interfaces* tab, click "Add Interface".
   Add the the new local network as subnet. You can leave the IP address blank if you want. Then, the IP address you have earlier defined as
-  gateway of the subnet will be used for the interface. Click *Submit*
+  gateway of the subnet will be used for the interface. Click *Submit*.
 
 .. figure:: router9.png
   :alt: Router add interface towards worker node container
