@@ -59,7 +59,7 @@ Step 2: Create a router
   :figclass: screenshot
 
 * Select the automatically created subnet under *Subnet*
-* Set IP address to the "default gateway," which is 10.30.111.1 (See the overall network diagram at the top od this page)
+* Set IP address to the "default gateway," which is 10.30.111.1 (See the overall network diagram at the top of this page)
 * Click *Submit*
 
 .. figure:: router6.png
@@ -96,6 +96,14 @@ Step 2: Create a router
 
 .. figure:: network_local3.png
   :alt: Subnet details
+  :figclass: screenshot
+
+* Now go back to *Routers* on the left panel. Click on your newly defined router, and under *Interfaces* tab, click "Add Interface".
+  Add the the new local network as subnet. You can leave the IP address blank if you want. Then, the IP address you have earlier defined as
+  gateway of the subnet will be used for the interface.
+
+.. figure:: router9.png
+  :alt: Router add interface towards worker node container
   :figclass: screenshot
 
 * You should now also be able to reach your edge container located on a worker node from your user equipment
