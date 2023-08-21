@@ -86,7 +86,8 @@ Step 2: Create a router
   :alt: Create new network
   :figclass: screenshot
 
-* Define a subnet that can reach the container you want to communicate with in a worker node. The actual data will depend on the container address
+* Define a subnet that can reach the container you want to communicate with in a worker node. The actual data will depend on the container address.
+  In this case, the subnet is "10.70.70.0/24".
 
 .. figure:: network_local2.png
   :alt: Create subnet
