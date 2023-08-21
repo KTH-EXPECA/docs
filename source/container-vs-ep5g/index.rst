@@ -1,8 +1,8 @@
 .. _container-vs-ep5g:
 
-==========================================
-Running a container networked towards EP5G
-==========================================
+================================
+Running a container towards EP5G
+================================
 
 This guide will walk you through the steps of running a server container on a worker node, complete with networking definitions that allow
 clients using EP5G to communicate with the server container application.
