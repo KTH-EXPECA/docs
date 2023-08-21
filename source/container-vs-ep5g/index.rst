@@ -74,5 +74,7 @@ inspired by famous paintings. The client, in this case, will run on a user of th
   :figclass: screenshot
 
 * Now click on *Create* to create your container. After a short time, the container is created, and by default should be running.
+* You should now be able to run the "openrtist" client from a user device using the EP5G system. The IP address of the server application would
+  be the 10.70.70.30 address picked for the container in the worker node.
 
 
