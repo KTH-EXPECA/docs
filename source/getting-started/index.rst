@@ -12,7 +12,7 @@ and describe how to use the testbed.
 Step 1: Get a user account
 ==========================
 
-To get a user account, send an email to <expecamail> with
+To get a user account, send an email to expeca-proj@kth.se with
 
 * "ExPECA account request" in the subject header
 * Name
