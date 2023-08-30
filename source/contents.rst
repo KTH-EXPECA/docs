@@ -7,8 +7,7 @@ Welcome to ExPECA
    :caption: Introduction
 
    index
-   getting-started/index
-
+   
 .. toctree::
    :maxdepth: 1
    :caption: Testbed operation
