@@ -27,9 +27,13 @@ security. The ExPECA testbed includes:
 * A set of servers that run EP5G CN (Core Network) and RAN (Radio Access Network) applications
 * 11 SDR (Software Defined Radio) units, which can be programmed for various capabilities (5G base station, WiFi, etc)
 * 9 Advantech 5G routers, which can act as UE (User Equipment) radio access
-* 10 "worker" hosts (bare metal servers), where Docker containerized applications can run, as determined by Openstack orchestration
+* 10 "worker nodes" (bare metal servers), where Docker containerized applications can run, as determined by Openstack orchestration
 * 1 GNSS/PTP "grandmaster clock," which distributes GNSS/PTP synchronization from GPS satellites down to the underground testbed
 * Additional servers and networking equipment necessary for the Openstack orchestration of resources (controller, storage, routers, switches, etc)
 
-Through the Chameleon-based user interface, radio resources and "worker" hosts can be reserved for experimentation, and networking be defined for communication.
-Docker containerized applications can be allocated to "worker" hosts.
+.. figure:: overview.png
+   :alt: ExPECA testbed overview
+   :figclass: screenshot
+
+Through the Chameleon-based user interface, radio resources and worker nodes can be reserved for experimentation, and networking be defined for communication.
+Docker containerized applications can be allocated to worker nodes.
