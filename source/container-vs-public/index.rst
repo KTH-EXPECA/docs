@@ -60,16 +60,11 @@ To perform those tasks, the container must have ip commands installed. For an ub
 
 Then the following commands could be run either manually through the console, or within the container’s entrypoint:
 
-*# First fix the nameserver on the container*
-
-*echo nameserver $DNS_IP > /etc/resolv.conf*
-
-*# Fix the gateway*
-
-*ip route del default*
-
-*ip route add default via $GATEWAY_IP*
-
+| *# First fix the nameserver on the container*
+| *echo nameserver $DNS_IP > /etc/resolv.conf*
+| *# Fix the gateway*
+| *ip route del default*
+| *ip route add default via $GATEWAY_IP*
 
 You should now be able to connect with SSH to your container from the internet.
 
