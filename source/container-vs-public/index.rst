@@ -51,7 +51,27 @@ when starting the container.
   :alt: Containers main page
   :figclass: screenshot
 
-* You should now be able to connect with SSH to your container from the internet.
+Note that DNS and default gateway needs to be set for the container. In this case, the container gets this information from 
+environment variables in the "miscellaneous" section, but it is up to the container designer for how this should be done.
+It can be done either manually through the console, or if they want it done automatically, they can use a container that does such tasks during boot up.
+To perform those tasks, the container must have ip commands installed. For an ubuntu container, this means the following line must be included in the Dockerfile:
+
+*RUN apt update && apt install -y openssh-server iproute2*
+
+Then the following commands could be run either manually through the console, or within the container’s entrypoint:
+
+*# First fix the nameserver on the container*
+
+*echo nameserver $DNS_IP > /etc/resolv.conf*
+
+*# Fix the gateway*
+
+*ip route del default*
+
+*ip route add default via $GATEWAY_IP*
+
+
+You should now be able to connect with SSH to your container from the internet.
 
 .. figure:: container_run6.png
   :alt: Container console page
