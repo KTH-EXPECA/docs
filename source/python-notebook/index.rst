@@ -69,7 +69,7 @@ Step 3: Open the notebook in Colab and authenticate yourself
   :alt: Run Python package import cell
   :figclass: screenshot
 
-* Run the cell for reserving resources (SDRs, worker nodes, etc) in the testbed. This creates leases in the testbed.
+* Run the cell for reserving resources (SDRs, worker nodes, etc) in the testbed. This creates leases and networks in the testbed
 
 .. figure:: ipynb08.png
   :alt: Run resource resrvation cell
