@@ -51,7 +51,7 @@ Step 3: Open the notebook in Colab and get authentication file
 
 
 Step 4: Run/play the cells in the notebook
-===================================================
+==========================================
 
 * Run the first cell (authentication) in the notebook by clicking the "play" symbol on the top left side
 * When prompted for password, use the password that you previously used to log in to the ExPECA testbed
