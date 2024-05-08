@@ -50,7 +50,7 @@ Step 3: Open the notebook in Colab and get authentication file
 * Change the openrc.sh file name so that it exactly matches what is expected in the notebook
 
 
-Step 4: Run/play the notebook cells in the notebook
+Step 4: Run/play the cells in the notebook
 ===================================================
 
 * Run the first cell (authentication) in the notebook by clicking the "play" symbol on the top left side
