@@ -25,25 +25,25 @@ Step 3: Open the notebook in Colab and authenticate yourself
 
 * Click the "Open in Colab" button at the top of the notebook
   
-.. figure:: ipyn01.png
+.. figure:: ipynb01.png
   :alt: Open in Colab, start
   :figclass: screenshot
 
 * This will open the notebook in Colab. Note that there is a file manager icon on the left side. Click on it to expand the left pane.
 
-.. figure:: ipyn02.png
+.. figure:: ipynb02.png
   :alt: Colab start view
   :figclass: screenshot
 
 * Click the link to download the openrc.sh file. A new tab will open.
 
-.. figure:: ipyn03.png
+.. figure:: ipynb03.png
   :alt: Authentication file link
   :figclass: screenshot
 
 * Click the given link. This will download the openrc.sh file to your local computer. Upload it to your Colab file system on the left pane.
 
-.. figure:: ipyn04.png
+.. figure:: ipynb04.png
   :alt: openrc.sh file uploaded
   :figclass: screenshot
 
@@ -52,56 +52,56 @@ Step 3: Open the notebook in Colab and authenticate yourself
 * When prompted for password, use the password that you previously used to log in to the ExPECA testbed
 * A green check mark by the "play" symbol will indicate successful execution
 
-.. figure:: ipyn05.png
+.. figure:: ipynb05.png
   :alt: Run authentication cell
   :figclass: screenshot
 
 * Run the cell for installation of required packages and dependencies
 
-.. figure:: ipyn06.png
+.. figure:: ipynb06.png
   :alt: Run package installation cell
   :figclass: screenshot
 
 
 * Run the cell for importing Python packages
 
-.. figure:: ipyn07.png
+.. figure:: ipynb07.png
   :alt: Run Python package import cell
   :figclass: screenshot
 
 * Run the cell for reserving resources (SDRs, worker nodes, etc) in the testbed. This creates leases in the testbed.
 
-.. figure:: ipyn08.png
+.. figure:: ipynb08.png
   :alt: Run resource resrvation cell
   :figclass: screenshot
-.. figure:: ipyn09.png
+.. figure:: ipynb09.png
   :alt: Run resource resrvation cell, continued
   :figclass: screenshot
-.. figure:: ipyn10.png
+.. figure:: ipynb10.png
   :alt: Run resource resrvation cell, continued
   :figclass: screenshot
 
 * Run the cell that changes the SDR design to NI or MANGO
 
-.. figure:: ipyn11.png
+.. figure:: ipynb11.png
   :alt: Run SDR design change cell
   :figclass: screenshot
 
 * If needed, run the cell for rebooting the SDR. In this case it is optional, because the SDR was rebooted in the previous cell
 
-.. figure:: ipyn12.png
+.. figure:: ipynb12.png
   :alt: Run SDR reboot cell
   :figclass: screenshot
 
 * You can now go back to the ExPECA testbed management and check that the leases were created
 
-.. figure:: ipyn13.png
+.. figure:: ipynb13.png
   :alt: ExPECA testbed leases
   :figclass: screenshot
 
 * You can also check that the networks associated with the SDR were created. SFP = NI and RJ45 = MANGO.
 
-.. figure:: ipyn14.png
+.. figure:: ipynb14.png
   :alt: ExPECA testbed leases
   :figclass: screenshot
 
