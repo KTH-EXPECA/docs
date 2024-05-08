@@ -20,8 +20,8 @@ Step 2: Open the Python notebook in a separate browser
 Open the Python notebook by navigating to its location in Github.
 
 
-Step 3: Open the notebook in Colab and authenticate yourself
-============================================================
+Step 3: Open the notebook in Colab and get authentication file
+==============================================================
 
 * Click the "Open in Colab" button at the top of the notebook
   
@@ -48,7 +48,12 @@ Step 3: Open the notebook in Colab and authenticate yourself
   :figclass: screenshot
 
 * Change the openrc.sh file name so that it exactly matches what is expected in the notebook
-* Now, run the first cell (authentication) in the notebook by clicking the "play" symbol on the top left side
+
+
+Step 4: Run/play the notebook cells in the notebook
+===================================================
+
+* Run the first cell (authentication) in the notebook by clicking the "play" symbol on the top left side
 * When prompted for password, use the password that you previously used to log in to the ExPECA testbed
 * A green check mark by the "play" symbol will indicate successful execution
 
