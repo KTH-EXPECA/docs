@@ -11,13 +11,16 @@ On **January 16, 2025**, we conducted an **ExPECA Testbed Workshop**, where we i
 
 Below, you will find links to the presentation materials and instructional videos.
 
-### Workshop Materials
-- **Presentation PDF:** `ExPECA Testbed Workshop <expeca-workshop.pdf>`_
-- **Presentation Video:** `Workshop Presentation <workshop_presentation.mp4>`_
+Presentation Materials
+----------------------
 
-### Configuration Demonstrations
-- **EP5G Configuration using GUI (Video):** `GUI-Based EP5G Configuration <workshop_gui_ep5g.mp4>`_
-- **OAI Configuration with Python Notebook (Video):** `OAI Configuration with Python <workshop_python_oai.mp4>`_
+- **Presentation PDF:** `ExPECA Testbed Workshop <expeca-workshop.pdf>`__
+- **Presentation Video:** `Workshop Presentation <workshop_presentation.mp4>`__
 
-Click on the links to view or download the files.
+Configuration Demonstrations
+----------------------------
 
+- **EP5G Configuration using GUI (Video):** `GUI-Based EP5G Configuration <workshop_gui_ep5g.mp4>`__
+- **OAI Configuration with Python Notebook (Video):** `OAI Configuration with Python <workshop_python_oai.mp4>`__
+
+Click on the links to open or download the files.
