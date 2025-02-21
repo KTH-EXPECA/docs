@@ -4,9 +4,6 @@
 Workshop Material
 =================
 
-Not ready yet! Work in progress...
-==================================
-
 On **January 16, 2025**, we conducted an **ExPECA Testbed Workshop**, where we introduced the testbed and demonstrated its configuration.
 
 Below, you will find links to the presentation materials and instructional videos.
