@@ -8,8 +8,8 @@ On **January 16, 2025**, we conducted an **ExPECA Testbed Workshop**, where we i
 
 Below, you will find links to the presentation materials and instructional videos.
 
-Presentation Materials
-----------------------
+Presentation Material
+---------------------
 
 - **Presentation PDF:** `ExPECA Testbed Workshop <https://github.com/KTH-EXPECA/examples/blob/main/workshop/expeca-workshop.pdf>`__
 - **Presentation Video:** `Workshop Presentation <https://github.com/KTH-EXPECA/examples/blob/main/workshop/workshop_presentation.mp4>`__
