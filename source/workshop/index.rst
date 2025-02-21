@@ -17,7 +17,7 @@ Presentation Material
 Configuration Demonstrations
 ----------------------------
 
-- `EP5G Configuration using GUI (Video) <https://github.com/KTH-EXPECA/examples/blob/main/workshop/workshop_gui_ep5g.mp4>`__
-- `OAI Configuration with Python Notebook (Video) <https://github.com/KTH-EXPECA/examples/blob/main/workshop/workshop_python_oai.mp4>`__
+- `EP5G Configuration using GUI (MP4) <https://github.com/KTH-EXPECA/examples/blob/main/workshop/workshop_gui_ep5g.mp4>`__
+- `OAI Configuration with Python Notebook (MP4) <https://github.com/KTH-EXPECA/examples/blob/main/workshop/workshop_python_oai.mp4>`__
 
 Click on the links to open up the github file locations, where you then can download the files.
