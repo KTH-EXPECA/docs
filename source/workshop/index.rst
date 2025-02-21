@@ -1,8 +1,8 @@
 .. _workshop:
 
-=================
-Workshop Material
-=================
+==============
+Workshop Media
+==============
 
 On **January 16, 2025**, we conducted an **ExPECA Testbed Workshop**, where we introduced the testbed and demonstrated its configuration.
 
