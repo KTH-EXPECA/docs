@@ -86,6 +86,10 @@ Setting up the visualization system is quick, secure, and repeatable. Follow the
    
    - Ensure correct values are set in `config_data.json`
 
+#. **Have Grafana dashboard backup ready:**
+   
+   - If needed, have Grafana dashboard backup ready in `datasources.json/dashboards.json` files
+
 #. **Run the configuration script:**
    
    - Execute `visual_config.py` to initiate a sequence of setup scripts
