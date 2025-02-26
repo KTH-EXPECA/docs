@@ -90,16 +90,14 @@ Setting up the visualization system is quick, secure, and repeatable. Follow the
    
    - Execute `visual_config.py` to initiate a sequence of setup scripts
 
-🎉 **Success!**
---------------------
 
 For more details about the scripts, including how they work, how they customize credentials, etc, please refer to the
 `README.md` file in the Github repository.
 
 Once the setup is complete, your visualization system will be up and running within minutes! You will have:
 
-✅ Secure credentials  
-✅ A fully configured system  
-✅ Grafana dashboards ready to visualize your latest experiments  
+* Secure credentials  
+* A fully configured system  
+* Grafana dashboards ready to visualize your latest experiments  
 
 By following this guide, you can deploy a robust and scalable visualization system for real-time data monitoring and analysis.
