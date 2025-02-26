@@ -29,4 +29,5 @@ Welcome to ExPECA
    container-vs-public/index
    python-notebook/index
    launch-oai-core-gnb/index
+   visualization/index
 
