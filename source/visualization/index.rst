@@ -93,6 +93,9 @@ Setting up the visualization system is quick, secure, and repeatable. Follow the
 🎉 **Success!**
 --------------------
 
+For more details about the scripts, including how they work, how they customize credentials, etc, please refer to the
+`README.md` file in the Github repository.
+
 Once the setup is complete, your visualization system will be up and running within minutes! You will have:
 
 ✅ Secure credentials  
