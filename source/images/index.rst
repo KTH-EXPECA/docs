@@ -23,8 +23,8 @@ base
 
 A lightweight base image that provides:
 
-- **SSH support** - allows secure access into the container using either a public or private IP address.
-- **Docker-in-Docker (DIND)** - enables running Docker inside the container.
+- **SSH support** - Allows secure access into the container using either a public or private IP address.
+- **Docker-in-Docker (DIND)** - Enables running Docker inside the container.
 
 **Environment Variables**
 
@@ -42,7 +42,8 @@ A lightweight base image that provides:
 
 The image includes a "/root/toolbox" directory, under which you can find various scripts with corresponding user guides. These include:
 
-- **Netfilter Tables script** - allows a container to forward traffic to another destination
+- **Netfilter Tables script** - Allows a container to forward traffic to another destination. Can, for example,
+  be used to do port-forwarding of traffic coming in to a public IP address. 
 - **Network Emulator script** - This script simulates network conditions using Linux tc (Traffic Control). 
   It supports delay, jitter, loss, duplication, corruption, reordering, and rate limiting.
 
