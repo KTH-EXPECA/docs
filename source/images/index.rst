@@ -10,6 +10,8 @@ When pulling or running these images, use the following format::
 
    expecahub/<image-name>:<version>
 
+The images here are "multi-architecture" images (amd64/arm64), and can be loaded onto our Dell workers as well as our Raspberry Pi workers.
+
 -----------------
 Available Images
 -----------------
@@ -36,6 +38,12 @@ A lightweight base image that provides:
 | ``GATEWAY_IP`` | Custom network gateway | No       |
 +----------------+------------------------+----------+
 
+**Toolbox**
+
+The image includes a "/root/toolbox" directory, under which you can find various scripts with corresponding user guides. These include:
+
+- **Traffic Forwarding** - allows a container to forward traffic to another destination
+- **Traffic Disturbance Configuration** - configures various traffic disturbances (delay / jitter / loss) on interfaces
 
 
 visual
