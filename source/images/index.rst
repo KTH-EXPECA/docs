@@ -42,7 +42,7 @@ A lightweight base image that provides:
 
 The image includes a "/root/toolbox" directory, under which you can find various scripts with corresponding user guides. These include:
 
-- **Network Forwarding Tables script** - allows a container to forward traffic to another destination
+- **Netfilter Tables script** - allows a container to forward traffic to another destination
 - **Network Emulator script** - This script simulates network conditions using Linux tc (Traffic Control). 
   It supports delay, jitter, loss, duplication, corruption, reordering, and rate limiting.
 
