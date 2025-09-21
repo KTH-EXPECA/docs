@@ -53,11 +53,11 @@ visual
 
 **Image:** ``expecahub/visual:latest``
 
-A visualization stack image with integrated monitoring and networking capabilities:
+A visualization image with integrated monitoring and networking capabilities:
 
-- **Grafana, InfluxDB, and MQTT** - for visualization (see ExPECA user guides for setup details).
-- **SSH support** - allows secure access into the container using either a public or private IP address.
-- **Docker-in-Docker (DIND)** - enables running Docker inside the container.
+- **Grafana, InfluxDB, and MQTT** - Data visualization, database, and data broker/streaming applications.
+- **SSH support** - Allows secure access into the container using either a public or private IP address.
+- **Docker-in-Docker (DIND)** - Enables running Docker inside the container.
 
 **Environment Variables**
 
