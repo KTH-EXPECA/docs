@@ -75,3 +75,4 @@ A visualization stack image with integrated monitoring and networking capabiliti
 | ``GATEWAY_IP``| Custom network gateway         | No       |
 +---------------+--------------------------------+----------+
 
+See "Data Visualization" user guide for more information about usage.
