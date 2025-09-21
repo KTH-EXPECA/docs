@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Defined Networking &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Software Defined Networking</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/technical/networks/networks_sdn.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="software-defined-networking">
+<span id="sdn"></span><h1>Software Defined Networking<a class="headerlink" href="#software-defined-networking" title="Permalink to this heading"></a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A good way to start working with OpenFlow on Chameleon is the <a class="reference external" href="https://www.chameleoncloud.org/appliances/56/">OpenFlow Quick Start</a>
+appliance.</p>
+</div>
+<p>Chameleon’s Bring Your Own Controller (BYOC) functionality enables tenants to create
+isolated network switches managed using an OpenFlow controller provided by the tenant.
+This feature is targeted at users wishing to experiment with software-defined networking
+(SDN) as well as enabling custom network appliances supporting experiments that have
+non-standard networking requirements. This document focuses on how to use OpenFlow
+networks on Chameleon. A complete discussion of OpenFlow and SDN is beyond the scope of
+this document.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>More information on OpenFlow</strong>:
+<a class="reference external" href="https://www.sdxcentral.com/sdn/definitions/what-is-openflow/">https://www.sdxcentral.com/sdn/definitions/what-is-openflow/</a>  and
+<a class="reference external" href="https://www.opennetworking.org/technical-communities/areas/specification/open-datapath/">https://www.opennetworking.org/technical-communities/areas/specification/open-datapath/</a></p>
+</div>
+<p>OpenFlow switches, like traditional switches, forward network traffic between a number
+of ports used to connect other networks and devices. The primary difference is that
+OpenFlow switches rely on external software (a “controller”) to dynamically manage the
+rules (or “flows”) that determine how and where the traffic is forwarded. In addition,
+OpenFlow enables a much larger set of possible rules which can be imposed on the
+traffic.</p>
+<p>The basic requirements of an OpenFlow switch are the switch and the controller. The
+switch is configured with the IP address and port of a controller (software) that
+manages the switch’s rules.  When a packet arrives at the switch, the packet is tested
+against the rules that are known by the switch to determine what action(s) to take.
+Typically, if there are no rules that apply to a packet, the packet is sent to the
+controller which replies with a set of rules for that type of packet. The new rules are
+cached in the switch and applied to subsequent packets until the rules expire or are
+explicitly removed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some common OpenFlow controllers are
+<a class="reference external" href="https://www.opendaylight.org">Open Daylight</a>, <a class="reference external" href="https://osrg.github.io/ryu">Ryu</a>,
+<a class="reference external" href="https://onosproject.org">ONOS</a>, <a class="reference external" href="http://www.projectfloodlight.org/floodlight">Floodlight</a>,
+and <a class="reference external" href="https://github.com/noxrepo/nox">NOX</a>.</p>
+</div>
+<section id="chameleon-and-openflow">
+<h2>Chameleon and OpenFlow<a class="headerlink" href="#chameleon-and-openflow" title="Permalink to this heading"></a></h2>
+<p>BYOC is part of the expanded deployment for Chameleon’s phase 2. It enables tenants to
+allocate OpenFlow switches controlled by their own OpenFlow controller. This capability
+is limited to the phase 2 hardware additions that include the Corsa DP2000 series
+OpenFlow switches and Skylake compute nodes. The Corsa switches are key to enabling the
+BYOC functionality.  These switches allow for the creation of mutually isolated
+forwarding contexts which can be thought of as virtual OpenFlow switches even though
+they are the native abstraction used by the Corsa DP2000s. Each isolated forwarding
+context can be configured to use its own OpenFlow controller. The Chameleon BYOC
+functionality enables tenants to specify the IP and port of an arbitrary OpenFlow
+controller when they create private networks.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Currently (October 2022) only <cite>compute_skylake</cite> nodes in rack 4 at CHI&#64;UC can participate in SDN experiments.</p>
+</div>
+<p>Specifying an OpenFlow controller for your private network is just a special case of
+creating a private network. Before proceeding you should become familiar with using
+regular private VLANs on Chameleon and be able to create your own private VLANs.
+Background information can be found in the document covering Reconfigurable Networking.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Currently it is not possible to specify an OpenFlow controller using the Horizon
+portal.  However, OpenFlow networks with tenant owned controllers can be created
+using Heat templates which integrate the instructions below.</p>
+</div>
+<p>Using the CLI, an external OpenFlow controller (IP and port) can be specified on the
+command line using the <code class="docutils literal notranslate"><span class="pre">--description</span></code> field as shown below. Creating the subnet and
+router is the same as any other Chameleon network.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--provider-network-type<span class="w"> </span>vlan<span class="w"> </span>--provider-physical-network<span class="w"> </span>exogeni
+--description<span class="w"> </span><span class="nv">OFController</span><span class="o">=</span>&lt;OF_Controller_IP&gt;:&lt;OF_Controller_Port&gt;<span class="w"> </span>&lt;network_name&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To reserve a stitchable VLAN segment and use it for OpenFlow, you must use the Blazar
+CLI. See <a class="reference internal" href="../reservations.html#reservation-cli-vlan"><span class="std std-ref">Creating a Lease to Reserve a VLAN Segment</span></a>.</p>
+</div>
+<p>The output should look like the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | UP                                   |
+| availability_zone_hints   |                                      |
+| availability_zones        |                                      |
+| created_at                | 2018-05-23T14:38:18Z                 |
+| description               | OFController=162.250.136.46:6653     |
+| dns_domain                | None                                 |
+| id                        | 5e359c6f-a69e-4f4d-b92a-784a5f6ca59f |
+| ipv4_address_scope        | None                                 |
+| ipv6_address_scope        | None                                 |
+| is_default                | None                                 |
+| mtu                       | 1500                                 |
+| name                      | exogeni-exogeni-3294                 |
+| port_security_enabled     | False                                |
+| project_id                | e8ae724d28374d0fa15a0e16674b5c47     |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | exogeni                              |
+| provider:segmentation_id  | 3294                                 |
+| qos_policy_id             | None                                 |
+| revision_number           | 2                                    |
+| router:external           | Internal                             |
+| segments                  | None                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| updated_at                | 2018-05-23T14:38:18Z                 |
++---------------------------+--------------------------------------+
+</pre></div>
+</div>
+<p>Example CLI command used to create the network:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">NET</span><span class="o">=</span><span class="s2">&quot;exogeni-3294&quot;</span>
+<span class="nv">PHYSICAL_NETWORK_TENANT</span><span class="o">=</span><span class="s2">&quot;exogeni&quot;</span>
+<span class="nv">NET_TYPE</span><span class="o">=</span><span class="s2">&quot;vlan&quot;</span>
+<span class="nv">NET_NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PHYSICAL_NETWORK_TENANT</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">NET</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">OF_CONTROLLER_IP</span><span class="o">=</span><span class="s2">&quot;162.250.136.46&quot;</span>
+<span class="nv">OF_CONTROLLER_PORT</span><span class="o">=</span><span class="s2">&quot;6653&quot;</span>
+openstack<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--provider-network-type<span class="w"> </span><span class="si">${</span><span class="nv">NET_TYPE</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                         </span>--provider-physical-network<span class="w"> </span><span class="si">${</span><span class="nv">PHYSICAL_NETWORK_TENANT</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                         </span>--description<span class="w"> </span><span class="nv">OFController</span><span class="o">=</span><span class="si">${</span><span class="nv">OF_CONTROLLER_IP</span><span class="si">}</span>:<span class="si">${</span><span class="nv">OF_CONTROLLER_PORT</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                         </span><span class="si">${</span><span class="nv">NET_NAME</span><span class="si">}</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | UP                                   |
+| availability_zone_hints   |                                      |
+| availability_zones        |                                      |
+| created_at                | 2018-05-23T14:38:18Z                 |
+| description               | OFController=162.250.136.46:6653     |
+| dns_domain                | None                                 |
+| id                        | 5e359c6f-a69e-4f4d-b92a-784a5f6ca59f |
+| ipv4_address_scope        | None                                 |
+| ipv6_address_scope        | None                                 |
+| is_default                | None                                 |
+| mtu                       | 1500                                 |
+| name                      | exogeni-exogeni-3294                 |
+| port_security_enabled     | False                                |
+| project_id                | e8ae724d28374d0fa15a0e16674b5c47     |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | exogeni                              |
+| provider:segmentation_id  | 3294                                 |
+| qos_policy_id             | None                                 |
+| revision_number           | 2                                    |
+| router:external           | Internal                             |
+| segments                  | None                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| updated_at                | 2018-05-23T14:38:18Z                 |
++---------------------------+--------------------------------------+
+</pre></div>
+</div>
+<p>At this point your OpenFlow network switch will have been created and connected to the
+OpenFlow at the IP/Port that you sepcified.  Using your controller you can explore the
+OpenFlow switch. There should be only one port on the swtich with is the uplink that
+connects to the OpenStack services and, optionally, any externally stitched networks
+such as ExoGENI. The uplink port ID will be the segmentation ID (VLAN ID) of the network
+shown in the Chameleon portal.  When nodes are created and connected to your network
+ports will be added to your OpenFlow swtich.  Each compute node will always have the
+same port ID on the switch.  The mapping of port IDs to compute nodes is in the
+following section.</p>
+</section>
+<section id="port-mapping">
+<h2>Port Mapping<a class="headerlink" href="#port-mapping" title="Permalink to this heading"></a></h2>
+<p>You will likely need your OpenFlow controller to know which of its ports connects to
+which of your Chameleon nodes. The uplink port will always match the segmentation ID
+(VLAN ID) of the network. The following tables list the OpenFlow port numberings for
+each baremetal node; these port values will be stable for every deployment of a
+particular node.</p>
+<section id="chi-uc">
+<h3>CHI&#64;UC<a class="headerlink" href="#chi-uc" title="Permalink to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only <cite>compute_skylake</cite> nodes in rack 4 at CHI&#64;UC can participate in SDN experiments.</p>
+</div>
+</section>
+</section>
+<section id="debugging-your-controller">
+<h2>Debugging Your Controller<a class="headerlink" href="#debugging-your-controller" title="Permalink to this heading"></a></h2>
+<p>To assist you in debugging your OpenFlow controller, Chameleon exposes a limited set of
+metrics exposed from the actual Corsa DP2000 switches. Currently you can see raw packet
+counts for each physical port on the switch. The data can be retrieved either from a
+Grafana web interface, or via a special Gnocchi metric resource accessed with the
+OpenStack CLI.</p>
+<section id="accessing-via-gnocchi-metrics">
+<h3>Accessing via Gnocchi Metrics<a class="headerlink" href="#accessing-via-gnocchi-metrics" title="Permalink to this heading"></a></h3>
+<p>The metrics can also be queried via <a class="reference internal" href="../metrics.html#metrics"><span class="std std-ref">Gnocchi metrics</span></a>. The metrics are
+located under specific Gnocchi resources and can be queried by passing the metric UUID.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># TACC Corsa #1</span>
+openstack<span class="w"> </span>--os-region<span class="w"> </span>CHI<span class="se">\@</span>TACC<span class="w"> </span>metric<span class="w"> </span>resource<span class="w"> </span>show<span class="w"> </span>28596c49-0c14-5f08-a9e5-84790a05eef3
+<span class="c1"># UC Corsa #1</span>
+openstack<span class="w"> </span>--os-region<span class="w"> </span>CHI<span class="se">\@</span>UC<span class="w"> </span>metric<span class="w"> </span>resource<span class="w"> </span>show<span class="w"> </span>b72663e7-86fb-5785-82ed-b01ea9e0f282
+<span class="c1"># UC Corsa #2</span>
+openstack<span class="w"> </span>--os-region<span class="w"> </span>CHI<span class="se">\@</span>UC<span class="w"> </span>metric<span class="w"> </span>resource<span class="w"> </span>show<span class="w"> </span>18e5e81e-798f-5299-9160-0f0ce34c17a9
+</pre></div>
+</div>
+<p>This command will show all metrics available to view, and their UUID, e.g.:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+-----------------------+-------------------------------------------------------------------+
+| Field                 | Value                                                             |
++-----------------------+-------------------------------------------------------------------+
+| created_by_project_id | 4e9f3b6fbaf245e780b25fae2c166d4e                                  |
+| created_by_user_id    | 5c9803db428c48daa2730892871a9242                                  |
+| creator               | 5c9803db428c48daa2730892871a9242:4e9f3b6fbaf245e780b25fae2c166d4e |
+| ended_at              | None                                                              |
+| id                    | b72663e7-86fb-5785-82ed-b01ea9e0f282                              |
+| metrics               | switch@if_rx_packets-1: c8144fb6-9a40-4eba-b3d4-c16b1b9dddff      |
+|                       | switch@if_rx_packets-2: 89947128-f794-4f01-bace-1b5a4fd93d32      |
+|                       | ...                                                               |
+|                       | switch@if_tx_packets-1: 4d66dea3-0d7a-4656-bd1e-813c6a4000d6      |
+|                       | switch@if_tx_packets-2: 6dfc2627-03fe-4ce8-8497-1a40ccea60e3      |
+|                       | ...                                                               |
+| original_resource_id  | collectd:chameleon-corsa1                                         |
+| project_id            | None                                                              |
+| revision_end          | None                                                              |
+| revision_start        | 2019-02-26T05:46:25.626125+00:00                                  |
+| started_at            | 2019-02-26T05:46:25.626103+00:00                                  |
+| type                  | switch                                                            |
+| user_id               | None                                                              |
++-----------------------+-------------------------------------------------------------------+
+</pre></div>
+</div>
+<p>You can then query an individual metric’s values with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>metric<span class="w"> </span>measures<span class="w"> </span>show<span class="w"> </span><span class="nv">$METRIC_UUID</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="corsa-dp2000-virtual-forwarding-contexts-network-layout-and-advanced-features">
+<h2>Corsa DP2000 Virtual Forwarding Contexts: Network Layout and Advanced Features<a class="headerlink" href="#corsa-dp2000-virtual-forwarding-contexts-network-layout-and-advanced-features" title="Permalink to this heading"></a></h2>
+<p>Virtual Forwarding Contexts (VFC) are the native OpenFlow abstraction used by the Corsa
+DP2000 series switches. Each VFC can be thought of as a virtual OpenFlow switch.
+Chameleon users can create VFCs by creating isolated networks on Chameleon via CLI or
+using complex appliaces.</p>
+<p>In this section, actual rack and switch layout of Skylake Nodes and Corsa DP2000
+switches for both Chameleon sites is represented in the following figures. Also, example
+isolated networks with different controller options are shown along with associated VFCs
+and tunnels from Skylake Nodes are shown.</p>
+<p>Users are able to specify an external OpenFlow controller and can assign a name to their
+VFCs. If an external controller is not specified, VFC is controlled by the OpenFlow
+controller (Learning Bridge Application) running on the switch.</p>
+<ol class="arabic simple">
+<li><p>Create an isolated network without an external OpenFlow controller and a VFC name:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--provider-network-type<span class="w"> </span>vlan<span class="w"> </span>--provider-physical-network<span class="w"> </span>physnet1
+sdn-network-1
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Create an isolated network with an external OpenFlow controller and without a VFC name:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--provider-network-type<span class="w"> </span>vlan<span class="w"> </span>--provider-physical-network<span class="w"> </span>physnet1
+--description<span class="w"> </span><span class="nv">OFController</span><span class="o">=</span>&lt;OF_Controller_IP&gt;:&lt;OF_Controller_Port&gt;<span class="w"> </span>sdn-network-2
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Create an isolated network with an external OpenFlow controller and give a name to the VFC:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--provider-network-type<span class="w"> </span>vlan<span class="w"> </span>--provider-physical-network<span class="w"> </span>physnet1
+--description<span class="w"> </span><span class="nv">OFController</span><span class="o">=</span>&lt;OF_Controller_IP&gt;:&lt;OF_Controller_Port&gt;,VSwitchName<span class="o">=</span>&lt;VFCName&gt;
+sdn-network-3
+</pre></div>
+</div>
+<p>A named VFC will be created for the isolated network. Subsequent isolated networks that
+are created with the same VFC name specification will be attached to the same VFC.
+Current implementation lets the user specify only one OpenFlow controller to the VFCs.
+Also, subsequent isolated network creation commands should include exactly the same
+<code class="docutils literal notranslate"><span class="pre">--description</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--provider-network-type<span class="w"> </span>vlan<span class="w"> </span>--provider-physical-network<span class="w"> </span>physnet1
+--description<span class="w"> </span><span class="nv">OFController</span><span class="o">=</span>&lt;OF_Controller_IP&gt;:&lt;OF_Controller_Port&gt;,VSwitchName<span class="o">=</span>&lt;VFCName&gt;
+sdn-network-4
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Skylake Nodes at UC:
+<a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a> has two racks with Skylake Nodes. Each rack has a TOR Corsa DP2000 series
+switch. VFCs for isolated networks are created on Corsa-1. Nodes on the second rack
+are connected to the VFC via statically provisioned VFCs on Corsa-2. You will see the
+ports on the VFCs as described in “Port Mapping” section.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="../../_images/corsa-network-vfc-layout-uc.png" src="../../_images/corsa-network-vfc-layout-uc.png" />
+</figure>
+<ol class="arabic simple" start="5">
+<li><p>Skylake Nodes at TACC:
+<a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> has one rack with Skylake Nodes. You will see the ports on the VFCs as
+described in “Port Mapping” section.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="../../_images/corsa-network-vfc-layout-tacc.png" src="../../_images/corsa-network-vfc-layout-tacc.png" />
+</figure>
+</section>
+<section id="controllers-for-corsa-dp2000-series-switches">
+<h2>Controllers for Corsa DP2000 series switches<a class="headerlink" href="#controllers-for-corsa-dp2000-series-switches" title="Permalink to this heading"></a></h2>
+<p>OpenFlow controllers often need to be aware of the slight differences in implementation
+across switch vendors. What follows is a description of the quirks we have found while
+using the Corsa DP2000 series switches as well as a simple controller configuration that
+is compatible with Chameleon OpenFlow networks.</p>
+<p>We have used Ryu and OpenDaylight controllers for the VFCs (Virtual Forwarding Context)
+on Corsa switches.  We have provided a sample OpenFlow Ryu controller application that
+is available on GitHub. In addition, we have provided a Chameleon appliance that creates
+a Ryu controller based on these code modifications.</p>
+<p>This controller is derived from the Ryu simple_switch_13.py with the following
+considerations. If you want use any other OpenFlow controller you will have to make
+similar considerations.</p>
+<ol class="arabic simple">
+<li><p>VFCs on Corsa switches are created by allocating specific amounts of system
+resources. Each VFC has a limited amount of resources in order to accommodate the
+requests of all Chameleon users. This limits the number of flows that can be put in
+the flow tables. Controllers will need to be careful not to fill up the flow tables.
+In our example, an idle timeout (defaulting to 5 minutes) to any rule inserted into
+the VFC via the controller is added to ensure the flow tables are cleaned up. This
+way, the switch removes the rule itself, once traffic matching the rule stops passing
+(for the specified interval).</p></li>
+<li><p>The Corsa switches do not support Actions=FLOOD since this reserved port type is only
+for hybrid switches and it is optional. Corsa is an Openflow-only switch which
+supports the required port ALL. Controllers must replace the Actions=FLOOD to
+Actions=ALL in packet out messages.</p></li>
+<li><p>Flow tables are modified according to the status of the ports being added or deleted
+from the VFC.</p></li>
+</ol>
+<p>The following changes are made to the application:</p>
+<p>Added the functions below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">_port_status_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ev</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">delete_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datapath</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Added IDLE_TIMEOUT to flow modification in:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datapath</span><span class="p">,</span> <span class="n">priority</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">buffer_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Changes are made in the function below to change <code class="docutils literal notranslate"><span class="pre">Actions=FLOOD</span></code> to <code class="docutils literal notranslate"><span class="pre">actions=ALL</span></code> in
+packet out message in the <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">_packet_in_handler(self,</span> <span class="pre">ev):</span></code> method.</p>
+<p>This controller application can be run by the script below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CHAMELEON_RYU_URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/ChameleonCloud/ryu.git&quot;</span>
+<span class="nv">CHAMELEON_RYU_APP</span><span class="o">=</span><span class="s2">&quot;simple_switch_13_custom_chameleon.py&quot;</span>
+
+yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>epel-release
+yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python-pip<span class="w"> </span>git
+pip<span class="w"> </span>install<span class="w"> </span>ryu
+
+<span class="nv">RYU_DIR</span><span class="o">=</span><span class="s2">&quot;/opt/ryu&quot;</span>
+
+mkdir<span class="w"> </span><span class="si">${</span><span class="nv">RYU_DIR</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span><span class="si">${</span><span class="nv">RYU_DIR</span><span class="si">}</span>/repo
+
+git<span class="w"> </span>clone<span class="w"> </span><span class="si">${</span><span class="nv">CHAMELEON_RYU_URL</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">RYU_DIR</span><span class="si">}</span>/repo
+ln<span class="w"> </span>-s<span class="w"> </span><span class="si">${</span><span class="nv">RYU_DIR</span><span class="si">}</span>/repo/ryu/app/<span class="si">${</span><span class="nv">CHAMELEON_RYU_APP</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">RYU_DIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CHAMELEON_RYU_APP</span><span class="si">}</span>
+
+
+<span class="nv">RYU_PID_FILE</span><span class="o">=</span><span class="s2">&quot;/var/run/ryu/ryu-manager.pid&quot;</span>
+<span class="nv">RYU_LOG_FILE</span><span class="o">=</span><span class="s2">&quot;/var/log/ryu/ryu-manager.log&quot;</span>
+<span class="nv">RYU_CONFIG_DIR</span><span class="o">=</span><span class="s2">&quot;/opt/ryu/etc&quot;</span>
+<span class="nv">RYU_APP</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">RYU_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">CHAMELEON_RYU_APP</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">OFP_TCP_LISTEN_PORT</span><span class="o">=</span><span class="s2">&quot;6653&quot;</span>
+
+
+/usr/bin/ryu-manager<span class="w"> </span>--pid-file<span class="w"> </span><span class="se">\$</span><span class="o">{</span>RYU_PID_FILE<span class="o">}</span><span class="w"> </span>--ofp-tcp-listen-port<span class="w"> </span><span class="se">\$</span><span class="o">{</span>OFP_TCP_LISTEN_PORT<span class="o">}</span><span class="w"> </span>--log-file<span class="w"> </span><span class="se">\$</span><span class="o">{</span>RYU_LOG_FILE<span class="o">}</span><span class="w"> </span><span class="se">\$</span><span class="o">{</span>RYU_APP<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

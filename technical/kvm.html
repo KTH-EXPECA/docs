@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KVM &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">KVM</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/kvm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kvm">
+<span id="id1"></span><h1>KVM<a class="headerlink" href="#kvm" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>OpenStack is an Infrastructure as a Service (IaaS) platform that allows you to
+create and manage virtual environments. Chameleon provides an installation of
+OpenStack <a class="reference external" href="https://releases.openstack.org/xena/index.html">Xena</a> using the
+KVM virtualization technology at the <a class="reference external" href="https://kvm.tacc.chameleoncloud.org">KVM&#64;TACC</a> site. Since the KVM hypervisor is used
+on this cloud, any virtual machines you upload must be compatible with KVM.</p>
+<p>This documentation provide basic information about how to use the OpenStack web
+interface and provides some information specific to using OpenStack KVM on
+Chameleon. The interface is similar to the bare metal sites <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> and
+<a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>. However, the resources that you are using are virtual, rather than
+being tied to physical nodes. Familiarity with some concepts, such as
+<a class="reference internal" href="gui.html#gui-key-pairs"><span class="std std-ref">Key Pairs</span></a> are also required for KVM.</p>
+</section>
+<section id="work-with-kvm-using-the-gui">
+<h2>Work with KVM using the GUI<a class="headerlink" href="#work-with-kvm-using-the-gui" title="Permalink to this heading"></a></h2>
+<p>An easy way to use OpenStack KVM on Chameleon is via the GUI, which is similar
+to the GUIs for <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> and <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>. You log into the web interface using
+your Chameleon username and password.</p>
+<p>After a successful log in, you will see the <em>Overview</em> page as shown below. This
+page provides a summary of your current and recent usage and provides links to
+various other pages. Most of the tasks you will perform are done via the menu on
+the lower left and will be described below. One thing to note is that on the
+left, your current project is displayed. If you have multiple Chameleon
+projects, you can change which of them is your current project. All of the
+information displayed and actions that you take apply to your current project.
+So in the screen shot below, the quota and usage apply to the current project
+you have selected and no information about your other projects is shown.</p>
+<figure class="align-default">
+<img alt="../_images/new_overview.png" src="../_images/new_overview.png" />
+</figure>
+<section id="managing-virtual-machine-instances">
+<h3>Managing Virtual Machine Instances<a class="headerlink" href="#managing-virtual-machine-instances" title="Permalink to this heading"></a></h3>
+<p>One of the main activities you’ll be performing in the GUI is management of
+virtual machines, or instances. Go to <em>Project</em> &gt; <em>Compute</em> &gt; <em>Instances</em> in the
+navigation sidebar. For instances that you have running, you can click on the
+name of the instance to get more information about it and to access the VNC
+interface to the console. The dropdown menu to the right of the instance lets
+you perform a variety of tasks such as suspending, terminating, or rebooting the
+instance.</p>
+<figure class="align-default">
+<img alt="../_images/new_instances.png" src="../_images/new_instances.png" />
+</figure>
+</section>
+<section id="launching-instances">
+<h3>Launching Instances<a class="headerlink" href="#launching-instances" title="Permalink to this heading"></a></h3>
+<p>To launch an <em>Instance</em>, click the <em>Launch Instance</em> button. This will open the
+<em>Launch Instance</em> dialog.</p>
+<figure class="align-default">
+<img alt="../_images/new_launchdetails.png" src="../_images/new_launchdetails.png" />
+</figure>
+<p>On the <em>Details</em> tab, provide a name for this instance (to help you identify
+instances that you are running).</p>
+<p>Next, go to the <em>Source</em> tab to select media to launch.</p>
+<figure class="align-default">
+<img alt="../_images/new_launchsource.png" src="../_images/new_launchsource.png" />
+</figure>
+<p>Select the <em>Boot Source</em> of the instance, which is either an <em>Image</em>, an
+<em>Instance Snapshot</em> (an image created from a running virtual machine), a
+<em>Volume</em> (a persistent virtual disk that can be attached to a virtual machine),
+or a “Volume Snapshot”. If you select “Image” as the <em>Boot Source</em>, the <em>Image
+Name</em> dropdown presents a list of virtual machine images that we have provided,
+that other Chameleon users have uploaded and made public, or images that you
+have uploaded for yourself. If you select <em>Boot from snapshot</em>, the <em>Instance
+Snapshot</em> dropdown presents a list of virtual machine images that you have
+created from your running virtual machines.</p>
+<p>Go to the <em>Flavor</em> Tab and select the amount of resources (Flavor) to allocate
+to the instance.</p>
+<figure class="align-default">
+<img alt="../_images/new_launchflavor.png" src="../_images/new_launchflavor.png" />
+</figure>
+<p>Flavors refer to the virtual machine’s assigned memory and and disk size.
+Different images and snapshots may require a larger Flavor. For example, the
+<code class="docutils literal notranslate"><span class="pre">CC-CentOS7</span></code> image requires at least an <code class="docutils literal notranslate"><span class="pre">m1.small</span></code> flavor.</p>
+<blockquote>
+<div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you select different flavors from the Flavor dropdown, their
+characteristics are displayed on the right.</p>
+</div>
+</div></blockquote>
+<p>When you are finished with this step, go to the <em>Key Pair</em> Tab.</p>
+<figure class="align-default">
+<img alt="../_images/new_launchaccess.png" src="../_images/new_launchaccess.png" />
+</figure>
+<p>Select an SSH keypair that will be inserted into your virtual machine. You will
+need to select a keypair here to be able to access an instance created from one
+of the public images Chameleon provides. These images are not configured with a
+default root password and you will not be able to log in to them without
+configuring an SSH key.</p>
+<p>Then, go to the <em>Security Groups</em> Tab.</p>
+<figure class="align-default">
+<img alt="../_images/new_secgroups.png" src="../_images/new_secgroups.png" />
+</figure>
+<p>If you have previously defined <em>Security Groups</em>, you may select them here.
+Alternatively, you can configure them later.</p>
+<p>Set up network using <em>Network</em> tab.</p>
+<figure class="align-default">
+<img alt="../_images/new_launchnetwork.png" src="../_images/new_launchnetwork.png" />
+</figure>
+<p>Select which network should be associated with the instance. Click the Up arrow
+next to your project’s private network (PROJECT_NAME-net), not <code class="docutils literal notranslate"><span class="pre">ext-net</span></code>.</p>
+<p>Now you can launch your instance by clicking on the <em>Launch</em> button and the
+<em>Instances</em> page will show progress as it starts.</p>
+</section>
+<section id="associating-a-floating-ip-address">
+<span id="kvm-associate-ip"></span><h3>Associating a Floating IP Address<a class="headerlink" href="#associating-a-floating-ip-address" title="Permalink to this heading"></a></h3>
+<p>You may assign a Floating IP Address to your Instance by selecting <em>Associate
+Floating IP</em> in the dropdown menu next to your Instance on the <em>Instances</em> page.</p>
+<figure class="align-default">
+<img alt="../_images/new_associatemenu.png" src="../_images/new_associatemenu.png" />
+</figure>
+<p>This process is similar to <a class="reference internal" href="baremetal.html#baremetal-gui-associate-ip"><span class="std std-ref">Associate a Floating IP</span></a> on <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> and
+<a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a> bare metal sites.</p>
+</section>
+<section id="key-pairs">
+<h3>Key Pairs<a class="headerlink" href="#key-pairs" title="Permalink to this heading"></a></h3>
+<p>You will need to import or create SSH <a class="reference internal" href="gui.html#gui-key-pairs"><span class="std std-ref">Key Pairs</span></a>. This process is
+similar to the process performed on <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> and <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a> bare metal sites.</p>
+</section>
+<section id="security-groups">
+<span id="kvm-security-groups"></span><h3>Security Groups<a class="headerlink" href="#security-groups" title="Permalink to this heading"></a></h3>
+<p><em>Security Groups</em> allow you to specify what inbound and outbound traffic is
+allowed or blocked to Instances. Unlike the <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> and <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a> bare metal
+sites, <a class="reference external" href="https://kvm.tacc.chameleoncloud.org">KVM&#64;TACC</a> observes Security
+Groups for Instances.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, all inbound traffic is blocked to <a class="reference external" href="https://kvm.tacc.chameleoncloud.org">KVM&#64;TACC</a> Instances, including SSH. You must
+apply a Security Group that allows TCP port 22 inbound to access your
+instance via SSH.</p>
+</div>
+<p>To create a Security Group, click <em>Projects</em> &gt; <em>Network</em> &gt; <em>Security Groups</em> in
+the navigation side bar.</p>
+<figure class="align-default">
+<img alt="../_images/new_securitytab.png" src="../_images/new_securitytab.png" />
+</figure>
+<p>Click the <em>+Create Security Group</em> button to open the <em>Create Security Group</em>
+page.</p>
+<figure class="align-default">
+<img alt="../_images/new_createsecurity.png" src="../_images/new_createsecurity.png" />
+</figure>
+<p>Enter a <em>Name</em> for your <em>Security Group</em>, and optionally provide a
+<em>Description</em>. Then click the <em>Create Security Group</em> button. Now, you should
+see your <em>Security Group</em> listed on the <em>Access and Security</em> page.</p>
+<figure class="align-default">
+<img alt="../_images/new_grouplist.png" src="../_images/new_grouplist.png" />
+</figure>
+<p>Click the <em>Manage Rules</em> button in the <em>Action</em> column to open the <em>Manage
+Security Group Rules</em> page.</p>
+<figure class="align-default">
+<img alt="../_images/new_managerules.png" src="../_images/new_managerules.png" />
+</figure>
+<p>The default Security Group allows outbound IPv4 and IPv6 traffic for <em>Any IP
+Protocol</em> and <em>Port Range</em>. If no entry for <em>Ingress</em>, no inbound traffic will
+be allowed. You may add an additional rule by clicking on the <em>+Add Rule</em> to
+open the <em>Add Rule</em> dialog.</p>
+<figure class="align-default">
+<img alt="../_images/new_addrule.png" src="../_images/new_addrule.png" />
+</figure>
+<p>In this dialog, you can specify <em>Custom TCP Rule</em> (or <em>Custom UDP Rule</em> or
+<em>Custom ICMP Rule</em>), a <em>Direction</em> (<em>Ingress</em> for inbound traffic to your
+Instance or <em>Egress</em> for outbound traffic) and a <em>Port</em>. Alternatively, you can
+use a pre-defined rule in the <em>Rule</em> dropdown, such as <em>SSH</em>. when you are
+finished, click <em>Add</em>.</p>
+</section>
+<section id="adding-a-security-group-to-an-instance">
+<span id="kvm-security-group"></span><h3>Adding a Security Group to an Instance<a class="headerlink" href="#adding-a-security-group-to-an-instance" title="Permalink to this heading"></a></h3>
+<p>Once you have defined a <em>Security Group</em>, you may apply it to an Instance by
+clicking <em>Project</em> &gt; <em>Compute</em> &gt; <em>Instances</em> in the navigation sidebar and
+clicking the <em>Edit Security Groups</em> option in the <em>Actions</em> dropdown.</p>
+<figure class="align-default">
+<img alt="../_images/new_editaction.png" src="../_images/new_editaction.png" />
+</figure>
+<p>The <em>Security Groups</em> tab in the <em>Edit Instance</em> dialog will pop up.</p>
+<figure class="align-default">
+<img alt="../_images/new_editinstance.png" src="../_images/new_editinstance.png" />
+</figure>
+<p>You may click the <em>+</em> button next to the Security Group you wish to apply in the
+<em>All Security Groups</em> list on the left. Once you are finished, click <em>Save</em> to
+finish the process.</p>
+</section>
+<section id="load-balancer-as-a-service">
+<h3>Load Balancer as a Service<a class="headerlink" href="#load-balancer-as-a-service" title="Permalink to this heading"></a></h3>
+<p>Available on <a class="reference external" href="mailto:KVM&#37;&#52;&#48;TACC">KVM<span>&#64;</span>TACC</a> is the OpenStack Octavia Load Balancer as a Service (LBaas). This service allows a single IP address to be used to distribute connections among a number of virtual machine instances.
+For the following description, it is assumed that there are already several virtual machines running an HTTP server on port 80, serving a page at the root path.
+To create a <em>Load Balancer</em>, click on <em>Project</em> &gt; <em>Network</em> &gt; <em>Load Balancers</em> in the navigation sidebar, then the <em>Create Load Balancer</em> button. This will open the <em>Create Load Balancer</em> dialog.</p>
+<figure class="align-default">
+<img alt="../_images/lbaas_create_loadbalancer.png" src="../_images/lbaas_create_loadbalancer.png" />
+</figure>
+<p>Give your load balancer a name, and select the subnet that corresponds to the one used by the virtual machines. Click <em>Next</em>, or <em>Listener Details</em>.</p>
+<figure class="align-default">
+<img alt="../_images/lbaas_listener_details.png" src="../_images/lbaas_listener_details.png" />
+</figure>
+<p>The listener is the port that will accept incoming connetions. Select the appropriate protocol for the service, in this case <em>HTTP</em>. If selecting <em>TCP</em> or <em>UDP</em> also provide the desired port. Click <em>Next</em> or <em>Pool Details</em>.</p>
+<figure class="align-default">
+<img alt="../_images/lbaas_pool_details.png" src="../_images/lbaas_pool_details.png" />
+</figure>
+<p>Choose the desired load balancing algorithm. This will determine the way in which the load balancer will select which VM receives incoming requests. Click <em>Next</em> or <em>Pool Members</em>.</p>
+<figure class="align-default">
+<img alt="../_images/lbaas_pool_members.png" src="../_images/lbaas_pool_members.png" />
+</figure>
+<p>Here you will select the virtual machines that will participate in the load balacing. Click the <em>Add</em> button next to the instances, after which their IP address and subnet will be added to the <em>Allocated Members</em> list at the top.
+You will need to provide the port number for the hosted service for each member. For our HTTP servers, it is port 80. This does not need to match the port of the load balancer’s <em>listener</em>.</p>
+<figure class="align-default">
+<img alt="../_images/lbaas_pool_member_add.png" src="../_images/lbaas_pool_member_add.png" />
+</figure>
+<p>Once you’ve selected the pool members, click <em>Next</em> or <em>Monitor Details</em>. Here you will configure how the load balancer monitors the servies on the virtual machines to ensure that they are ready to receive traffic.
+In our example, selecting <em>HTTP</em> adds configuration options for <em>HTTP Method</em>, <em>Expected Codes</em>, and <em>URL path</em>. Since the HTTP services on the VMs in the <em>pool members</em> are configured to serve a page on the root path, the default values will work.
+Click <em>Create Load Balancer</em></p>
+<figure class="align-default">
+<img alt="../_images/lbaas_monitor_http.png" src="../_images/lbaas_monitor_http.png" />
+</figure>
+<p>While the load balancer is being created, the dashboard will show a <em>Provisioning Status</em> of <em>Pending Create</em> . Once the process is complete, the status should be <em>Active</em>, and <em>Operating Status</em> should be <em>Online</em>.
+An <em>Operating Status</em> of “<em>Offline</em>” or “<em>Error</em>” indicates that the load balancer cannot satisfy the service check specified in <em>Monitor Details</em>. Ensure that the services are running on each VM, and that they return the expected status.</p>
+<figure class="align-default">
+<img alt="../_images/lbaas_create_pending.png" src="../_images/lbaas_create_pending.png" />
+</figure>
+<figure class="align-default">
+<img alt="../_images/lbaas_active.png" src="../_images/lbaas_active.png" />
+</figure>
+<p>You can assign a Floating IP address to the load balancer by clicking on the down arrow button next to <em>Edit Load Balancer</em>, and selecting <em>Associate Floating IP</em>. This process is similar to associatig af Floating IP to a virtual machine instnace.
+Making changes to the various components of the load balancer by clicking on the blue-colord name of the load balancer in the list. From here, the <em>listeners</em>, <em>pools</em>, and <em>health monitors</em> can be updated, if needed.</p>
+<p>To learn more about how to use the Octavia Load Balancer, refer to the <a class="reference external" href="https://docs.openstack.org/octavia/latest/user/guides/basic-cookbook.html">Basic Load Balancing Cookbook</a> on the official OpenStack documentation</p>
+</section>
+</section>
+<section id="work-with-kvm-using-the-cli">
+<h2>Work with KVM using the CLI<a class="headerlink" href="#work-with-kvm-using-the-cli" title="Permalink to this heading"></a></h2>
+<p>For general information on CLI authentication and use, please see the
+<a class="reference external" href="https://chameleoncloud.readthedocs.io/en/latest/technical/cli.html#the-command-line-interface">command-line-interface section</a>.</p>
+<section id="uploading-qcow2-images-to-raw-format-for-better-instance-launch-performance">
+<h3>Uploading qcow2 images to raw format for better instance launch performance<a class="headerlink" href="#uploading-qcow2-images-to-raw-format-for-better-instance-launch-performance" title="Permalink to this heading"></a></h3>
+<p>KVM images are stored on our Ceph cluster, which is able to serve raw images
+much faster than qcow2 for instance launches. Openstack includes the
+experimental command Glance image-create-via-import, which allows uploading of
+images in various standard formats including qcow2 to then be automatically
+converted to raw in the backend.</p>
+<p>In order to use this method, authenticate to KVM using the OpenStack RC script
+downloaded from the <a class="reference external" href="https://kvm.tacc.chameleoncloud.org">KVM&#64;TACC</a> site as
+described in <a class="reference internal" href="cli.html#cli-rc-script"><span class="std std-ref">The OpenStack RC Script</span></a>.</p>
+<p>Next, issue the following command:</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>glance<span class="w"> </span>image-create-via-import<span class="w"> </span>--container-format<span class="w"> </span>bare<span class="w"> </span>--disk-format<span class="w"> </span>qcow2<span class="w"> </span>--file<span class="w"> </span>&lt;/path/to/image&gt;<span class="w"> </span>--name<span class="w"> </span>&lt;image<span class="w"> </span>name&gt;
+</pre></div>
+</div>
+</div></blockquote>
+<p>Details and other options for this command are available via the Glance
+<a class="reference external" href="https://docs.openstack.org/python-glanceclient/xena/cli/details.html#glance-image-create-via-import">image-create-via-import documentation</a>.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Glance image-create-via-import is currently unable to handle conversion of
+iso images to raw.</p>
+</div>
+<p>Alternatively, you may convert qcow2 images to raw format before upload.
+qemu-img is one tool that is able to this with the following command:</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>qemu-img<span class="w"> </span>convert<span class="w"> </span>-f<span class="w"> </span>qcow2<span class="w"> </span>-O<span class="w"> </span>raw<span class="w"> </span>&lt;original.qcow2&gt;<span class="w"> </span>&lt;converted.img&gt;
+</pre></div>
+</div>
+</div></blockquote>
+<p>Once converted, use glance to upload the image:</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>image<span class="w"> </span>create<span class="w"> </span>--file<span class="w"> </span>&lt;/path/to/converted.img&gt;<span class="w"> </span>--disk-format<span class="w"> </span>raw<span class="w"> </span>&lt;image-name&gt;
+</pre></div>
+</div>
+</div></blockquote>
+<p>Details and other options for this command are available within <a class="reference external" href="https://docs.openstack.org/image-guide/convert-images.html">Openstack
+documentation</a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

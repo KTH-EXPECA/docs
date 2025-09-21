@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resource discovery &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Resource discovery</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/discovery.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="resource-discovery">
+<span id="id1"></span><h1>Resource discovery<a class="headerlink" href="#resource-discovery" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>Chameleon supports fine-grained resource discovery for experimentation, which means that you can identify a specific node, view the node’s hardware maintenance history and reserve it for repeated use.</p>
+<p>All physical resources available in Chameleon are described in the Chameleon resource registry. The resource registry is based on the <a class="reference external" href="https://www.grid5000.fr/mediawiki/index.php/API">Reference API from the Grid’5000 project</a>. Users can consult the registry via the resource discovery web interface or directly via REST APIs.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some resource discovery features are available through the <a class="reference external" href="https://chameleoncloud.org">Chameleon Portal</a>, while others are available <strong>only</strong> through the REST APIs.</p>
+</div>
+</section>
+<section id="the-hardware-catalog-on-the-chameleon-portal">
+<h2>The Hardware Catalog on the Chameleon Portal<a class="headerlink" href="#the-hardware-catalog-on-the-chameleon-portal" title="Permalink to this heading"></a></h2>
+<p>You may use the <a class="reference external" href="https://chameleoncloud.org/hardware/">Hardware</a> page at the <a class="reference external" href="https://chameleoncloud.org">Chameleon Portal</a> to see the different hardware resource types available at each Chameleon site.</p>
+<section id="availability">
+<h3>Availability<a class="headerlink" href="#availability" title="Permalink to this heading"></a></h3>
+<p>The <em>CHI&#64;TACC</em> and <em>CHI&#64;UC</em> buttons in the <em>Availability</em> section of the Resource Browser allow you to open the Lease Calendars at the Chameleon sites. You must login using your Chameleon account to view these lease calendars.</p>
+<figure class="align-default" id="id7">
+<img alt="Resource availability links to the lease calendars" src="../_images/availability.png" />
+<figcaption>
+<p><span class="caption-text">Resource availability links to the lease calendars</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="chameleon-resource-browser">
+<h3>Chameleon Resource Browser<a class="headerlink" href="#chameleon-resource-browser" title="Permalink to this heading"></a></h3>
+<p>The Chameleon Resource Browser allows you to filter Chameleon resources by node type and view details of each node.</p>
+<figure class="align-default" id="id8">
+<img alt="Chameleon Resource Browser" src="../_images/resourcebrowser.png" />
+<figcaption>
+<p><span class="caption-text">The Chameleon Resource Browser</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>You may filter for specific node types by selecting the checkboxes that match your filter criteria or by clicking the buttons such as <em>Compute</em> and <em>Infiniband Support</em>. The numbers printed next to the node types indicate the total number of nodes of that certain type. After you have selected filter criteria, you can click the <em>View</em> button to see details of individual nodes that match your filtering criteria.</p>
+<figure class="align-default" id="id9">
+<img alt="Node details" src="../_images/nodedetails.png" />
+<figcaption>
+<p><span class="caption-text">Node details</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To get more precise characteristics of the selected node, search the node at <a class="reference external" href="https://ark.intel.com/">Intel’s CPU database</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All the nodes in Chameleon is identified by their <em>UUIDs</em>. You will need the <em>UUID</em> of a node for making reservations and identifying metrics collected from the node using Gnocchi. In addition, each node also has a <em>Version UUID</em>, which is used for retrieving its maintenance history.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>When we replace faulty hardware on a node, the replacement part typically has the same hardware characteristics. For example, a node with a faulty 250 GB hard drive would be replaced with the same 250 GB hard drive model. However, it may be important for your experimental reproducibility to know about those hardware replacement events, in case it affects your metrics.</p>
+</div>
+</section>
+<section id="generating-a-reservation-script">
+<h3>Generating a Reservation Script<a class="headerlink" href="#generating-a-reservation-script" title="Permalink to this heading"></a></h3>
+<p>The <a class="reference external" href="https://chameleoncloud.org">Chameleon Portal</a>  does not support a direct reservation from the <a class="reference external" href="https://chameleoncloud.org/hardware/">Hardware</a> page. However, you may generate a script for reserving the selected nodes by clicking on the <em>Reserve</em> button and use the auto-generated script later for the reservation.</p>
+<figure class="align-default" id="id10">
+<img alt="Generating a reservation script" src="../_images/reserve.png" />
+<figcaption>
+<p><span class="caption-text">Generating a reservation script</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>After the form is submitted by clicking the <em>Generate Script</em> button, a new dialog that contains the auto-generated command line will show.</p>
+<figure class="align-default" id="id11">
+<img alt="An auto-generated reservation script" src="../_images/reservationscript.png" />
+<figcaption>
+<p><span class="caption-text">An auto-generated reservation script</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>For node reservation using auto-generated command, please see <a class="reference internal" href="reservations.html#reservation-cli"><span class="std std-ref">Provisioning and Managing Resources Using the CLI</span></a>.</p>
+</section>
+</section>
+<section id="using-the-rest-apis-for-resource-discovery">
+<h2>Using the REST APIs for Resource Discovery<a class="headerlink" href="#using-the-rest-apis-for-resource-discovery" title="Permalink to this heading"></a></h2>
+<p>The API is designed for users who want to programmatically discover Chameleon resources. It uses a REST architecture on top of the HTTP protocol. As a consequence, any HTTP client can be used to query the API: command-line tools (cURL), browsers, and the numerous HTTP libraries available in your favorite programming language.</p>
+<p>It also implements the concept of “Hypermedia as the Engine of Application State” (HATEOAS), by specifying a set of hyperlinks in all responses returned by the API, which allow a user agent to discover at runtime the set of available resources as well as their semantics and content types, and transition from one resource to another.</p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h3>
+<p>Chameleon uses <a class="reference external" href="https://curl.haxx.se/">cURL</a> to interact with the API.  The User-Agent <a class="reference external" href="https://curl.haxx.se/">cURL</a> is a command line tool for transferring data with URL syntax, supporting many protocols including HTTP and HTTPS.</p>
+<p>To install <a class="reference external" href="https://curl.haxx.se/">cURL</a>, follow the instructions below:</p>
+<p><strong>OS X</strong></p>
+<p>cURL is installed by default on OS X. Nothing to do for you!</p>
+<p><strong>Linux</strong></p>
+<p>Use your package manager to install cURL. Either (Debian/Ubuntu-based distributions):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>curl
+</pre></div>
+</div>
+<p>or (RedHat-based distributions):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>curl
+</pre></div>
+</div>
+<p><strong>Windows</strong></p>
+<p>Download and install the cURL package from <a class="reference external" href="https://curl.haxx.se/download.html">the website</a>.</p>
+</section>
+<section id="your-first-requests">
+<h3>Your First Requests<a class="headerlink" href="#your-first-requests" title="Permalink to this heading"></a></h3>
+<p>The API entry-point for the resource discovery API is located at <a class="reference external" href="https://api.chameleoncloud.org/">https://api.chameleoncloud.org/</a>. Open your Terminal program (or the cURL executable if you’re on Windows), and use cURL to fetch the resource located at that URL:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-i<span class="w"> </span>https://api.chameleoncloud.org/
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-i</span></code> flag tells cURL to display the HTTP header in addition to the HTTP  body.</p>
+</div>
+<p>Below is what you should see in response:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="nx">OK</span>
+<span class="nx">Server</span><span class="o">:</span><span class="w"> </span><span class="nx">nginx</span><span class="o">/</span><span class="mf">1.6.2</span>
+<span class="nb">Date</span><span class="o">:</span><span class="w"> </span><span class="nx">Thu</span><span class="p">,</span><span class="w"> </span><span class="mf">19</span><span class="w"> </span><span class="nx">Apr</span><span class="w"> </span><span class="mf">2018</span><span class="w"> </span><span class="mf">14</span><span class="o">:</span><span class="mf">34</span><span class="o">:</span><span class="mo">01</span><span class="w"> </span><span class="nx">GMT</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span><span class="w"> </span><span class="nx">application</span><span class="o">/</span><span class="nx">vnd</span><span class="p">.</span><span class="nx">grid5000</span><span class="p">.</span><span class="nx">item</span><span class="o">+</span><span class="nx">json</span><span class="p">;</span><span class="w"> </span><span class="nx">charset</span><span class="o">=</span><span class="nx">utf</span><span class="o">-</span><span class="mf">8</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Length</span><span class="o">:</span><span class="w"> </span><span class="mf">757</span>
+<span class="nx">Connection</span><span class="o">:</span><span class="w"> </span><span class="nx">keep</span><span class="o">-</span><span class="nx">alive</span>
+<span class="nx">Allow</span><span class="o">:</span><span class="w"> </span><span class="nx">GET</span>
+<span class="nx">Vary</span><span class="o">:</span><span class="w"> </span><span class="nx">accept</span>
+<span class="nx">Last</span><span class="o">-</span><span class="nx">Modified</span><span class="o">:</span><span class="w"> </span><span class="nx">Wed</span><span class="p">,</span><span class="w"> </span><span class="mf">14</span><span class="w"> </span><span class="nx">Mar</span><span class="w"> </span><span class="mf">2018</span><span class="w"> </span><span class="mf">15</span><span class="o">:</span><span class="mo">05</span><span class="o">:</span><span class="mf">58</span><span class="w"> </span><span class="nx">GMT</span>
+<span class="nx">ETag</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cc990a75afbc3aed5979c5cad2358b14&quot;</span>
+<span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span><span class="w"> </span><span class="nx">max</span><span class="o">-</span><span class="nx">age</span><span class="o">=</span><span class="mf">60</span><span class="p">,</span><span class="w"> </span><span class="kr">public</span><span class="p">,</span><span class="w"> </span><span class="nx">must</span><span class="o">-</span><span class="nx">revalidate</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">proxy</span><span class="o">-</span><span class="nx">revalidate</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="o">-</span><span class="nx">maxage</span><span class="o">=</span><span class="mf">60</span>
+<span class="nx">X</span><span class="o">-</span><span class="nx">Info</span><span class="o">:</span><span class="w"> </span><span class="nx">Use</span><span class="w"> </span><span class="sb">`?pretty=yes`</span><span class="w"> </span><span class="nx">or</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">HTTP</span><span class="w"> </span><span class="nx">header</span><span class="w"> </span><span class="sb">`X-Rack-PrettyJSON: yes`</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">you</span><span class="w"> </span><span class="nx">want</span><span class="w"> </span><span class="nx">pretty</span><span class="w"> </span><span class="nx">output</span><span class="p">.</span>
+<span class="nx">X</span><span class="o">-</span><span class="nx">UA</span><span class="o">-</span><span class="nx">Compatible</span><span class="o">:</span><span class="w"> </span><span class="nx">IE</span><span class="o">=</span><span class="nx">Edge</span><span class="p">,</span><span class="nx">chrome</span><span class="o">=</span><span class="mf">1</span>
+<span class="nx">X</span><span class="o">-</span><span class="nx">Runtime</span><span class="o">:</span><span class="w"> </span><span class="mf">0.034541</span>
+
+<span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;grid&quot;</span><span class="p">,</span><span class="s2">&quot;uid&quot;</span><span class="o">:</span><span class="s2">&quot;chameleoncloud&quot;</span><span class="p">,</span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="s2">&quot;ee0253a05223dd0f5b88df7f78fb988e67f7b039&quot;</span><span class="p">,</span><span class="s2">&quot;release&quot;</span><span class="o">:</span><span class="s2">&quot;3.5.7&quot;</span><span class="p">,</span><span class="s2">&quot;timestamp&quot;</span><span class="o">:</span><span class="mf">1524148441</span><span class="p">,</span><span class="s2">&quot;links&quot;</span><span class="o">:</span><span class="p">[{</span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="s2">&quot;sites&quot;</span><span class="p">,</span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="s2">&quot;/sites&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">},{</span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="s2">&quot;self&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="s2">&quot;/&quot;</span><span class="p">},{</span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="s2">&quot;parent&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="s2">&quot;/&quot;</span><span class="p">},{</span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="s2">&quot;version&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="s2">&quot;/versions/ee0253a05223dd0f5b88df7f78fb988e67f7b039&quot;</span><span class="p">},{</span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="s2">&quot;versions&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="s2">&quot;/versions&quot;</span><span class="p">},{</span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="s2">&quot;users&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="s2">&quot;/users&quot;</span><span class="p">},{</span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="s2">&quot;notifications&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="s2">&quot;/notifications&quot;</span><span class="p">}]}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The HTTP status of <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code> indicates that the server is able to process your request and that everything is fine.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>By default the response body is not displayed in a pretty format. You must add the pretty query parameter to the end of the URI if you want the API to display it in a prettier way. <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-i</span> <span class="pre">https://api.chameleoncloud.org/?pretty</span></code></p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p><strong>Do not</strong> use the pretty query parameter in your scripts, since it requires a bit more processing power to generate.</p>
+</div>
+<p>You may notice that the response contains a number of link elements, which advertise other resources that you can access. For example, let’s fetch the <code class="docutils literal notranslate"><span class="pre">/sites</span></code> resource.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>https://api.chameleoncloud.org/sites?pretty
+</pre></div>
+</div>
+<p>The response should look like:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Texas Advanced Computing Center&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;email_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;help@chameleoncloud.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;latitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">30.390223</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Austin, Texas, USA&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;longitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-97.72563</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TACC&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;security_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;help@chameleoncloud.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;sys_admin_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;help@chameleoncloud.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;site&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tacc&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;user_support_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;help@chameleoncloud.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;web&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.chameleoncloud.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ee0253a05223dd0f5b88df7f78fb988e67f7b039&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;links&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clusters&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/tacc/clusters&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/tacc&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;parent&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;version&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/tacc/versions/ee0253a05223dd0f5b88df7f78fb988e67f7b039&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;versions&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/tacc/versions&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jobs&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/tacc/jobs&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deployments&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/tacc/deployments&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vlans&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/tacc/vlans&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;metrics&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/tacc/metrics&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/tacc/status&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;University of Chicago&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;email_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;help@chameleoncloud.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;latitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">41.718002</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Argonne National Laboratory, Lemont, Illinois, USA&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;longitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-87.982952</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UC&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;security_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;help@chameleoncloud.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;sys_admin_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;help@chameleoncloud.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;site&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uc&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;user_support_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;help@chameleoncloud.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;web&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.chameleoncloud.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ee0253a05223dd0f5b88df7f78fb988e67f7b039&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;links&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clusters&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/clusters&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;parent&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;version&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/versions/ee0253a05223dd0f5b88df7f78fb988e67f7b039&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;versions&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/versions&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jobs&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/jobs&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deployments&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/deployments&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vlans&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/vlans&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;metrics&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/metrics&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/status&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ee0253a05223dd0f5b88df7f78fb988e67f7b039&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;links&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/sites&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="discover-resources">
+<h3>Discover Resources<a class="headerlink" href="#discover-resources" title="Permalink to this heading"></a></h3>
+<p>It is easy to discover resources using REST APIs when you chase down the <code class="docutils literal notranslate"><span class="pre">links</span></code> in the responses.</p>
+<p>As seen in the previous section, when you fetch the API root resource, you can find the link to the collection of sites. If you look at the site description, you will find a list of links to other resources. For example, each site has a link named <code class="docutils literal notranslate"><span class="pre">clusters</span></code>. When you fetch this link, it returns the list of clusters on that site.</p>
+<p>For example, to get clusters at <em>TACC</em>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>https://api.chameleoncloud.org/sites/tacc/clusters/?pretty
+</pre></div>
+</div>
+<p>Again, you will find <code class="docutils literal notranslate"><span class="pre">links</span></code> in each cluster description. There is a link named <code class="docutils literal notranslate"><span class="pre">nodes</span></code> for each cluster, which as its name indicates, returns the list of nodes for the specific cluster.</p>
+<p>For example, to get nodes on the <em>Alamo</em> cluster at <em>TACC</em> site:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>https://api.chameleoncloud.org/sites/tacc/clusters/alamo/nodes/?pretty
+</pre></div>
+</div>
+<p>You should get back a big collection of nodes. Each node is described in great details, so that you can programmatically find the cluster and nodes that are most suitable for your experiments.</p>
+<p>The following command examples allow you to see that some of the nodes on the <em>Alamo</em> cluster at <em>TACC</em> have a different disk configuration:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>https://api.chameleoncloud.org/sites/tacc/clusters/alamo/nodes/45f0fc6a-a21b-4461-8414-ebf765143aad?pretty<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span>storage_devices
+curl<span class="w"> </span>-s<span class="w"> </span>https://api.chameleoncloud.org/sites/tacc/clusters/alamo/nodes/0a5b61b2-dc1c-4bee-86f7-247c9689ea88?pretty<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span>storage_devices
+</pre></div>
+</div>
+</section>
+<section id="fetch-the-latest-changes">
+<h3>Fetch the Latest Changes<a class="headerlink" href="#fetch-the-latest-changes" title="Permalink to this heading"></a></h3>
+<p>Let’s go back to the site’s description. In Chameleon, resources are added, updated, or removed over time. If you want to keep an eye on those changes, you can fetch the latest changes that occurred on a specific site:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>https://api.chameleoncloud.org/sites/tacc/versions/?pretty
+</pre></div>
+</div>
+<p>Each version listed in the response represents a change to some resources of the Chameleon testbed.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

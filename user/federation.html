@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in with federated identity &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sign in with federated identity</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/federation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sign-in-with-federated-identity">
+<span id="federation"></span><h1>Sign in with federated identity<a class="headerlink" href="#sign-in-with-federated-identity" title="Permalink to this heading"></a></h1>
+<p>Federated login enables users to use a single set of credentials to log into
+many different services. For example, federated login allows you to use your
+university or other institutional credentials to log into Chameleon–there is
+no need to create a new account. In addition, since federated login is supported
+by many testbeds and services across scientific infrastructures you will be able
+to sign in once and use multiple services.</p>
+<p>Chameleon uses <a class="reference external" href="https://globus.org">Globus Auth</a>, a popular authentication
+service, to implement federated login and federates with entities supported by
+Globus. Users can sign in using their existing institutional account if their
+institution is an <a class="reference external" href="https://incommon.org/federation">InCommon</a> member, use their Google account, or create a
+<a class="reference external" href="https://globusid.org/what">Globus ID</a> tied to an email and password that they
+provide. In addition, Chameleon also federates with the TAS entity.</p>
+<section id="logging-in">
+<h2>Logging in<a class="headerlink" href="#logging-in" title="Permalink to this heading"></a></h2>
+<p>To log in to the Chameleon user portal, where you can manage your projects,
+user profile, and submit <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a> tickets, use the “Log in” button.</p>
+<figure class="screenshot align-default">
+<img alt="Login button for the Chameleon user portal" src="../_images/user-portal-login.png" />
+</figure>
+<p>To log in to any of the testbed sites (<a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a>, <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>, <a class="reference external" href="https://kvm.tacc.chameleoncloud.org">KVM&#64;TACC</a>) or the
+<a class="reference internal" href="../technical/jupyter.html#jupyter"><span class="std std-ref">Jupyter environment</span></a>, just click their item in the “Experiment”
+dropdown on <a class="reference external" href="https://www.chameleoncloud.org/">chameleoncloud.org</a>. The login process is triggered
+automatically.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You must be part of project with an active allocation to use the testbed
+sites! Refer to our <span class="xref std std-ref">“getting started” guide</span>
+for more info.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can bookmark the URLs to the testbed sites and Jupyter environment if
+you want to access them directly in the future.</p>
+</div>
+<figure class="screenshot align-default">
+<img alt="Links for accessing testbed sites and the Jupyter interface" src="../_images/application-login.png" />
+</figure>
+<p>You will be taken to a Single Sign On (SSO) page with a few options for how
+to authenticate. The options are:</p>
+<ul class="simple">
+<li><p><strong>Sign in via federated identity</strong>: this option allows you to re-use your
+existing institution, research lab, or university credentials to log in to
+Chameleon. It requires your host institution to participate in the <a class="reference external" href="https://incommon.org/federation">InCommon</a>
+federation.</p></li>
+<li><p><strong>Google</strong>: this option allows you to sign in with any Google account.</p></li>
+<li><p><strong>ORCiD</strong>: you can also sign in with a valid ORCiD account.</p></li>
+<li><p><strong>TAS</strong>: sign in via the TAS entity.</p></li>
+<li><p>For the time being, if you are an existing user, you can also leave SSO and
+go back to the old sign in page, where you sign in with your Chameleon
+username and password.</p></li>
+</ul>
+<figure class="screenshot align-default" id="id1">
+<img alt="Single Sign On (SSO) portal login" src="../_images/sso-login.png" />
+<figcaption>
+<p><span class="caption-text">The Single Sign On (SSO) portal login page.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="legacy-users-created-before-november-2020">
+<h2>Legacy users (created before November 2020)<a class="headerlink" href="#legacy-users-created-before-november-2020" title="Permalink to this heading"></a></h2>
+<p>Users who signed up for a Chameleon account prior to November 2020 must migrate
+their account to use federated identity. Refer to the following step-by-step
+guide for more details.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="federation/federation_migration.html">Migrating to federated identity</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graphical User Interface (GUI) &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Graphical User Interface (GUI)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/gui.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="graphical-user-interface-gui">
+<span id="gui"></span><h1>Graphical User Interface (GUI)<a class="headerlink" href="#graphical-user-interface-gui" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>The Graphical User Interface (GUI) provides a point-and-click experience for
+working with Chameleon resources. From the GUI, you may perform tasks such as
+manage and launch instances, and configure custom networking. Additionally, you
+may download an <em>OpenStack RC</em> file from the GUI if you wish to work with the
+<a class="reference internal" href="cli.html#cli"><span class="std std-ref">Command Line Interface</span></a>, instead. The Chameleon GUI is built on top
+of <a class="reference external" href="https://docs.openstack.org/horizon/latest/">OpenStack Horizon</a>. There are
+two Chameleon resource sites, each with its own URL (though it is possible to
+easily switch from one to other, see <a class="reference internal" href="#gui-project-menu"><span class="std std-ref">Project and Site Menu</span></a>).</p>
+<ul>
+<li><p>The Texas Advanced Computing Center resources (CHI&#64;TACC) are available at:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://chi.tacc.chameleoncloud.org">https://chi.tacc.chameleoncloud.org</a></p>
+</div></blockquote>
+</li>
+<li><p>The University of Chicago resources (CHI&#64;UC) are available at:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://chi.uc.chameleoncloud.org">https://chi.uc.chameleoncloud.org</a></p>
+</div></blockquote>
+</li>
+</ul>
+<p>Chameleon also hosts an <em>OpenStack KVM</em> implementation where you may work with
+virtual machines. This site <strong>does not</strong> have access to bare metal resources. It
+is available at:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://kvm.tacc.chameleoncloud.org">https://kvm.tacc.chameleoncloud.org</a></p>
+</div></blockquote>
+<p>This section provides an overview of features available on the GUI for the bare
+metal sites at the Texas Advanced Computing Center (<a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a>) and the
+University of Chicago (<a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>). For information about <em>OpenStack KVM</em>, please
+see <a class="reference internal" href="kvm.html#kvm"><span class="std std-ref">KVM</span></a>.</p>
+<p>You may login to either site using your Chameleon portal username and password.</p>
+<div class="admonition attention" id="bare-metal-sites-independent">
+<p class="admonition-title">Attention</p>
+<p>Each Chameleon testbed sites—<a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a>, <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>, and <a class="reference external" href="https://kvm.tacc.chameleoncloud.org">KVM&#64;TACC</a>—are
+<strong>independent</strong>, so snapshots, keypairs, Swift containers, Gnocchi
+metrics and other objects are unique to each site. For example, a
+keypair created at the <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> site is <strong>not</strong> available at the <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>
+site. In addition, the bare metal resource types vary between sites.</p>
+</div>
+</section>
+<section id="gui-features">
+<h2>GUI Features<a class="headerlink" href="#gui-features" title="Permalink to this heading"></a></h2>
+<p>Upon logging in to the GUI at a Chameleon site, you will see your project’s
+Overview page.</p>
+<figure class="align-default" id="id1">
+<img alt="The Chameleon GUI" src="../_images/gui.png" />
+<figcaption>
+<p><span class="caption-text">The Chameleon GUI</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="project-and-site-menu">
+<span id="gui-project-menu"></span><h3>Project and Site Menu<a class="headerlink" href="#project-and-site-menu" title="Permalink to this heading"></a></h3>
+<p>To switch among the projects you belong to, use the project and site menu—the
+dropdown on the upper left of the screen next to the Chameleon logo. You can
+also use this menu to switch from one Chameleon site to another. This allows you
+to easily perform multi-site experiments.</p>
+<figure class="align-default" id="id2">
+<img alt="Switching between projects" src="../_images/project_dropdown.png" />
+<figcaption>
+<p><span class="caption-text">Switching between projects</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="user-menu">
+<span id="gui-user-menu"></span><h3>User Menu<a class="headerlink" href="#user-menu" title="Permalink to this heading"></a></h3>
+<p>To access user specific settings and download <em>OpenStack RC</em> files, use the user
+menu—the dropdown on the upper right of the screen where you will see your
+account name.</p>
+<figure class="align-default" id="id3">
+<img alt="The user dropdown menu" src="../_images/user_dropdown.png" />
+<figcaption>
+<p><span class="caption-text">The user dropdown menu</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="settings">
+<span id="gui-settings"></span><h3>Settings<a class="headerlink" href="#settings" title="Permalink to this heading"></a></h3>
+<p>In the settings menu, you can change user specific settings such as the
+Timezone.</p>
+<figure class="align-default" id="id4">
+<img alt="User settings" src="../_images/user_settings.png" />
+<figcaption>
+<p><span class="caption-text">User settings</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Updating your timezone is <strong>highly</strong> recommended. When you make reservations
+for bare metal resources, your local time will be used. UTC is the default
+Timezone.</p>
+</div>
+</section>
+<section id="help">
+<h3>Help<a class="headerlink" href="#help" title="Permalink to this heading"></a></h3>
+<p>The <em>Help</em> menu item will take you to this documentation site.</p>
+</section>
+<section id="openstack-rc-file">
+<h3>OpenStack RC File<a class="headerlink" href="#openstack-rc-file" title="Permalink to this heading"></a></h3>
+<p>Clicking on this menu items will download a customized <a class="reference external" href="http://www.catb.org/jargon/html/R/rc-file.html">RC file</a> for use with the OpenStack
+Command Line Interface. Source the RC file using <code class="docutils literal notranslate"><span class="pre">source</span></code> command to configure
+environment variables that allow you to easily log in using the <a class="reference internal" href="cli.html#cli"><span class="std std-ref">Command
+Line Interface</span></a>. For more information about <em>OpenStack RC</em> script, please
+see <a class="reference internal" href="cli.html#cli-rc-script"><span class="std std-ref">The OpenStack RC Script</span></a>.</p>
+</section>
+<section id="themes">
+<h3>Themes<a class="headerlink" href="#themes" title="Permalink to this heading"></a></h3>
+<p>You may change the GUI theme by selecting the provided menu items.</p>
+</section>
+<section id="sign-out">
+<h3>Sign Out<a class="headerlink" href="#sign-out" title="Permalink to this heading"></a></h3>
+<p>Use the <em>sign out</em> menu item to sign out from your current site.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you do not sign out manually, your session will expire in one hour.</p>
+</div>
+</section>
+</section>
+<section id="navigating-the-gui">
+<h2>Navigating the GUI<a class="headerlink" href="#navigating-the-gui" title="Permalink to this heading"></a></h2>
+<p>The navigation sidebar allows you to access different sections.</p>
+<figure class="align-default">
+<img alt="The GUI sidebar" src="../_images/sidebar.png" />
+</figure>
+</section>
+<section id="api-access">
+<span id="gui-api-access"></span><h2>API Access<a class="headerlink" href="#api-access" title="Permalink to this heading"></a></h2>
+<p>The API Access page lists all the available REST APIs that are used for
+configuring the <a class="reference internal" href="cli.html#cli"><span class="std std-ref">Command Line Interface (CLI)</span></a>. In addition, you may download <a class="reference internal" href="cli.html#cli-rc-script"><span class="std std-ref">The OpenStack RC Script</span></a>
+scripts via this page.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Typically, the key generated from your computer will be at
+<code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa.pub</span></code>. On Mac OS X, you can run in a terminal: <code class="docutils literal notranslate"><span class="pre">cat</span>
+<span class="pre">~/.ssh/id_rsa.pub</span> <span class="pre">|</span> <span class="pre">pbcopy</span></code>. It copies the content of the public key to your
+copy/paste buffer. Then you can simply paste in the “Public Key” box.</p>
+</div>
+<figure class="align-default" id="id5">
+<img alt="The API Access page" src="../_images/api_access.png" />
+<figcaption>
+<p><span class="caption-text">The API Access page</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="compute">
+<span id="gui-compute"></span><h2>Compute<a class="headerlink" href="#compute" title="Permalink to this heading"></a></h2>
+<p>Use <em>Compute</em> section for reserving, configuring and managing your instances.</p>
+<section id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h3>
+<p>The Overview page provides a graphical summary of your project’s current
+resource usage.</p>
+<figure class="align-default">
+<img alt="The Overview page" src="../_images/overview2.png" />
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At the bare metal sites, you may launch as many instances as you like, but
+bounded by the project <a class="reference internal" href="../user/project.html#service-units"><span class="std std-ref">Service Unit</span></a> allocation.
+However, at the OpenStack KVM site, your project is limited to a certain
+number of virtual machines. By default, each project is allowed to allocate
+50 <em>Floating IP addresses</em> and use 10 <em>Security Groups</em>. You may request
+additional resources by submitting a ticket on the <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a>.</p>
+</div>
+</section>
+<section id="instances">
+<span id="gui-compute-instances"></span><h3>Instances<a class="headerlink" href="#instances" title="Permalink to this heading"></a></h3>
+<p>The Instances page allows you to work with your instances. You may launch,
+terminate, monitor, or reboot an instance. Clicking on the dropdown list in
+<em>Action</em> column to see what you are eligible to do to your instances.</p>
+<figure class="align-default">
+<img alt="The Instances page" src="../_images/instances.png" />
+</figure>
+</section>
+<section id="images">
+<h3>Images<a class="headerlink" href="#images" title="Permalink to this heading"></a></h3>
+<p>The Images page allows you to view, upload and edit the images. You may also use
+this page to launch instance using selected images.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can only edit the images you own.</p>
+</div>
+<figure class="align-default">
+<img alt="The Images page" src="../_images/images.png" />
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Search for images using the filter bar.</p>
+</div>
+</section>
+<section id="key-pairs">
+<span id="gui-key-pairs"></span><h3>Key Pairs<a class="headerlink" href="#key-pairs" title="Permalink to this heading"></a></h3>
+<p>The Key Pairs page allows you to create, import and manage SSH key pairs
+associated with your user account.</p>
+<figure class="align-default">
+<img alt="The Key Pairs page" src="../_images/key_pairs.png" />
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Chameleon <strong>only</strong> stores the <em>public key</em> for each SSH key pair. <strong>Do not</strong>
+upload your <em>private key</em> to the portal! Private keys look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span><span class="n">BEGIN</span> <span class="n">RSA</span> <span class="n">PRIVATE</span> <span class="n">KEY</span><span class="o">-----</span>
+</pre></div>
+</div>
+</div>
+<p>To delete a SSH key pair, click on the <em>Delete Key Pair</em> button in the <em>Action</em>
+column. You may delete multiple key pairs by selecting them via the checkbox and
+clicking the <em>Delete Key Pairs</em> button.</p>
+<section id="creating-a-key-pair">
+<h4>Creating a Key Pair<a class="headerlink" href="#creating-a-key-pair" title="Permalink to this heading"></a></h4>
+<p>To create a key pair, click the <em>+ Create Key Pair</em> button. In the prompted
+dialog, provide a name for your new key pair and then click the <em>Create Key
+Pair</em> button.</p>
+<figure class="align-default" id="id6">
+<img alt="Specifying a key pair name" src="../_images/create_key_pair_name.png" />
+<figcaption>
+<p><span class="caption-text">Specifying a key pair name</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>A <code class="docutils literal notranslate"><span class="pre">.pem</span></code> file that contains the <em>Private Key</em> should be automatically
+downloaded. In addition, the <em>Public Key</em> associated with the <em>Private Key</em>
+should be saved automatically to Chameleon. Clicking on the <em>Regenerate and
+download Key Pair</em> button will generate a new <em>Public/Private Key Pair</em> and
+initiate a new download of the <em>Private Key</em>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Save the <em>Private Key</em> to a location you will remember at your local file
+system. Your <em>home</em> directory is recommanded for macOS and Linux systems.</p>
+</div>
+</section>
+<section id="importing-a-key-pair">
+<span id="importing-key-pair"></span><h4>Importing a Key Pair<a class="headerlink" href="#importing-a-key-pair" title="Permalink to this heading"></a></h4>
+<p>Alternatively, you may import a key pair that you have generated on your
+computer. Clicking the <em>Import Key Pair</em> button to prompt the dialog. Then,
+provide a name for your imported key pair and paste the <em>Public Key</em>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The prompted dialog contains the instructions on how to generate a key pair
+using the Linux/macOS command.</p>
+</div>
+<figure class="align-default" id="id7">
+<img alt="Importing a public key" src="../_images/import_key_pair.png" />
+<figcaption>
+<p><span class="caption-text">Importing a public key</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Typically, the key generated from your computer will be at
+<code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa.pub</span></code>. On Mac OS X, you can run in a terminal: <code class="docutils literal notranslate"><span class="pre">cat</span>
+<span class="pre">~/.ssh/id_rsa.pub</span> <span class="pre">|</span> <span class="pre">pbcopy</span></code>. It copies the content of the public key to your
+copy/paste buffer. Then you can simply paste in the “Public Key” box.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="network">
+<h2>Network<a class="headerlink" href="#network" title="Permalink to this heading"></a></h2>
+<p>The Network section allows you to work with virtual network resources, such as
+configuring routers and virtual networks. For more information, please see
+<a class="reference internal" href="networks.html#networking"><span class="std std-ref">Networking</span></a>.</p>
+<section id="network-topology">
+<h3>Network Topology<a class="headerlink" href="#network-topology" title="Permalink to this heading"></a></h3>
+<p>The Network Topology page displays your current virtual network topology in
+either the <em>Topology</em> or <em>Graph</em> formats. You may also use this section to
+directly launch instances, create networks or create routers.</p>
+<figure class="align-default" id="id8">
+<img alt="The Network Topology page" src="../_images/network_topology.png" />
+<figcaption>
+<p><span class="caption-text">The Network Topology page</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="networks">
+<h3>Networks<a class="headerlink" href="#networks" title="Permalink to this heading"></a></h3>
+<p>The Networks page lists all the Virtual Networks of the selected project. You
+may use this section to create, delete and modify Virtual Networks. Clicking on
+the dropdown list (if shown) in <em>Action</em> column to see what you are eligible to
+do to your virtual networks.</p>
+<figure class="align-default" id="id9">
+<img alt="The Networks page" src="../_images/networks.png" />
+<figcaption>
+<p><span class="caption-text">The Networks page</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="routers">
+<h3>Routers<a class="headerlink" href="#routers" title="Permalink to this heading"></a></h3>
+<p>Same as the Networks page, the Routers page allows you to work on the Routers of
+the selected project.</p>
+<figure class="align-default" id="id10">
+<img alt="The Routers page" src="../_images/routers.png" />
+<figcaption>
+<p><span class="caption-text">The Routers page</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="security-groups">
+<h3>Security Groups<a class="headerlink" href="#security-groups" title="Permalink to this heading"></a></h3>
+<p>Use the Security Groups page to create, delete, and modify the Security Groups
+of the selected project.</p>
+<figure class="align-default" id="id11">
+<img alt="The Security Groups page" src="../_images/security_groups.png" />
+<figcaption>
+<p><span class="caption-text">The Security Groups page</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Chameleon bare metal sites—<a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> and <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>—<strong>do not</strong> support
+security groups, i.e., all ports are open to the public.</p>
+</div>
+</section>
+<section id="floating-ips">
+<h3>Floating IPs<a class="headerlink" href="#floating-ips" title="Permalink to this heading"></a></h3>
+<p>The Floating IPs page allows you to work with the Floating IP addresses
+allocated for the selected project, including associating with instances and
+releasing back to the pool. Clicking on the dropdown list (if shown) in <em>Action</em>
+column to see what you are eligible to do to your Floating IPs.</p>
+<figure class="align-default" id="id12">
+<img alt="The Floating IPs page" src="../_images/floating_ips.png" />
+<figcaption>
+<p><span class="caption-text">The Floating IPs page</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="releasing-floating-ip-addresses">
+<h4>Releasing Floating IP Addresses<a class="headerlink" href="#releasing-floating-ip-addresses" title="Permalink to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The Chameleon Floating IP address pool is a shared and finite resource.
+<strong>Please be responsible and release the Floating IP addresses that are not
+used, so other Chameleon users and projects can use them!</strong></p>
+</div>
+<p>To release a single Floating IP address,  click on the dropdown in the <em>Actions</em>
+column and select <em>Release Floating IP</em> . You may also release multiple
+addresses by selecting them via checkboxes and clicking the <em>Release Floating
+IPs</em> button.</p>
+<figure class="align-default" id="id13">
+<img alt="Releasing a Floating IP address" src="../_images/releasing.png" />
+<figcaption>
+<p><span class="caption-text">Releasing a Floating IP address</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="orchestration">
+<h2>Orchestration<a class="headerlink" href="#orchestration" title="Permalink to this heading"></a></h2>
+<p>The Orchestration section allows you to work with the <a class="reference internal" href="complex.html#complex"><span class="std std-ref">Chameleon’s Complex
+Appliances</span></a>.</p>
+<section id="stacks">
+<h3>Stacks<a class="headerlink" href="#stacks" title="Permalink to this heading"></a></h3>
+<p>A deployed complex appliance is referred to as a “stack” – just as a deployed
+single appliance is typically referred to as an “instance”. The Stacks page
+allows you to launch, rebuild, or terminate stacks.</p>
+<figure class="align-default" id="id14">
+<img alt="The Stacks page" src="../_images/stacks1.png" />
+<figcaption>
+<p><span class="caption-text">The Stacks page</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>After launching a stack, all the instances launched with the stack can be
+viewed at <a class="reference internal" href="#gui-compute-instances"><span class="std std-ref">Compute - Instances</span></a> section as well.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you terminate a stack, all instances launched with the stack will be
+terminated.</p>
+</div>
+</section>
+<section id="resource-types">
+<h3>Resource Types<a class="headerlink" href="#resource-types" title="Permalink to this heading"></a></h3>
+<p>The Resource Types page lists the currently available Orchestration Resource
+Types of Chameleon. You may click on the resource types to get details. The
+Orchestration Resource Types are used when writing <em>OpenStack Heat Orchestration
+Template</em>. For more information about <em>OpenStack Heat</em>, please see <a class="reference external" href="https://docs.openstack.org/heat/latest/">the
+OpenStack Heat documentation</a>.</p>
+<figure class="align-default" id="id15">
+<img alt="The Resource Types page" src="../_images/resource_types.png" />
+<figcaption>
+<p><span class="caption-text">The Resource Types page</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="template-versions">
+<h3>Template Versions<a class="headerlink" href="#template-versions" title="Permalink to this heading"></a></h3>
+<p>The Template Versions are also used when writing <em>OpenStack Heat Orchestration
+Template</em>. Clicking on the version to get supported features of the specific
+version.</p>
+<figure class="align-default" id="id16">
+<img alt="The Template Versions page" src="../_images/template_versions.png" />
+<figcaption>
+<p><span class="caption-text">The Template Versions page</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="object-store">
+<h2>Object Store<a class="headerlink" href="#object-store" title="Permalink to this heading"></a></h2>
+<p>The <em>Containers</em> section under <em>Object Store</em> gives an easy access to your
+Chameleon object/blob store. You may create, delete, upload objects to or remove
+objects from containers via this page. For more information about Chameleon
+Object Store, please see <a class="reference internal" href="swift.html#object-store"><span class="std std-ref">Object Store</span></a>.</p>
+<figure class="align-default" id="id17">
+<img alt="The Containers page" src="../_images/containers2.png" />
+<figcaption>
+<p><span class="caption-text">The Containers page</span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="reservations">
+<h2>Reservations<a class="headerlink" href="#reservations" title="Permalink to this heading"></a></h2>
+<p>The Reservations section allows you to manage your leases of the selected
+project, including creating and deleting leases. For more information, see
+<a class="reference internal" href="reservations.html#reservations"><span class="std std-ref">Reservations</span></a>.</p>
+<figure class="align-default" id="id18">
+<img alt="The Leases page" src="../_images/leases.png" />
+<figcaption>
+<p><span class="caption-text">The Leases page</span><a class="headerlink" href="#id18" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Check <em>Lease Calendar</em>, so you can schedule your experiments efficiently.</p>
+</div>
+</section>
+<section id="identity">
+<h2>Identity<a class="headerlink" href="#identity" title="Permalink to this heading"></a></h2>
+<p>The Project section under Identity allows you to check what projects you belong
+to. You can set your default project by clicking the <em>Set as Active Project</em>
+button in the <em>Actions</em> column.</p>
+<figure class="align-default" id="id19">
+<img alt="The Projets page" src="../_images/projects.png" />
+<figcaption>
+<p><span class="caption-text">The Projects page</span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

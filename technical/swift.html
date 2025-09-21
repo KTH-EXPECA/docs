@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Object Store &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Object Store</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/swift.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="object-store">
+<span id="id1"></span><h1>Object Store<a class="headerlink" href="#object-store" title="Permalink to this heading"></a></h1>
+<p>Chameleon provides an object store service through the <a class="reference external" href="https://docs.openstack.org/swift/latest/">OpenStack Swift</a> interface. It is intended to be
+used for storing and retrieving data used during experiments, such as input
+files needed for your applications, or results produced by your experiments.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Chameleon object store service is currently backed by a <a class="reference external" href="https://ceph.com/">Ceph</a> cluster with more than 2.1 PB of capacity. The data is
+replicated, keeping two copies of each object, effectively providing over 1
+PB of storage available to users. This storage capacity will increase as the
+project goes on. The replication should provide good availability in case of
+hardware failures. However, all copies are kept within the same data center
+and are not backed up on a separate system; if you feel that this does not
+provide sufficient reliability in your case, you should consider backing up
+really critical data externally.</p>
+</div>
+<section id="availability">
+<h2>Availability<a class="headerlink" href="#availability" title="Permalink to this heading"></a></h2>
+<p>You can access the <em>Object Store</em> from instances running on <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> and
+<a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>. Each region has its own store, meaning that objects uploaded to one
+are not visible to the other. In general you should use the store local to the
+region where your instances are running for the best performance.  To make it
+easier for you to use the <em>Object Store</em> client, we installed it in all
+appliances supported by Chameleon. Additionally, you can also access the <em>Object
+Store</em> from the <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> or <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a> web interfaces under the <em>Object Store</em>
+panel.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p><a class="reference external" href="https://kvm.tacc.chameleoncloud.org">KVM&#64;TACC</a> users can access the TACC
+store by using their <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> <a class="reference internal" href="cli.html#cli-rc-script"><span class="std std-ref">OpenStack RC file</span></a>.</p>
+</div>
+</section>
+<section id="objects-and-containers">
+<h2>Objects and Containers<a class="headerlink" href="#objects-and-containers" title="Permalink to this heading"></a></h2>
+<p><em>Objects</em> are equivalent to individual files. They are stored in <em>Containers</em>,
+which are data structures that can contain multiple <em>Objects</em>. When uploading
+<em>Objects</em>, they must be stored inside of <em>Containers</em>. You may perform
+operations on individual <em>Objects</em> inside Containers, such as downloading or
+deleting them. You may also work with entire <em>Containers</em> and perform operations
+such as downloading an entire <em>Container</em>.</p>
+</section>
+<section id="managing-object-store-using-the-gui">
+<h2>Managing Object Store using the GUI<a class="headerlink" href="#managing-object-store-using-the-gui" title="Permalink to this heading"></a></h2>
+<p>To access the <em>Object Store</em> using the GUI at <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> or <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>, use the
+navigation sidebar to go to <em>Project</em> &gt; <em>Object Store</em> &gt; <em>Containers</em>.</p>
+<figure class="screenshot align-default" id="id5">
+<img alt="The Containers page" src="../_images/containerspage.png" />
+<figcaption>
+<p><span class="caption-text">The Containers page</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="working-with-containers">
+<h3>Working with Containers<a class="headerlink" href="#working-with-containers" title="Permalink to this heading"></a></h3>
+<p>To create a container, click the <em>+Container</em> button. This will open the <em>Create
+Container</em> dialog.</p>
+<figure class="screenshot align-default" id="id6">
+<img alt="The Create Container dialog" src="../_images/createcontainer.png" />
+<figcaption>
+<p><span class="caption-text">The Create Container dialog</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Choose a unique name of your container and set the visibility to either <em>Public</em>
+or <em>Not Public</em>. When you are finished, click the <em>Submit</em> button. You will see
+your new <em>Container</em> appear in the list on the <em>Containers</em> page.</p>
+<figure class="screenshot align-default" id="id7">
+<img alt="The Container list" src="../_images/containerlist.png" />
+<figcaption>
+<p><span class="caption-text">The Container list</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>You may click on a <em>Container</em> to see the details and work with <em>Objects</em> belong
+to it.</p>
+<figure class="screenshot align-default" id="id8">
+<img alt="Container details" src="../_images/containerdetail.png" />
+<figcaption>
+<p><span class="caption-text">Container details</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Downloading a container is not available from the GUI. Use the CLI to
+download containers.</p>
+</div>
+<p>You may delete a container by clicking the <em>Delete</em> icon in the upper right of
+the <em>Container Detail Panel</em>.</p>
+<figure class="screenshot align-default" id="id9">
+<img alt="The Delete Container button" src="../_images/containerdelete.png" />
+<figcaption>
+<p><span class="caption-text">The Delete Container button</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="working-with-objects">
+<h3>Working with Objects<a class="headerlink" href="#working-with-objects" title="Permalink to this heading"></a></h3>
+<p>To upload a local file to a container, click the button with the <em>Upload</em> symbol
+next to the search bar.</p>
+<figure class="screenshot align-default" id="id10">
+<img alt="The Upload button" src="../_images/uploadobject.png" />
+<figcaption>
+<p><span class="caption-text">The Upload button</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This will open the <em>Upload File</em> dialog.</p>
+<figure class="screenshot align-default" id="id11">
+<img alt="The Upload File dialog" src="../_images/uploaddialog.png" />
+<figcaption>
+<p><span class="caption-text">The Upload File dialog</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Choose a file to upload from your local file system and give a name to the
+object.</p>
+</section>
+<section id="working-with-folders">
+<h3>Working with Folders<a class="headerlink" href="#working-with-folders" title="Permalink to this heading"></a></h3>
+<p>If you wish to create a <em>Folder</em> within your <em>Container</em>, click the <em>+Folder</em>
+button and give a name to your folder in the <em>Create Folder</em> dialog.</p>
+<figure class="screenshot align-default" id="id12">
+<img alt="The Create Folder dialog" src="../_images/createfolder.png" />
+<figcaption>
+<p><span class="caption-text">The Create Folder dialog</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Your new folder will appear in the <em>Container details</em>.</p>
+<figure class="screenshot align-default" id="id13">
+<img alt="A Container with a Folder" src="../_images/containerwithfolder.png" />
+<figcaption>
+<p><span class="caption-text">A Container with a Folder</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>You may browse your folder and upload files to it by clicking on the folder.</p>
+<figure class="screenshot align-default" id="id14">
+<img alt="A Folder within the Container" src="../_images/containerfolder.png" />
+<figcaption>
+<p><span class="caption-text">A Folder within the Container</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="managing-object-store-using-the-cli">
+<span id="object-store-cli"></span><h2>Managing Object Store using the CLI<a class="headerlink" href="#managing-object-store-using-the-cli" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Reading <a class="reference internal" href="cli.html#cli"><span class="std std-ref">Command Line Interface (CLI)</span></a> is highly recommanded before continuing on the following
+sections.</p>
+</div>
+<p>In addition to <a class="reference internal" href="cli.html#cli-installing"><span class="std std-ref">Installing the CLI</span></a>, you must also install
+<code class="docutils literal notranslate"><span class="pre">python-swiftclient</span></code> package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>python-swiftclient
+</pre></div>
+</div>
+<p>Then, you must set environment variables for your account and project using
+<a class="reference internal" href="cli.html#cli-rc-script"><span class="std std-ref">The OpenStack RC Script</span></a>.</p>
+<section id="id2">
+<h3>Working with Containers<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>To create a <em>Container</em>, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>container<span class="w"> </span>create<span class="w"> </span>&lt;container_name&gt;
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>By default, the <em>Container</em> created using the above command will not be
+visible to the public.</p>
+</div>
+<p>To view all containers that belong to your project, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>container<span class="w"> </span>list
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You may use <code class="docutils literal notranslate"><span class="pre">--prefix</span> <span class="pre">&lt;prefix&gt;</span></code> as a filter to list the containers whose
+name starts with <code class="docutils literal notranslate"><span class="pre">&lt;prefix&gt;</span></code>.</p>
+</div>
+<p>To see details of a container, use the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>container<span class="w"> </span>show<span class="w"> </span>&lt;container_name&gt;
+</pre></div>
+</div>
+<p>To view a list of objects within a container, use the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>object<span class="w"> </span>list<span class="w"> </span>&lt;container_name&gt;
+</pre></div>
+</div>
+<p>To download a container with all the objects belong to it, use the following
+command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>container<span class="w"> </span>save<span class="w"> </span>&lt;container_name&gt;
+</pre></div>
+</div>
+<p>To delete a container and wipe out all the objects belong to it, use the
+following command, and <strong>be careful</strong>!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>container<span class="w"> </span>delete<span class="w"> </span>--recursive<span class="w"> </span>&lt;container_name&gt;
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Working with Objects<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>You may upload a file from your local machine to a container using the following
+command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>object<span class="w"> </span>create<span class="w"> </span>&lt;container_name&gt;<span class="w"> </span>&lt;local_filename&gt;
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Optionally, you may name the object differently from it’s original name in
+your local machine by using the <code class="docutils literal notranslate"><span class="pre">--name</span></code> parameter.</p>
+</div>
+<p>To delete an object from a container, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>object<span class="w"> </span>delete<span class="w"> </span>&lt;container_name&gt;<span class="w"> </span>&lt;object_name&gt;
+</pre></div>
+</div>
+<p>If you wish to download an individual object directly from a container, use the
+command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>object<span class="w"> </span>save<span class="w"> </span>&lt;container_name&gt;<span class="w"> </span>&lt;object_name&gt;
+</pre></div>
+</div>
+<section id="large-object-support">
+<h4>Large object support<a class="headerlink" href="#large-object-support" title="Permalink to this heading"></a></h4>
+<p>The Swift CLI only supports objects up to 4GB. Larger objects are supported,
+provided they are uploaded in segments. This advanced functionality is only
+supported using a separate Swift interface. For a version compatible with
+Chameleon’s authentication, you need <cite>python-swiftclient &gt;= 3.11.1</cite>, and
+to generate and use an <a class="reference internal" href="cli.html#cli-application-credential"><span class="std std-ref">Application Credential</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;python-swiftclient&gt;=3.11.1&quot;</span>
+</pre></div>
+</div>
+<p>Instead of invoking commands via <code class="docutils literal notranslate"><span class="pre">openstack</span></code>, you will instead use the
+<code class="docutils literal notranslate"><span class="pre">swift</span></code> command, which supports a <code class="docutils literal notranslate"><span class="pre">--segment-size</span></code> parameter, specifying
+the segment size in bits. <code class="docutils literal notranslate"><span class="pre">--segment-size</span> <span class="pre">4831838208</span></code> is close to the segment
+limit of 4GB.</p>
+<p>There is also a <code class="docutils literal notranslate"><span class="pre">--changed</span></code> flag, which prevents uploading of the object if
+the checksum has not changed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>swift<span class="w"> </span>--os-auth-type<span class="w"> </span>v3applicationcredential<span class="w"> </span><span class="se">\</span>
+--os-application-credential-id<span class="w"> </span>&lt;credential_id&gt;<span class="w"> </span><span class="se">\</span>
+--os-application-credential-secret<span class="w"> </span>&lt;credential_secret&gt;<span class="w"> </span><span class="se">\</span>
+upload<span class="w"> </span>--changed<span class="w"> </span>--segment-size<span class="w"> </span><span class="m">4831838208</span><span class="w"> </span><span class="se">\</span>
+&lt;container_name&gt;<span class="w"> </span>&lt;path&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h3>Working with Folders<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>There isn’t “folders” when you managing the <em>Object Store</em> with the CLI.
+However, when you create an object, you may use the delimiter <code class="docutils literal notranslate"><span class="pre">/</span></code> to specify
+the path.</p>
+</section>
+</section>
+<section id="mounting-object-store-as-a-file-system">
+<span id="cc-cloudfuse"></span><h2>Mounting Object Store as a File System<a class="headerlink" href="#mounting-object-store-as-a-file-system" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Cloudfuse can upload objects up to 4GB. For larger objects, please use the
+Swift CLI.</p>
+</div>
+<p>When logged into an instance using Chameleon-supported images, such as
+<a class="reference external" href="https://www.chameleoncloud.org/appliances/83/">CC-CentOS8</a> and
+<a class="reference external" href="https://www.chameleoncloud.org/appliances/69/">CC-Ubuntu18.04</a>, you will see
+a directory called <code class="docutils literal notranslate"><span class="pre">my_mounting_point</span></code> which is a pre-mounted directory to
+your Chameleon Object Store at the same site of your instance. Each Object Store
+container that you have access to will appear as a subdirectory inside this
+mount.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cc-cloudfuse</span></code> tool (Source: <a class="reference external" href="https://github.com/ChameleonCloud/cc-cloudfuse">ChameleonCloud/cc-cloudfuse</a>) is pre-installed in
+Chameleon-supported images. It is based on the <code class="docutils literal notranslate"><span class="pre">cloudfuse</span></code> tool (Source:
+<a class="reference external" href="https://github.com/redbo/cloudfuse">redbo/cloudfuse</a>), which is used to mount
+your Chameleon Object Store as a directory on your Linux environment.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Some older Chameleon-supported images have an outdated version of this tool
+installed, which is not compatible with authentication using federated identity.
+If you wish to continue using a historical image, you should update the tool
+by following the <a class="reference external" href="https://github.com/ChameleonCloud/cc-cloudfuse#installation">installation instructions</a>.</p>
+</div>
+<p>To mount, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cc-cloudfuse<span class="w"> </span>mount<span class="w"> </span>&lt;mount_dir&gt;
+</pre></div>
+</div>
+<p>Now you can access your Chameleon Object Store as your local file system.</p>
+<p>To unmount, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cc-cloudfuse<span class="w"> </span>unmount<span class="w"> </span>&lt;mount_dir&gt;
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Limitations</strong></p>
+<p>The primary usage scenario of the <code class="docutils literal notranslate"><span class="pre">cc-cloudfuse</span></code> tool is to allow you to
+interact with Chameleon Object Store using familiar file system operations.
+Because the <code class="docutils literal notranslate"><span class="pre">cc-cloudfuse</span></code> runs on top of an object store, it is important
+to understand that not all functionality will behave identically to a regular
+file system.</p>
+<ol class="arabic simple">
+<li><p>Symbolic links, file permissions, and POSIX file locking operations are
+not supported.</p></li>
+<li><p>Updating an existing file is an expensive operation as it downloads the
+entire file to local disk before it can modify the contents.</p></li>
+<li><p>You can mount from multiple nodes, but there is no synchronization
+between nodes regarding writes to Object Storage.</p></li>
+<li><p>The mounting root directory can only contain directories, as they are
+mapped to Object Store containers.</p></li>
+<li><p>Renaming directories is not allowed.</p></li>
+<li><p>It keeps an in-memory cache of the directory structure, so it may not be
+usable for large file systems. In addition, files added by other
+applications will not show up until the cache expires.</p></li>
+<li><p>The maximum number of listings is 10,000 items.</p></li>
+</ol>
+<p>Please keep these limitations in mind when evaluating <code class="docutils literal notranslate"><span class="pre">cc-cloudfuse</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may experience persistence issues when using <code class="docutils literal notranslate"><span class="pre">cc-cloudfuse</span></code>, especially
+when writing large files or writing many files at the same time. Unmounting
+and re-mounting usually resolves this.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

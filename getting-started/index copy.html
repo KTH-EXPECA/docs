@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting-started/index copy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<span id="id1"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<p>This guide will walk you through the initial steps of getting an account
+and describe how to use the testbed.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#step-1-get-a-user-account" id="id9">Step 1: Get a user account</a></p></li>
+<li><p><a class="reference internal" href="#step-2-log-in-to-the-expeca-testbed" id="id10">Step 2: Log in to the ExPECA testbed</a></p></li>
+<li><p><a class="reference internal" href="#step-3-start-using-the-expeca-testbed" id="id11">Step 3: Start using the ExPECA testbed</a></p>
+<ul>
+<li><p><a class="reference internal" href="#the-expeca-dashboard" id="id12">The ExPECA dashboard</a></p></li>
+<li><p><a class="reference internal" href="#reserving-a-node" id="id13">Reserving a node</a></p></li>
+<li><p><a class="reference internal" href="#launching-an-instance" id="id14">Launching an instance</a></p></li>
+<li><p><a class="reference internal" href="#associating-an-ip-address" id="id15">Associating an IP address</a></p></li>
+<li><p><a class="reference internal" href="#accessing-your-instance" id="id16">Accessing Your Instance</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="step-1-get-a-user-account">
+<span id="getting-started-user"></span><h2><a class="toc-backref" href="#id9">Step 1: Get a user account</a><a class="headerlink" href="#step-1-get-a-user-account" title="Permalink to this heading"></a></h2>
+<p>To get a user account, send an email to &lt;expecamail&gt; with</p>
+<ul class="simple">
+<li><p>“ExPECA account request” in the subject header</p></li>
+<li><p>Name</p></li>
+<li><p>Phone number</p></li>
+<li><p>Email address</p></li>
+<li><p>Reason for the account request</p></li>
+</ul>
+<p>After your request has been granted, we will then send you a reply with your login credentials.</p>
+</section>
+<section id="step-2-log-in-to-the-expeca-testbed">
+<h2><a class="toc-backref" href="#id10">Step 2: Log in to the ExPECA testbed</a><a class="headerlink" href="#step-2-log-in-to-the-expeca-testbed" title="Permalink to this heading"></a></h2>
+<p>Just click the “Access the Testbed” button situated at the top of the <a class="reference external" href="https://expeca.proj.kth.se/">ExPECA main page</a> and use your received credentials for login.</p>
+</section>
+<section id="step-3-start-using-the-expeca-testbed">
+<h2><a class="toc-backref" href="#id11">Step 3: Start using the ExPECA testbed</a><a class="headerlink" href="#step-3-start-using-the-expeca-testbed" title="Permalink to this heading"></a></h2>
+<p>Congratulations, you are now ready to start using the testbed!
+When you have logged in, you will first see the ExPECA dashboard.</p>
+<section id="the-expeca-dashboard">
+<h3><a class="toc-backref" href="#id12">The ExPECA dashboard</a><a class="headerlink" href="#the-expeca-dashboard" title="Permalink to this heading"></a></h3>
+<p>The dashboard shows a summary of your project’s current resource usage and looks something like this:</p>
+<figure class="screenshot align-default" id="id2">
+<img alt="The ExPECA dashboard's resource usage summary" src="../_images/dashboard2.png" />
+<figcaption>
+<p><span class="caption-text">An overview of your current resource usage</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>You can reserve worker nodes and radio resources, as well as defining networking for your experiments.
+Worker nodes are servers in the testbed, where you do not have full access
+to the actual server, but you can allocate and run Docker containerized applications on them.
+When you reserve a worker node, you have exclusive access to the underlying server.
+The following sections will describe how to make reservations and practically use the resources in the testbed.
+Good luck!</p>
+</section>
+<section id="reserving-a-node">
+<h3><a class="toc-backref" href="#id13">Reserving a node</a><a class="headerlink" href="#reserving-a-node" title="Permalink to this heading"></a></h3>
+<p>First, we need to reserve a worker node for our use. ExPECA provides access to allocate and run
+Docker containerized applications on nodes.
+When you create a reservation for one or more nodes, only you
+and other users on your project will be able to use those nodes for the time
+specified. We will create a single day reservation for a worker node.</p>
+<ol class="arabic simple">
+<li><p>In the sidebar, click <em>Reservations</em> -&gt; <em>Leases</em></p></li>
+<li><p>Click on the <em>+ Create Lease</em> button in the toolbar</p></li>
+<li><p>Type <em>my_first_lease</em> for the lease name</p></li>
+<li><p>Check the <em>Devices</em> -&gt; <em>Reserve Devices</em> box</p></li>
+<li><p>Find the <em>Devices</em> -&gt; <em>Resource Properties</em> section. In the dropdown below <em>vendor</em>, select <em>Dell</em></p></li>
+<li><p>Click the <em>Create</em> button</p></li>
+</ol>
+<figure class="screenshot align-default">
+<img alt="The Create Lease dialog" src="../_images/create_lease2.png" />
+</figure>
+<figure class="screenshot align-default" id="id3">
+<img alt="The Create Lease dialog" src="../_images/create_lease3.png" />
+<figcaption>
+<p><span class="caption-text">The Create Lease dialog - be sure to select Dell in the dropdown below vendor</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The reservation will start shortly, at which point you can launch an instance.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You have created an “on demand” reservation. When you do not specify a start
+date or time in the future, the reservation will start as soon as possible
+and will last one day.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Do not attempt to stack reservations to circumvent the 7-day lease
+limitation. Your leases may be deleted. Please refer to the <a class="reference external" href="https://www.chameleoncloud.org/learn/frequently-asked-questions/#toc-what-are-the-best-practices-of-chameleon-usage-">best practices</a>
+if you require a longer reservation.</p>
+</div>
+</section>
+<section id="launching-an-instance">
+<h3><a class="toc-backref" href="#id14">Launching an instance</a><a class="headerlink" href="#launching-an-instance" title="Permalink to this heading"></a></h3>
+<p>Once the reservation starts, you can launch an instance on the worker node
+that has been leased to you.</p>
+<ol class="arabic">
+<li><p>In the sidebar, click <em>Compute</em>, then click <em>Instances</em></p></li>
+<li><p>Click on the <em>Launch Instance</em> button in the toolbar and the <em>Launch
+Instance</em> wizard will load</p></li>
+<li><p>Type <em>my_first_instance</em> for the instance name and select your
+<em>my_first_lease</em> reservation</p>
+<figure class="screenshot align-default" id="id4">
+<img alt="Launch details" src="../_images/launch_details.png" />
+<figcaption>
+<p><span class="caption-text">Enter an instance name and select your reservation</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Click <em>Source</em> in sidebar. Then, find <em>CC-CentOS8</em> in the image list and
+click the <em>Up</em> arrow to select it.</p>
+<figure class="screenshot align-default" id="id5">
+<img alt="Selecting an image" src="../_images/launch_source.png" />
+<figcaption>
+<p><span class="caption-text">Select the CC-CentOS8 image</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Click <em>Keypair</em> in sidebar. Click the <em>+ Create Key Pair</em> button and enter
+<code class="docutils literal notranslate"><span class="pre">mychameleonkey</span></code> for the key name. This will automatically start a download
+for a file named <code class="docutils literal notranslate"><span class="pre">mychameleonkey.pem</span></code>. This is your private key pair that
+you will use to access your instance.</p>
+<figure class="screenshot align-default" id="id6">
+<img alt="Create a keypair to secure your instance" src="../_images/launch_keypair.png" />
+<figcaption>
+<p><span class="caption-text">You can create or import a public/private keypair for accessing your
+instance.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Click the <em>Launch Instance</em> button.</p></li>
+</ol>
+<p>Congratulations, you have launched an instance on a bare metal node!</p>
+</section>
+<section id="associating-an-ip-address">
+<span id="associating-an-ip"></span><h3><a class="toc-backref" href="#id15">Associating an IP address</a><a class="headerlink" href="#associating-an-ip-address" title="Permalink to this heading"></a></h3>
+<p>Your instance may take approximately ten minutes to launch. The launch process
+includes powering up, loading the operating system over the network, and booting
+up for the first time on a rack located either at the University of Chicago or
+the Texas Advanced Computing Center, depending on where you chose to launch your
+instance. Before you can access your instance, you need to first assign a
+floating IP address - an IP address that is accessible over the public Internet.</p>
+<ol class="arabic">
+<li><p>Go to the <em>Floating IP</em> dashboard by clicking on <em>Network</em> and <em>Floating IPs</em>
+in the sidebar.</p>
+<blockquote>
+<div><figure class="screenshot align-default">
+<img alt="The Floating IP dashboard" src="../_images/floating_ip_overview1.png" />
+</figure>
+</div></blockquote>
+</li>
+<li><p>If you have a Floating IP not currently associated to an instance, click the
+<em>Associate</em> button for the IP. A dialog will load that allows you to assign a
+publicly accessible IP to your instance. Click the <em>Associate</em> button in the
+dialog to complete the process of associating the public IP to your instance.</p>
+<figure class="screenshot align-default" id="id7">
+<img alt="The Manage Floating IP Associations dialog" src="../_images/associate_ip.png" />
+<figcaption>
+<p><span class="caption-text">Here you can assign a floating IP address</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>If you didn’t already have a Floating IP available, you may allocate one to
+your project by clicking on the <em>Allocate IP to Project</em> button along the top
+row in the Floating IP dashboard. A new dialog will open for allocating the
+floating IP.</p>
+<figure class="screenshot align-default" id="id8">
+<img alt="The Allocate Floating IP dialog" src="../_images/associate_pool1.png" />
+<figcaption>
+<p><span class="caption-text">This dialog allows you to allocate an IP address from Chameleon’s public
+IP pool</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Click the <em>Allocate IP</em> button. The Floating IP dashboard will reload and you
+should see your new Floating IP appear in the list. You can now go back to
+step 2.</p>
+</li>
+</ol>
+</section>
+<section id="accessing-your-instance">
+<h3><a class="toc-backref" href="#id16">Accessing Your Instance</a><a class="headerlink" href="#accessing-your-instance" title="Permalink to this heading"></a></h3>
+<p>Once your instance has launched with an associated floating IP address, it can
+be accessed via SSH using the private key that you downloaded during the
+<a class="reference internal" href="#launching-an-instance">Launching an Instance</a> step.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following instructions assume that you are using a macOS or Linux
+terminal equivalent. You may view our <a class="reference external" href="https://youtu.be/MDK5D2ptJiQ">YouTube video on how to login via SSH
+on Windows</a>.</p>
+</div>
+<p>To log in to your instance, follow these steps:</p>
+<ol class="arabic">
+<li><p>Open a terminal window and navigate to where you downloaded the
+<code class="docutils literal notranslate"><span class="pre">mychameleonkey.pem</span></code> file. Change the permissions on the file to user
+read/write only:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>mychameleonkey.pem
+</pre></div>
+</div>
+</li>
+<li><p>Add the key to your current SSH identity:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-add<span class="w"> </span>mychameleonkey.pem
+</pre></div>
+</div>
+</li>
+<li><p>Log in to your Chameleon instance via SSH using the <code class="docutils literal notranslate"><span class="pre">cc</span></code> user account and
+your floating IP address. If your floating IP address was
+<code class="docutils literal notranslate"><span class="pre">129.114.108.102</span></code>, you would use the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>cc@129.114.108.102
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Change the IP address in this command to match your instance’s floating IP
+address!</p>
+</div>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

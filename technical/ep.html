@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experiment Precis &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Experiment Precis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/ep.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="experiment-precis">
+<span id="id1"></span><h1>Experiment Precis<a class="headerlink" href="#experiment-precis" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<span id="ep-introduction"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>Chameleon records experiment setup (OpenStack) events that users performed on the testbed, such as creating leases, creating instances, and setting up networks.
+Users can request their experiment records from Chameleon using their Chameleon credentials. A report on those experiment records is known as the <em>Experiment Precis</em>.
+An <em>Experiment Precis</em> is bounded to a lease. Chameleon defines an <em>experiment</em> as a series of testbed setup (OpenStack) events a user performed under a lease of a project.
+Using <em>Experiment Precis</em>, users will be able to analyze, understand and even replay their experiments.</p>
+<p>Currently, <em>Experiment Precis</em> is provided in JSON format. The following contents are included:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;experiment_precis_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The name of the experiment precis&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;experiment_precis_id&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;The id of the experiment precis&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;site&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Which Chameleon site the experiment was performed&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;testbed_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The testbed version at the time the experiment started&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;report_time_in_utc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The datetime when the experiment precis was requested (in UTC)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;report_time_in_ct&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The datetime when the experiment precis was requested (in CT)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;events&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A list of events performed&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;event_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The page number of the events&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;event_page_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The page size of the events&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hardware&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hardwares that were used during the experiment&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hardware_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The page number of the hardwares&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hardware_page_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The page size of the harwareds&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;metric&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Metrics saved in Gnocchi&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;metric_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The page number of the metrics&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;metric_page_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The page size of the metrics&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="installation">
+<span id="ep-install"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p>To request your experiment precis from Chameleon, you need to install the <em>Chameleon Experiment Precis (cep) Client</em>.
+To install <code class="docutils literal notranslate"><span class="pre">cepclient</span></code> on your local machine, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cepclient
+</pre></div>
+</div>
+<p>To test if <code class="docutils literal notranslate"><span class="pre">cepclient</span></code> is properly installed, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cep<span class="w"> </span>--help
+</pre></div>
+</div>
+</section>
+<section id="setting-up-cep-client">
+<span id="ep-setup"></span><h2>Setting up cep client<a class="headerlink" href="#setting-up-cep-client" title="Permalink to this heading"></a></h2>
+<p>Before using the <em>cep client</em>, you must configure the authentication-related environment variables via <code class="docutils literal notranslate"><span class="pre">source</span></code> <a class="reference internal" href="cli.html#cli-rc-script"><span class="std std-ref">the OpenStack RC script</span></a>
+or provide the authentication values as command parameters. If you choose to pass command parameters, use <code class="docutils literal notranslate"><span class="pre">cep</span> <span class="pre">--help</span></code> and look for <code class="docutils literal notranslate"><span class="pre">Authentication</span> <span class="pre">Options</span></code> for more information.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using <em>rc script</em> for setting up <em>cep client</em>, please download and use the <strong>v3</strong> file.</p>
+</div>
+</section>
+<section id="list-experiment-precis">
+<span id="ep-list"></span><h2>List experiment precis<a class="headerlink" href="#list-experiment-precis" title="Permalink to this heading"></a></h2>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">list</span></code> command to find all the experiments you have run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cep<span class="w"> </span>list
+</pre></div>
+</div>
+<p>The output looks like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---------------------+---------------------+--------------------------------------+--------------------------------------+--------------------------------------+</span>
+<span class="o">|</span> <span class="n">created_at</span>          <span class="o">|</span> <span class="n">updated_at</span>          <span class="o">|</span> <span class="nb">id</span>                                   <span class="o">|</span> <span class="n">name</span>                                 <span class="o">|</span> <span class="n">lease_id</span>                             <span class="o">|</span>
+<span class="o">+---------------------+---------------------+--------------------------------------+--------------------------------------+--------------------------------------+</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span> <span class="mi">09</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">02</span> <span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span> <span class="mi">09</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">02</span> <span class="o">|</span> <span class="mi">0</span><span class="n">fa88391</span><span class="o">-</span><span class="mi">6</span><span class="n">b14</span><span class="o">-</span><span class="mi">465</span><span class="n">d</span><span class="o">-</span><span class="n">a62c</span><span class="o">-</span><span class="mi">91</span><span class="n">ad8f6eb920</span> <span class="o">|</span> <span class="mi">0</span><span class="n">fa88391</span><span class="o">-</span><span class="mi">6</span><span class="n">b14</span><span class="o">-</span><span class="mi">465</span><span class="n">d</span><span class="o">-</span><span class="n">a62c</span><span class="o">-</span><span class="mi">91</span><span class="n">ad8f6eb920</span> <span class="o">|</span> <span class="mi">972</span><span class="n">b70aa</span><span class="o">-</span><span class="mi">33</span><span class="n">ca</span><span class="o">-</span><span class="mi">42</span><span class="n">fc</span><span class="o">-</span><span class="mi">9</span><span class="n">d4e</span><span class="o">-</span><span class="n">e07b2b9df3c3</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">50</span> <span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">50</span> <span class="o">|</span> <span class="mi">93</span><span class="n">ffbb79</span><span class="o">-</span><span class="n">e732</span><span class="o">-</span><span class="mi">4046</span><span class="o">-</span><span class="n">a49d</span><span class="o">-</span><span class="n">b223ff8f1bd5</span> <span class="o">|</span> <span class="mi">93</span><span class="n">ffbb79</span><span class="o">-</span><span class="n">e732</span><span class="o">-</span><span class="mi">4046</span><span class="o">-</span><span class="n">a49d</span><span class="o">-</span><span class="n">b223ff8f1bd5</span> <span class="o">|</span> <span class="mi">9</span><span class="n">f91c7ac</span><span class="o">-</span><span class="mi">212</span><span class="n">b</span><span class="o">-</span><span class="mi">4</span><span class="n">d46</span><span class="o">-</span><span class="mi">8</span><span class="n">f88</span><span class="o">-</span><span class="mf">1e9</span><span class="n">db341f41a</span> <span class="o">|</span>
+<span class="o">+---------------------+---------------------+--------------------------------------+--------------------------------------+--------------------------------------+</span>
+</pre></div>
+</div>
+<p>The <em>Experiment Precis</em> will be listed in the reverse order of <em>creation datetime</em>, i.e. the latest <em>Experiment Precis</em> is listed the first.</p>
+<p>For more information, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cep<span class="w"> </span>list<span class="w"> </span>--help
+</pre></div>
+</div>
+</section>
+<section id="rename-experiment-precis">
+<span id="ep-rename"></span><h2>Rename experiment precis<a class="headerlink" href="#rename-experiment-precis" title="Permalink to this heading"></a></h2>
+<p>Initially, Chameleon sets the name of an <em>Experiment Precis</em> the same as its id. However, you can rename it for the convenience of future retrieving.
+To rename an <em>Experiment Precis</em>, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cep<span class="w"> </span>rename<span class="w"> </span>--name<span class="w"> </span>&lt;new_name&gt;<span class="w"> </span>&lt;ep_id<span class="w"> </span>or<span class="w"> </span>ep_name&gt;
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Renaming your experiment precis to a meaningful name will help you 1) mark your <em>special</em> experiment; 2) understand what the experiment is about; 3) retrieve your experiment precis.</p>
+</div>
+<p>For more information, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cep<span class="w"> </span>rename<span class="w"> </span>--help
+</pre></div>
+</div>
+</section>
+<section id="print-experiment-precis">
+<span id="ep-print"></span><h2>Print experiment precis<a class="headerlink" href="#print-experiment-precis" title="Permalink to this heading"></a></h2>
+<p>Finally, you can retrieve all the details about your experiment by using the <code class="docutils literal notranslate"><span class="pre">print</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cep<span class="w"> </span>print<span class="w"> </span>&lt;ep_id<span class="w"> </span>or<span class="w"> </span>ep_name&gt;
+</pre></div>
+</div>
+<p>The above command will print the requested experiment precis on your terminal in a compact format. To pretty-print the experiment precis, add <code class="docutils literal notranslate"><span class="pre">--pretty</span></code> to the command.
+To print the experiment precis to a file, add <code class="docutils literal notranslate"><span class="pre">--output</span> <span class="pre">&lt;path/to/file&gt;</span></code> to the command.</p>
+<p>The following is an example of <code class="docutils literal notranslate"><span class="pre">cep</span> <span class="pre">print</span></code> output:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;event_page&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;event_page_size&quot;</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;events&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;event_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-18 15:05:50&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;event_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;lease.create&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;metadata&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;end_date&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-19T15:05:00.000000&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;start_date&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-18T15:06:00.000000&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;resource_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;9f91c7ac-212b-4d46-8f88-1e9db341f41a&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;service&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blazar&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;event_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-18 15:06:05&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;event_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;lease.event.start_lease&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;metadata&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;end_date&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-19T15:05:00.000000&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;start_date&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-18T15:06:00.000000&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;resource_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;9f91c7ac-212b-4d46-8f88-1e9db341f41a&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;service&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blazar&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="p">...</span>
+
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;event_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-19 15:05:11&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;event_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;lease.event.end_lease&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;metadata&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;end_date&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-19T15:05:00.000000&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;start_date&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-18T15:06:00.000000&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;resource_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;9f91c7ac-212b-4d46-8f88-1e9db341f41a&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;service&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blazar&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;experiment_precis_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;93ffbb79-e732-4046-a49d-b223ff8f1bd5&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;experiment_precis_name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;zhenz-test-2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;hardware&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;architecture&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;platform_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;x86_64&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;smp_size&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;smt_size&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">48</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;bios&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;release_date&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;03/09/2015&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;vendor&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Dell Inc.&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.2</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;chassis&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;manufacturer&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Dell Inc.&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;PowerEdge R630&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;serial&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;8Q28C42&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;gpu&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;gpu&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;links&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/clusters/chameleon/nodes/b0525159-5c95-4b71-83f2-b8d6bdd2acd2&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/clusters/chameleon&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;parent&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/clusters/chameleon/nodes/b0525159-5c95-4b71-83f2-b8d6bdd2acd2/versions/53c90ef0512d5013ee30d431cd62e68bfd34d4ca&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;version&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.item+json&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/sites/uc/clusters/chameleon/nodes/b0525159-5c95-4b71-83f2-b8d6bdd2acd2/versions&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;rel&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;versions&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/vnd.grid5000.collection+json&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;main_memory&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;humanized_ram_size&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;128 GiB&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;ram_size&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">134956859392</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;monitoring&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;wattmeter&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;network_adapters&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;bridged&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;device&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;eno1&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;driver&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bnx2x&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;interface&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Ethernet&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;mac&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;44:a8:42:15:c4:dd&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;management&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;model&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NetXtreme II BCM57800 1/10 Gigabit Ethernet&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;mounted&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;rate&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">10000000000</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;vendor&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Broadcom Corporation&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;bridged&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;device&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;eno2&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;driver&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bnx2x&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;interface&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Ethernet&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;mac&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;44:a8:42:15:c4:df&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;management&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;model&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NetXtreme II BCM57800 1/10 Gigabit Ethernet&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;mounted&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;rate&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">10000000000</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;vendor&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Broadcom Corporation&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;bridged&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;device&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;eno3&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;driver&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bnx2x&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;interface&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Ethernet&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;mac&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;44:a8:42:15:c4:e1&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;management&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;model&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NetXtreme II BCM57800 1/10 Gigabit Ethernet&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;mounted&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;rate&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1000000000</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;vendor&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Broadcom Corporation&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;bridged&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;device&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;eno4&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;driver&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bnx2x&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;interface&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Ethernet&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;mac&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;44:a8:42:15:c4:e3&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;management&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;model&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NetXtreme II BCM57800 1/10 Gigabit Ethernet&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;mounted&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;rate&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1000000000</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;vendor&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Broadcom Corporation&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;node_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;compute_skylake&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;placement&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;node&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">14</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;rack&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;processor&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;cache_l1&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;cache_l1d&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">32768</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;cache_l1i&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">32768</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;cache_l2&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">262144</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;cache_l3&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">31457280</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;clock_speed&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3100000000</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;instruction_set&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;x86-64&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;model&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Intel Xeon&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;other_description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Intel(R) Xeon(R) CPU E5-2670 v3 @ 2.30GHz&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;vendor&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Intel&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;E5-2670 v3&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;storage_devices&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;device&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;sda&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;driver&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;megaraid_sas&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;humanized_size&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;250 GB&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;interface&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SATA&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;model&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ST9250610NS&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;rev&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;AA63&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;size&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">250059350016</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;vendor&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Seagate&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;supported_job_types&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;besteffort&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;deploy&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;virtual&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ivt&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;node&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;uid&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;b0525159-5c95-4b71-83f2-b8d6bdd2acd2&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;53c90ef0512d5013ee30d431cd62e68bfd34d4ca&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;hardware_page&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;hardware_page_size&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;metric_page&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;metric_page_size&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;metrics&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;instance_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;44ad06ee-41d7-48f9-a52a-179030754707&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;metric_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;dd22e02386714516a913d966659617eb&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;metric_name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;interface-eno1@if_dropped&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;instance_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;44ad06ee-41d7-48f9-a52a-179030754707&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;metric_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;512ac94754b64906a12960d1f0a929c9&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;metric_name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;interface-eno1@if_errors&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="p">...</span>
+
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;instance_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;44ad06ee-41d7-48f9-a52a-179030754707&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;metric_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;89cec271c0fb477b9e7bb37ad3df1331&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;metric_name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;memory@memory.slab_recl&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;report_time_in_ct&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-19 11:06:51&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;report_time_in_utc&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2018-10-19 16:06:51&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;site&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;CHI_DEV_UC&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;testbed_version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;702d4d47ab21c890c0bb146f4e0256f618264487&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">events</span></code> section is a list of testbed events ordered by event timestamp. The <code class="docutils literal notranslate"><span class="pre">hardware</span></code> section contains information of all the nodes that were used in the experiment.
+The hardware information is retrieved by using the same method as <a class="reference internal" href="discovery.html#resource-discovery"><span class="std std-ref">the Resource Discovery</span></a>. The <code class="docutils literal notranslate"><span class="pre">metrics</span></code> section is a list of the metrics captured during the experiment.
+The <em>Experiment Precis</em> only contains the <code class="docutils literal notranslate"><span class="pre">instance_id</span></code>, <code class="docutils literal notranslate"><span class="pre">metric_id</span></code>, and <code class="docutils literal notranslate"><span class="pre">metric_name</span></code> in the <code class="docutils literal notranslate"><span class="pre">metrics</span></code> list. You can use <a class="reference internal" href="metrics.html#retrieve-metric"><span class="std std-ref">the openstack metric command line</span></a>
+to get all the measurements of a particular metric over time for an instance.</p>
+<p>For more information, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cep<span class="w"> </span>print<span class="w"> </span>--help
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Chameleon only keeps an experiment precis for <strong>180 days</strong>.
+Please make sure to save your experiment precis you’d like to keep for a longer time by using <code class="docutils literal notranslate"><span class="pre">cep</span> <span class="pre">print</span></code> command.
+You can output it to a file and keep it as a record.</p>
+</div>
+<section id="pagination">
+<h3>Pagination<a class="headerlink" href="#pagination" title="Permalink to this heading"></a></h3>
+<p>In the case of “large” experiment with large number of nodes and metrics, <code class="docutils literal notranslate"><span class="pre">events</span></code>, <code class="docutils literal notranslate"><span class="pre">hardwares</span></code>, and <code class="docutils literal notranslate"><span class="pre">metrics</span></code> are printed in pages. By default, the page number is set to 0 and the page size is set to 25.
+However, you can tune the pagination by specifying the following parameters:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>--event-page-size<span class="w"> </span>EVENT_PAGE_SIZE
+<span class="w">                      </span>Page<span class="w"> </span>size<span class="w"> </span><span class="k">for</span><span class="w"> </span>event<span class="p">;</span><span class="w"> </span>ignored<span class="w"> </span><span class="k">if</span><span class="w"> </span>event<span class="w"> </span>is<span class="w"> </span>excluded<span class="p">;</span><span class="w"> </span><span class="nb">set</span>
+<span class="w">                      </span>to<span class="w"> </span>negative<span class="w"> </span>value<span class="w"> </span>to<span class="w"> </span>show<span class="w"> </span>all
+--event-page<span class="w"> </span>EVENT_PAGE
+<span class="w">                      </span>Page<span class="w"> </span>number<span class="w"> </span><span class="k">for</span><span class="w"> </span>event<span class="p">;</span><span class="w"> </span>ignored<span class="w"> </span><span class="k">if</span><span class="w"> </span>event<span class="w"> </span>is<span class="w"> </span>excluded
+--metric-page-size<span class="w"> </span>METRIC_PAGE_SIZE
+<span class="w">                      </span>Page<span class="w"> </span>size<span class="w"> </span><span class="k">for</span><span class="w"> </span>metric<span class="p">;</span><span class="w"> </span>ignored<span class="w"> </span><span class="k">if</span><span class="w"> </span>metric<span class="w"> </span>is<span class="w"> </span>excluded<span class="p">;</span>
+<span class="w">                      </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>negative<span class="w"> </span>value<span class="w"> </span>to<span class="w"> </span>show<span class="w"> </span>all
+--metric-page<span class="w"> </span>METRIC_PAGE
+<span class="w">                      </span>Page<span class="w"> </span>number<span class="w"> </span><span class="k">for</span><span class="w"> </span>metric<span class="p">;</span><span class="w"> </span>ignored<span class="w"> </span><span class="k">if</span><span class="w"> </span>metric<span class="w"> </span>is<span class="w"> </span>excluded
+--hardware-page-size<span class="w"> </span>HARDWARE_PAGE_SIZE
+<span class="w">                      </span>Page<span class="w"> </span>size<span class="w"> </span><span class="k">for</span><span class="w"> </span>hardware<span class="p">;</span><span class="w"> </span>ignored<span class="w"> </span><span class="k">if</span><span class="w"> </span>hardware<span class="w"> </span>is
+<span class="w">                      </span>excluded<span class="p">;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>negative<span class="w"> </span>value<span class="w"> </span>to<span class="w"> </span>show<span class="w"> </span>all
+--hardware-page<span class="w"> </span>HARDWARE_PAGE
+<span class="w">                      </span>Page<span class="w"> </span>number<span class="w"> </span><span class="k">for</span><span class="w"> </span>hardware<span class="p">;</span><span class="w"> </span>ignored<span class="w"> </span><span class="k">if</span><span class="w"> </span>hardware<span class="w"> </span>is
+<span class="w">                      </span>excluded
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To show all, set page size to a negative value. If page size is negative, <code class="docutils literal notranslate"><span class="pre">page</span></code> parameter will be ignored. Negative value for <code class="docutils literal notranslate"><span class="pre">page</span></code> is not allowed.</p>
+</div>
+</section>
+<section id="filters">
+<span id="ep-filters"></span><h3>Filters<a class="headerlink" href="#filters" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">cep</span></code> tool provides multiple filters to help you focus on the contents you care.</p>
+<p><strong>Event Filters</strong></p>
+<ul>
+<li><p>To exclude all the events from the <em>Experiment Precis</em>, use <code class="docutils literal notranslate"><span class="pre">--exclude-event</span></code>.</p></li>
+<li><p>To include or exclude services, use <code class="docutils literal notranslate"><span class="pre">--include-services</span></code> and/or <code class="docutils literal notranslate"><span class="pre">--exclude-services</span></code>.
+For example, if you only want to print <code class="docutils literal notranslate"><span class="pre">blazar</span></code> (reservation) and <code class="docutils literal notranslate"><span class="pre">nova</span></code> (instance) related events, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cep<span class="w"> </span>print<span class="w"> </span>--pretty<span class="w"> </span>--include-services<span class="w"> </span>blazar,nova<span class="w"> </span>&lt;ep_id<span class="w"> </span>or<span class="w"> </span>ep_name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>You can exclude event metadata by passing <code class="docutils literal notranslate"><span class="pre">--exclude-event-metadata</span></code>.</p></li>
+<li><p>You can apply datetime filters to your events. For example, to print events up to <code class="docutils literal notranslate"><span class="pre">2018-10-05</span> <span class="pre">00:00:00</span></code>, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cep<span class="w"> </span>print<span class="w"> </span>--pretty<span class="w"> </span>--end-datetime<span class="w"> </span><span class="s2">&quot;2018-10-05 00:00:00&quot;</span><span class="w"> </span>&lt;ep_id<span class="w"> </span>or<span class="w"> </span>ep_name&gt;
+</pre></div>
+</div>
+<p>Or to print events from <code class="docutils literal notranslate"><span class="pre">2018-10-05</span> <span class="pre">09:00:00</span></code> to <code class="docutils literal notranslate"><span class="pre">2018-10-05</span> <span class="pre">17:00:00</span></code>, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cep<span class="w"> </span>print<span class="w"> </span>--pretty<span class="w"> </span>-start-datetime<span class="w"> </span><span class="s2">&quot;2018-10-05 09:00:00&quot;</span><span class="w"> </span>--end-datetime<span class="w"> </span><span class="s2">&quot;2018-10-05 17:00:00&quot;</span><span class="w"> </span>&lt;ep_id<span class="w"> </span>or<span class="w"> </span>ep_name&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using datetime filters, use datetime in <strong>UTC</strong>.</p>
+</div>
+<p><strong>Metric Filters</strong></p>
+<ul class="simple">
+<li><p>To exclude metrics from the <em>Experiment Precis</em>, use <code class="docutils literal notranslate"><span class="pre">--exclude-metric</span></code>.</p></li>
+</ul>
+<p><strong>Hardware Filters</strong></p>
+<ul class="simple">
+<li><p>To exclude hardware information from the <em>Experiment Precis</em>, use <code class="docutils literal notranslate"><span class="pre">--exclude-hardware</span></code>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started with CHI@Edge &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting started with CHI&#64;Edge</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting-started-edge/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started-with-chi-edge">
+<span id="getting-started-edge"></span><h1>Getting started with <a class="reference external" href="mailto:CHI&#37;&#52;&#48;Edge">CHI<span>&#64;</span>Edge</a><a class="headerlink" href="#getting-started-with-chi-edge" title="Permalink to this heading"></a></h1>
+<p>This guide will walk you through the initial steps of getting an account,
+joining a project and working with your first container.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#step-1-log-in-to-chameleon" id="id16">Step 1: Log in to Chameleon</a></p></li>
+<li><p><a class="reference internal" href="#step-2-create-or-join-a-project" id="id17">Step 2: Create or join a project</a></p></li>
+<li><p><a class="reference internal" href="#step-3-start-using-chameleon" id="id18">Step 3: Start using Chameleon!</a></p>
+<ul>
+<li><p><a class="reference internal" href="#the-chi-edge-dashboard" id="id19">The CHI&#64;Edge dashboard</a></p></li>
+<li><p><a class="reference internal" href="#the-lease-calendar" id="id20">The Lease Calendar</a></p></li>
+<li><p><a class="reference internal" href="#create-a-reservation" id="id21">Create a Reservation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#create-a-reservation-using-the-dashboard" id="id22">Create a Reservation Using the Dashboard</a></p></li>
+<li><p><a class="reference internal" href="#create-a-reservation-using-the-cli" id="id23">Create a Reservation Using the CLI</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#setting-up-networking" id="id24">Setting up networking</a></p></li>
+<li><p><a class="reference internal" href="#launching-a-container" id="id25">Launching a container</a></p>
+<ul>
+<li><p><a class="reference internal" href="#launching-with-a-device-profile" id="id26">Launching with a Device Profile</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#associating-an-ip-address" id="id27">Associating an IP address</a></p></li>
+<li><p><a class="reference internal" href="#access-to-your-container" id="id28">Access to your container</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#faqs" id="id29">FAQs</a></p>
+<ul>
+<li><p><a class="reference internal" href="#how-do-i-access-my-container" id="id30">How do I access my container?</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-upload-files-to-my-container" id="id31">How do I upload files to my container?</a></p></li>
+<li><p><a class="reference internal" href="#can-i-use-a-private-image-from-dockerhub" id="id32">Can I use a private image from DockerHub?</a></p></li>
+<li><p><a class="reference internal" href="#can-i-launch-my-container-with-runtime-capabilities-or-in-privileged-mode" id="id33">Can I launch my container with runtime capabilities or in privileged mode?</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-check-gpu-memory-usage-on-the-jetsons" id="id34">How do I check GPU memory usage on the Jetsons?</a></p></li>
+<li><p><a class="reference internal" href="#my-container-stops-with-status-exited-1" id="id35">My container stops with status <code class="docutils literal notranslate"><span class="pre">Exited(1)</span></code></a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="step-1-log-in-to-chameleon">
+<span id="getting-started-edge-user"></span><h2><a class="toc-backref" href="#id16">Step 1: Log in to Chameleon</a><a class="headerlink" href="#step-1-log-in-to-chameleon" title="Permalink to this heading"></a></h2>
+<p>Just click the “Log in” button situated in the top right corner of <a class="reference external" href="https://www.chameleoncloud.org">our main page</a> – you probably won’t even need to create an account!</p>
+<p>If your institution is a member of <a class="reference external" href="https://incommon.org/federation">InCommon</a> (most US research and education
+institutions are) – or if you have a Google account – you can log in with your
+institutional/Google credentials via the federated login. Otherwise, the log in process
+will guide you to create an account (<a class="reference internal" href="../user/federation.html#federation"><span class="std std-ref">read more about logging into Chameleon
+via federated login</span></a>).</p>
+<p>On your first Chameleon login you will be asked to accept <a class="reference external" href="https://auth.chameleoncloud.org/auth/realms/chameleon/terms">terms and conditions</a> of use. Please,
+note that as part of those terms and conditions you are requested to acknowledge
+Chameleon in publications produced using the testbed: see our FAQ for
+information on <a class="reference external" href="https://www.chameleoncloud.org/learn/frequently-asked-questions/#toc-how-should-i-reference-chameleon-">how to reference Chameleon in your publications</a>
+and the suggested <a class="reference external" href="https://www.chameleoncloud.org/learn/frequently-asked-questions/#toc-how-should-i-acknowledge-chameleon-in-my-publications-">acknowledgement text</a>.</p>
+<p>Once you log in, you will be able to <a class="reference internal" href="../user/profile.html#profile-page"><span class="std std-ref">edit your Chameleon profile</span></a>, sign up for webinars, and participate in our community.
+However, to actually use the testbed you will first need to <strong>join or create a
+project</strong> (see below).</p>
+</section>
+<section id="step-2-create-or-join-a-project">
+<span id="getting-started-edge-project"></span><h2><a class="toc-backref" href="#id17">Step 2: Create or join a project</a><a class="headerlink" href="#step-2-create-or-join-a-project" title="Permalink to this heading"></a></h2>
+<p>To get access to Chameleon resources, you will need to be associated with a
+<strong>project</strong> that is assigned a <strong>resource allocation</strong>.</p>
+<p>If you want to <strong>join an existing Chameleon project</strong>, you will need to ask the PI
+of the project to add your username. You can find your username in <a class="reference external" href="https://www.chameleoncloud.org/user/profile/">your Chameleon profile</a>–it is also displayed in the
+top-right corner when you are logged in.</p>
+<p>If you want to <strong>create a project</strong>, you will first either need to obtain a PI
+status or work with somebody who has PI status. To determine if you can obtain
+PI status, please see a <a class="reference internal" href="../user/pi_eligibility.html#pi-eligibility"><span class="std std-ref">list of PI eligibility criteria</span></a>.
+If you do not meet these criteria (e.g., students generally do not), you will
+need to ask your advisor or other scientist supervising your research to create
+the project for you. You can request PI status by checking a box in <a class="reference external" href="https://www.chameleoncloud.org/user/profile/">your
+Chameleon profile</a>. Chameleon PI
+status requests are typically reviewed within one business day.</p>
+<p>Once you have PI status, you may apply for a new project with an initial
+allocation. A project application typically consists of a short description of
+your intended research and takes one business day to process. Once your project
+has been approved, you will be able to utilize the testbed sites.</p>
+</section>
+<section id="step-3-start-using-chameleon">
+<h2><a class="toc-backref" href="#id18">Step 3: Start using Chameleon!</a><a class="headerlink" href="#step-3-start-using-chameleon" title="Permalink to this heading"></a></h2>
+<p>Congratulations, you are now ready to launch your first container! Containers
+are a simple way to deploy applications. Learn more about what containers are
+with <a class="reference external" href="https://www.docker.com/resources/what-container">this guide from docker</a>.
+Follow these steps to launch a container and manage it.</p>
+<section id="the-chi-edge-dashboard">
+<h3><a class="toc-backref" href="#id19">The CHI&#64;Edge dashboard</a><a class="headerlink" href="#the-chi-edge-dashboard" title="Permalink to this heading"></a></h3>
+<p>Chameleon edge resources are available through
+<a class="reference external" href="https://chi.edge.chameleoncloud.org">CHI&#64;Edge</a>. When you access this site, you are
+first taken to a dashboard, which shows a summary of your project’s current
+resource usage. The dashboard looks  something like this:</p>
+<figure class="screenshot align-default" id="id4">
+<img alt="The Chameleon Dashboard's resource usage summary" src="../_images/dashboard.png" />
+<figcaption>
+<p><span class="caption-text">An overview of your project’s current resource usage</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="the-lease-calendar">
+<h3><a class="toc-backref" href="#id20">The Lease Calendar</a><a class="headerlink" href="#the-lease-calendar" title="Permalink to this heading"></a></h3>
+<p>Visit the calendar for edge devices by going to <a class="reference external" href="https://chi.edge.chameleoncloud.org/project/leases/device_calendar/">this link</a>.
+This calendar lets you discover when resources are available to use. The <em>Y</em>
+axis of this chart represents the different edge devices in the system, and the
+<em>X</em> axis represents time.</p>
+<figure class="screenshot align-default" id="id5">
+<img alt="The edge device calendar" src="../_images/device_calendar.png" />
+<figcaption>
+<p><span class="caption-text">A chart displaying when devices are available.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="create-a-reservation">
+<h3><a class="toc-backref" href="#id21">Create a Reservation</a><a class="headerlink" href="#create-a-reservation" title="Permalink to this heading"></a></h3>
+<p>In order to guarentee access to an edge device, you can reserve it.
+Alternatively, you can create a container on demand, provided there are
+available devices at the time of creation. Here, we provide instructions for
+using reservations, which can be skipped if a reservation is not needed. We
+include instructions for using either the dashboard interface, or with the CLI.</p>
+<section id="create-a-reservation-using-the-dashboard">
+<h4><a class="toc-backref" href="#id22">Create a Reservation Using the Dashboard</a><a class="headerlink" href="#create-a-reservation-using-the-dashboard" title="Permalink to this heading"></a></h4>
+<p>After navigating to the <a class="reference external" href="mailto:CHI&#37;&#52;&#48;Edge">CHI<span>&#64;</span>Edge</a> dashboard, follow these instructions to create
+a reservation.</p>
+<ol class="arabic simple">
+<li><p>In the sidebar, click <em>Reservations</em>, then click <em>Leases</em></p></li>
+<li><p>Click on the <em>+ Create Lease</em> button in the toolbar</p></li>
+<li><p>Enter a name, for example <em>my_first_lease</em></p></li>
+<li><p>Update the start date and time, along with the end date and time.</p></li>
+<li><p>Next to <em>General</em> at the top, select <em>Devices</em>. Here, enter 1 for both the
+minimum and maximum number of devices. You can also add a device filter
+for a specific type of edge device.</p></li>
+<li><p>Click <em>Create</em>.</p></li>
+</ol>
+<figure class="screenshot align-default" id="id6">
+<img alt="The Create Lease dialog" src="../_images/create_lease.png" />
+<figcaption>
+<p><span class="caption-text">The Create Lease dialog</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Your reservation will show in the list of leases. Once the status changes from
+<em>PENDING</em> to <em>ACTIVE</em>, you will be able to launch a container. Before you can
+do this, you must get the reservation ID of a device. Click on your lease name
+from the Leases overview to see the <em>Lease Detail</em> page. Under the
+<em>Reservations</em> header, you will see an <em>id</em> field. Note this value. For example
+in the following figure, the value is <cite>0e4a0c01-c597-4294-a926-6350af77c5d4</cite>.</p>
+<figure class="screenshot align-default" id="id7">
+<img alt="The Lease Detail page" src="../_images/lease_detail.png" />
+<figcaption>
+<p><span class="caption-text">The Lease Detail page, with the reservation ID highlighted in blue.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="create-a-reservation-using-the-cli">
+<h4><a class="toc-backref" href="#id23">Create a Reservation Using the CLI</a><a class="headerlink" href="#create-a-reservation-using-the-cli" title="Permalink to this heading"></a></h4>
+<p>If you have previously installed blazar, you will need to reinstall in order to
+add in the new changes for edge devices</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/chameleoncloud/python-blazarclient@chameleoncloud/xena
+</pre></div>
+</div>
+<p>Be sure to use the the OpenStack RC file downloaded from the Edge site, which
+means you should be logged into the GUI at
+<a class="reference external" href="https://chi.edge.chameleoncloud.org">CHI&#64;Edge</a>. Once there, you can follow
+the <a class="reference internal" href="../technical/cli.html#cli-rc-script"><span class="std std-ref">same instructions</span></a>
+as is done on the other sites to download this file.</p>
+<p>To create a lease, use the <code class="docutils literal notranslate"><span class="pre">lease-create</span></code> command. The following arguments are
+required:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--reservation</span></code> with <code class="docutils literal notranslate"><span class="pre">resource_type=device</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, and <code class="docutils literal notranslate"><span class="pre">resource_properties</span></code> attributes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--start-date</span></code> in <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span> <span class="pre">HH:MM</span></code> format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--end-date</span></code> in <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span> <span class="pre">HH:MM</span></code> format</p></li>
+<li><p>A lease name.</p></li>
+</ul>
+<p>The attribute <code class="docutils literal notranslate"><span class="pre">resource_properties</span></code> may be used to specify what sort of edge
+device you want to reserve. For example, to reserve a Raspberry Pi from June 24,
+2021 at 3:00pm to June 25, 2021 at 1:00pm, with the name <code class="docutils literal notranslate"><span class="pre">my-first-lease</span></code>, you
+may use the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reservation<span class="w"> </span><span class="nv">resource_type</span><span class="o">=</span>device,min<span class="o">=</span><span class="m">1</span>,max<span class="o">=</span><span class="m">1</span>,resource_properties<span class="o">=</span><span class="s1">&#39;[&quot;==&quot;, &quot;$vendor&quot;, &quot;Raspberry Pi&quot;]&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--start-date<span class="w"> </span><span class="s2">&quot;2021-06-24 15:00&quot;</span><span class="w"> </span>--end-date<span class="w"> </span><span class="s2">&quot;2021-06-25 13:00&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>my-first-lease
+</pre></div>
+</div>
+<p>You may also use the device name to reserve a specific device. For example, to
+reserve the device named <code class="docutils literal notranslate"><span class="pre">rpi3-01</span></code>, you can change your command like below:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reservation<span class="w"> </span><span class="nv">resource_type</span><span class="o">=</span>device,min<span class="o">=</span><span class="m">1</span>,max<span class="o">=</span><span class="m">1</span>,resource_properties<span class="o">=</span><span class="s1">&#39;[&quot;==&quot;, &quot;$name&quot;, &quot;rpi3-01&quot;]&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--start-date<span class="w"> </span><span class="s2">&quot;2021-06-24 15:00&quot;</span><span class="w"> </span>--end-date<span class="w"> </span><span class="s2">&quot;2021-06-25 13:00&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>my-first-lease
+</pre></div>
+</div>
+<p>The output of <code class="docutils literal notranslate"><span class="pre">reservation</span> <span class="pre">lease</span> <span class="pre">create</span></code> should look like</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>+--------------+-----------------------------------------------------------------------+
+<span class="p">|</span><span class="w"> </span>Field<span class="w">        </span><span class="p">|</span><span class="w"> </span>Value<span class="w">                                                                 </span><span class="p">|</span>
++--------------+-----------------------------------------------------------------------+
+<span class="p">|</span><span class="w"> </span>created_at<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="m">2021</span>-06-24<span class="w"> </span><span class="m">15</span>:43:36<span class="w">                                                   </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>degraded<span class="w">     </span><span class="p">|</span><span class="w"> </span>False<span class="w">                                                                 </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>end_date<span class="w">     </span><span class="p">|</span><span class="w"> </span><span class="m">2021</span>-06-25T13:00:00.000000<span class="w">                                            </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>events<span class="w">       </span><span class="p">|</span><span class="w"> </span><span class="o">{</span><span class="w">                                                                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;created_at&quot;</span>:<span class="w"> </span><span class="s2">&quot;2021-06-24 15:43:36&quot;</span>,<span class="w">                              </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;updated_at&quot;</span>:<span class="w"> </span>null,<span class="w">                                               </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;id&quot;</span>:<span class="w"> </span><span class="s2">&quot;243988c9-5e04-484e-991e-e9a19bc107f9&quot;</span>,<span class="w">                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;lease_id&quot;</span>:<span class="w"> </span><span class="s2">&quot;8aad6912-2eb5-4140-812f-123e5cb56ca3&quot;</span>,<span class="w">               </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;event_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;end_lease&quot;</span>,<span class="w">                                        </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;time&quot;</span>:<span class="w"> </span><span class="s2">&quot;2021-06-25T13:00:00.000000&quot;</span>,<span class="w">                             </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;status&quot;</span>:<span class="w"> </span><span class="s2">&quot;UNDONE&quot;</span><span class="w">                                                </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w"> </span><span class="o">}</span><span class="w">                                                                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w"> </span><span class="o">{</span><span class="w">                                                                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;created_at&quot;</span>:<span class="w"> </span><span class="s2">&quot;2021-06-24 15:43:36&quot;</span>,<span class="w">                              </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;updated_at&quot;</span>:<span class="w"> </span>null,<span class="w">                                               </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;id&quot;</span>:<span class="w"> </span><span class="s2">&quot;8aa2f211-9434-4ae0-a01a-e454e0a045e7&quot;</span>,<span class="w">                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;lease_id&quot;</span>:<span class="w"> </span><span class="s2">&quot;8aad6912-2eb5-4140-812f-123e5cb56ca3&quot;</span>,<span class="w">               </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;event_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;before_end_lease&quot;</span>,<span class="w">                                 </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;time&quot;</span>:<span class="w"> </span><span class="s2">&quot;2021-06-24T15:45:00.000000&quot;</span>,<span class="w">                             </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;status&quot;</span>:<span class="w"> </span><span class="s2">&quot;UNDONE&quot;</span><span class="w">                                                </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w"> </span><span class="o">}</span><span class="w">                                                                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w"> </span><span class="o">{</span><span class="w">                                                                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;created_at&quot;</span>:<span class="w"> </span><span class="s2">&quot;2021-06-24 15:43:36&quot;</span>,<span class="w">                              </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;updated_at&quot;</span>:<span class="w"> </span>null,<span class="w">                                               </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;id&quot;</span>:<span class="w"> </span><span class="s2">&quot;e8892924-649a-4beb-aa46-9e16f6331dab&quot;</span>,<span class="w">                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;lease_id&quot;</span>:<span class="w"> </span><span class="s2">&quot;8aad6912-2eb5-4140-812f-123e5cb56ca3&quot;</span>,<span class="w">               </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;event_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;start_lease&quot;</span>,<span class="w">                                      </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;time&quot;</span>:<span class="w"> </span><span class="s2">&quot;2021-06-24T15:45:00.000000&quot;</span>,<span class="w">                             </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;status&quot;</span>:<span class="w"> </span><span class="s2">&quot;UNDONE&quot;</span><span class="w">                                                </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w"> </span><span class="o">}</span><span class="w">                                                                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>id<span class="w">           </span><span class="p">|</span><span class="w"> </span>8aad6912-2eb5-4140-812f-123e5cb56ca3<span class="w">                                  </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>name<span class="w">         </span><span class="p">|</span><span class="w"> </span>my-first-lease<span class="w">                                                        </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>project_id<span class="w">   </span><span class="p">|</span><span class="w"> </span>a5f0758da4a5404bbfcef0a64206614c<span class="w">                                      </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>reservations<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="o">{</span><span class="w">                                                                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;created_at&quot;</span>:<span class="w"> </span><span class="s2">&quot;2021-06-24 15:43:36&quot;</span>,<span class="w">                              </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;updated_at&quot;</span>:<span class="w"> </span><span class="s2">&quot;2021-06-24 15:43:36&quot;</span>,<span class="w">                              </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;id&quot;</span>:<span class="w"> </span><span class="s2">&quot;500e0c36-2089-46a5-bf7c-cc46e5f65a0d&quot;</span>,<span class="w">                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;lease_id&quot;</span>:<span class="w"> </span><span class="s2">&quot;8aad6912-2eb5-4140-812f-123e5cb56ca3&quot;</span>,<span class="w">               </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;resource_id&quot;</span>:<span class="w"> </span><span class="s2">&quot;48001fa1-ccb5-4e30-b511-a90455930776&quot;</span>,<span class="w">            </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;resource_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;device&quot;</span>,<span class="w">                                        </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;status&quot;</span>:<span class="w"> </span><span class="s2">&quot;pending&quot;</span>,<span class="w">                                              </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;missing_resources&quot;</span>:<span class="w"> </span>false,<span class="w">                                       </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;resources_changed&quot;</span>:<span class="w"> </span>false,<span class="w">                                       </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;resource_properties&quot;</span>:<span class="w"> </span><span class="s2">&quot;[\&quot;==\&quot;, \&quot;</span><span class="nv">$vendor</span><span class="s2">\&quot;, \&quot;Raspberry Pi\&quot;]&quot;</span>,<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;before_end&quot;</span>:<span class="w"> </span><span class="s2">&quot;default&quot;</span>,<span class="w">                                          </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;min&quot;</span>:<span class="w"> </span><span class="m">1</span>,<span class="w">                                                         </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">     </span><span class="s2">&quot;max&quot;</span>:<span class="w"> </span><span class="m">1</span><span class="w">                                                          </span><span class="p">|</span>
+<span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w"> </span><span class="o">}</span><span class="w">                                                                     </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>start_date<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="m">2021</span>-06-24T15:45:00.000000<span class="w">                                            </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>status<span class="w">       </span><span class="p">|</span><span class="w"> </span>PENDING<span class="w">                                                               </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>trust_id<span class="w">     </span><span class="p">|</span><span class="w"> </span>ec2a893aa0494d72bcc5fbb3b73e7e66<span class="w">                                      </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>updated_at<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="m">2021</span>-06-24<span class="w"> </span><span class="m">15</span>:43:36<span class="w">                                                   </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>user_id<span class="w">      </span><span class="p">|</span><span class="w"> </span>b8f54aa95b96b9fb69e31a3e39df6a7bad29581439cf8bd8c9d59d9d7d048f3a<span class="w">      </span><span class="p">|</span>
++--------------+-----------------------------------------------------------------------+
+</pre></div>
+</div>
+<p>Look for the <em>reservations</em> entry, and within this item find the <em>id</em> entry. In
+the above example, this is <em>500e0c36-2089-46a5-bf7c-cc46e5f65a0d</em>. Save this
+value someone, as it will be used later. Note that this is not the value from the
+row with <em>id</em> in the left column.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It may take up to a minute for your reservation to change from PENDING to
+ACTIVE status. One the lease becomes ACTIVE, you can use it.</p>
+</div>
+<p>At this point you can return to the GUI to continue setting up your container.</p>
+</section>
+</section>
+<section id="setting-up-networking">
+<h3><a class="toc-backref" href="#id24">Setting up networking</a><a class="headerlink" href="#setting-up-networking" title="Permalink to this heading"></a></h3>
+<p>If you are planning to make your container accessible over the Internet with a
+Floating IP, your container will need to run a security group in order to expose
+the ports needed. Below is a brief introduction to security groups in Chameleon,
+or you can find a more in depth explanation
+<a class="reference internal" href="../technical/kvm.html#kvm-security-groups"><span class="std std-ref">here</span></a>.</p>
+<ol class="arabic simple">
+<li><p>First, in the sidebar click <em>Network</em>, then click <em>Security Groups</em>. You can
+examine an existing group’s rules by clicking <em>Manage Rules</em> next to it. If
+you already have a security group here that meets your needs, you can skip
+the next step. Otherwise, you will need to create a new security group.</p></li>
+<li><p>To create a new security group, click <em>+ Create Security Group</em>, enter a name
+for your new group in the wizard, and then click <em>Create Security Group</em>.
+You will be redirected to the screen to manage your new group’s rules. Select
+<em>Add Rule</em> to open the add rule wizard. Under <em>Rule</em>, you can select from
+common rules, or if your needs are not met by one of these options, select
+one of the custom rules. For example, if your container runs a web
+server, you may want to add the rules HTTP and HTTPS, allowing for traffic
+on ports 80 and 443.</p></li>
+</ol>
+<blockquote>
+<div><figure class="screenshot align-default" id="id8">
+<img alt="Create Security Group Wizard" src="../_images/create_security_group.png" />
+<figcaption>
+<p><span class="caption-text">Enter a name for the security group.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+<section id="launching-a-container">
+<h3><a class="toc-backref" href="#id25">Launching a container</a><a class="headerlink" href="#launching-a-container" title="Permalink to this heading"></a></h3>
+<p>To start launching a container, follow the following steps:</p>
+<ol class="arabic simple">
+<li><p>In the sidebar, click <em>Container</em>, then click <em>Containers</em>.</p></li>
+<li><p>Click on the <em>Create Container</em> button in the toolbar and the <em>Create
+Container</em> wizard will load</p></li>
+<li><p>Give your container a name. For example, since it’s your first container,
+<em>my_first_container</em> may be a good name. Then, enter the name of an
+image you want to launch from Docker Hub. You must use the full name of the
+image. Optionally, you can supply a custom command to override the default
+command run by Docker.</p></li>
+</ol>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may also use a Glance ID for your image, by selecting <em>Glance</em> under the
+<em>Image Driver</em> field. You should only provide a Glance ID if you’ve
+previously created a container snapshot, which stores the snapshot as a
+Glance image.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Only the ARM architecture is currently supported. Make sure the image used
+is compatible with ARM. <a class="reference external" href="https://hub.docker.com/search?type=image&amp;architecture=arm64">Here is a list of such images on Docker Hub</a>.</p>
+</div>
+<figure class="screenshot align-default" id="id9">
+<img alt="Create Container wizard" src="../_images/create_container.png" />
+<figcaption>
+<p><span class="caption-text">Enter a name and image name.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><p>Click <em>Networks</em> in sidebar. Then, find <em>containernet1</em> in the image list and
+click the <em>Up</em> arrow to select it.</p>
+<figure class="screenshot align-default" id="id10">
+<img alt="Selecting a network" src="../_images/create_container_networks.png" />
+<figcaption>
+<p><span class="caption-text">Select the containernet1 network</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Click <em>Security Groups</em> in sidebar. Select the security group you wish to use
+by clicking the <em>Up</em> arrow to select it.</p>
+<figure class="screenshot align-default" id="id11">
+<img alt="Select security groups to use" src="../_images/create_container_security_groups.png" />
+<figcaption>
+<p><span class="caption-text">You select your desired security group.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Click <em>Scheduler Hints</em> in the sidebar. Next to custom, enter “reservation”
+and click the <em>+</em> sign. It will move to the right, and there enter the
+reservation ID saved from the <code class="docutils literal notranslate"><span class="pre">lease-create</span></code> step. If you are launching
+a container on demand, you can skip this step.</p>
+<figure class="screenshot align-default" id="id12">
+<img alt="Enter the reservation ID in Scheduler Hints" src="../_images/scheduler_hints.png" />
+<figcaption>
+<p><span class="caption-text">Enter “reservation” and then the reservation ID.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Click the <em>Create</em> button.</p></li>
+</ol>
+<p>Congratulations, you have launched an container! It may take a few minutes for
+your container to become active if the image is not yet downloaded to the
+target device.</p>
+<blockquote>
+<div></div></blockquote>
+<section id="launching-with-a-device-profile">
+<span id="device-profile"></span><h4><a class="toc-backref" href="#id26">Launching with a Device Profile</a><a class="headerlink" href="#launching-with-a-device-profile" title="Permalink to this heading"></a></h4>
+<p>For some functions, extra setup must take place while a container is launched.
+For example, to use a camera, docker needs to load the device. This setup is
+handled by launching your container with a device profile. You can see what
+device profiles work with each device on our <a class="reference external" href="https://chameleoncloud.org/experiment/chiedge/hardware-info/">table of current hardware</a>.</p>
+<p>Additionally, all devices support the profile <code class="docutils literal notranslate"><span class="pre">cap_net_admin</span></code>, which gives
+adds the capability <code class="docutils literal notranslate"><span class="pre">CAP_NET_ADMIN</span></code> to a container.</p>
+<p>To use a device profile, you must launch your container using the CLI or
+the python interface, python-chi. In the CLI, a device profile is used by
+adding the argument <code class="docutils literal notranslate"><span class="pre">--device-profile</span> <span class="pre">&quot;&lt;profile_name&gt;&quot;</span></code>. With python-chi,
+you can include <code class="docutils literal notranslate"><span class="pre">device_profiles=[&quot;&lt;profile_name&gt;&quot;]</span></code> as a keyword argument to
+<code class="docutils literal notranslate"><span class="pre">container.create_container</span></code>.</p>
+</section>
+</section>
+<section id="associating-an-ip-address">
+<h3><a class="toc-backref" href="#id27">Associating an IP address</a><a class="headerlink" href="#associating-an-ip-address" title="Permalink to this heading"></a></h3>
+<p>For your container to be accessible over the Internet, you need to
+first assign a floating IP address.</p>
+<ol class="arabic">
+<li><p>First, select your container name in the <em>Containers</em> page, which will
+bring you to an overview for the container. Under <em>Spec</em>, you will see a
+field titled <em>Addresses</em> and within this, you should see an IP address next
+to the text <em>addr</em>. Note this address.</p></li>
+<li><p>Go to the <em>Floating IP</em> dashboard by clicking on <em>Network</em> and <em>Floating IPs</em>
+in the sidebar.</p>
+<blockquote>
+<div><figure class="screenshot align-default">
+<img alt="The Floating IP dashboard" src="../_images/floating_ip_overview.png" />
+</figure>
+</div></blockquote>
+</li>
+<li><p>If you have a Floating IP not currently associated to a container, click the
+<em>Associate</em> button for the IP. A dialog will load that allows you to assign a
+publicly accessible IP to your container. Under <em>Port to be associated</em>, use
+the IP address from the container overview from step 1. Click the <em>Associate</em>
+button in the dialog to complete the process of associating the public IP to
+your container.</p>
+<figure class="screenshot align-default" id="id13">
+<img alt="The Manage Floating IP Associations dialog" src="../_images/associate_ip_edge.png" />
+<figcaption>
+<p><span class="caption-text">Here you can assign a floating IP address</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>If you didn’t already have a Floating IP available, you may allocate one to
+your project by clicking on the <em>Allocate IP to Project</em> button along the top
+row in the Floating IP dashboard. A new dialog will open for allocating the
+floating IP.</p>
+<figure class="screenshot align-default" id="id14">
+<img alt="The Allocate Floating IP dialog" src="../_images/associate_pool.png" />
+<figcaption>
+<p><span class="caption-text">This dialog allows you to allocate an IP address from Chameleon’s public
+IP pool</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Click the <em>Allocate IP</em> button. The Floating IP dashboard will reload and you
+should see your new Floating IP appear in the list. You can now go back to
+step 3.</p>
+</li>
+</ol>
+</section>
+<section id="access-to-your-container">
+<span id="id3"></span><h3><a class="toc-backref" href="#id28">Access to your container</a><a class="headerlink" href="#access-to-your-container" title="Permalink to this heading"></a></h3>
+<p>Once your container has launched, there are a few ways to interact with it.</p>
+<p>If your container communicates over the network, you can use the assigned
+floating IP to access it. For example, if your container is running a web server
+on port <code class="docutils literal notranslate"><span class="pre">8888</span></code>, with floating IP <code class="docutils literal notranslate"><span class="pre">129.114.108.102</span></code>, you can connect to it by
+going to <code class="docutils literal notranslate"><span class="pre">http://129.114.108.102:8888</span></code> in your browser.</p>
+<p>By selecting your container name from the list of containers, you will be taken
+to an overview page for your container. Here, you can select the logs tab to
+see the output from your container. In the top right of this page, next to the
+button labeled <em>Refresh</em>, you can select the drop-down arrow. One of the options
+in this drop-down menu is <em>Execute Command</em>. Clicking this will open a window,
+allowing you to enter a command to execute on your container. The output from
+this command will then be displayed, after the command runs. In the future,
+you will be able to connect to your container via the <em>Console</em> tab, but for the
+moment this is not supported.</p>
+<blockquote>
+<div><figure class="screenshot align-default" id="id15">
+<img alt="The Execute Command window" src="../_images/execute_command.png" />
+<figcaption>
+<p><span class="caption-text">This dialog allows you to execute a command on your container.</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+</section>
+<section id="faqs">
+<h2><a class="toc-backref" href="#id29">FAQs</a><a class="headerlink" href="#faqs" title="Permalink to this heading"></a></h2>
+<section id="how-do-i-access-my-container">
+<h3><a class="toc-backref" href="#id30">How do I access my container?</a><a class="headerlink" href="#how-do-i-access-my-container" title="Permalink to this heading"></a></h3>
+<p>See <a class="reference internal" href="#access-to-your-container"><span class="std std-ref">Access to your container</span></a>.</p>
+<p>You may wish to <a class="reference external" href="https://stackoverflow.com/questions/18136389/using-ssh-keys-inside-docker-container/43318322#43318322">install an ssh server</a>
+on your container. If you do so, please ensure that password access is disabled
+in order to keep your container secure.</p>
+</section>
+<section id="how-do-i-upload-files-to-my-container">
+<h3><a class="toc-backref" href="#id31">How do I upload files to my container?</a><a class="headerlink" href="#how-do-i-upload-files-to-my-container" title="Permalink to this heading"></a></h3>
+<p>Using the Jupyter interface, you can do:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">chi</span><span class="w"> </span><span class="kn">import</span> <span class="n">container</span>
+<span class="n">container</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">container_uuid</span><span class="p">,</span> <span class="n">local_path</span><span class="p">,</span> <span class="n">remote_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This method is limited to a small file size per each upload.</p>
+<p>If your container runs an SSH server, you can copy files using tools like
+<code class="docutils literal notranslate"><span class="pre">scp</span></code>.</p>
+</section>
+<section id="can-i-use-a-private-image-from-dockerhub">
+<h3><a class="toc-backref" href="#id32">Can I use a private image from DockerHub?</a><a class="headerlink" href="#can-i-use-a-private-image-from-dockerhub" title="Permalink to this heading"></a></h3>
+<p>We do not support pulling from private Docker registries, but you can use
+Glance to do this, which is the image service used for Chameleon’s baremetal
+and KVM sites. Run a command:</p>
+<p>When you launch a container, you can select “Glance” as the image driver, with
+the name of your image.</p>
+</section>
+<section id="can-i-launch-my-container-with-runtime-capabilities-or-in-privileged-mode">
+<h3><a class="toc-backref" href="#id33">Can I launch my container with runtime capabilities or in privileged mode?</a><a class="headerlink" href="#can-i-launch-my-container-with-runtime-capabilities-or-in-privileged-mode" title="Permalink to this heading"></a></h3>
+<p>Containers can only be launched with a set of approved capabilities for
+security reasons. See <a class="reference internal" href="#device-profile"><span class="std std-ref">this section</span></a> for how to use
+capabilities and what capabilties are available.</p>
+</section>
+<section id="how-do-i-check-gpu-memory-usage-on-the-jetsons">
+<h3><a class="toc-backref" href="#id34">How do I check GPU memory usage on the Jetsons?</a><a class="headerlink" href="#how-do-i-check-gpu-memory-usage-on-the-jetsons" title="Permalink to this heading"></a></h3>
+<p>This can be done with <code class="docutils literal notranslate"><span class="pre">tegrastats</span></code>. This is included in Nvidia’s L4T base image,
+or you can follow these steps to get the binary, which can be copied to your
+image.</p>
+<p>First, get the <a class="reference external" href="https://repo.download.nvidia.com/jetson/">tegrastats binary from Nvidia</a>
+which is in the <a class="reference external" href="https://repo.download.nvidia.com/jetson/t210/pool/main/n/nvidia-l4t-tools/nvidia-l4t-tools_32.5.1-20210614115125_arm64.deb">nvidia-l4t-tools package</a>.</p>
+<p>Extract the file <code class="docutils literal notranslate"><span class="pre">dpkg-deb</span> <span class="pre">-x</span> <span class="pre">&lt;filename&gt;.deb</span> <span class="pre">&lt;output_dir&gt;&quot;</span></code>, and then you
+can find the single tegrastats binary in <code class="docutils literal notranslate"><span class="pre">./usr/bin</span></code>.</p>
+</section>
+<section id="my-container-stops-with-status-exited-1">
+<h3><a class="toc-backref" href="#id35">My container stops with status <code class="docutils literal notranslate"><span class="pre">Exited(1)</span></code></a><a class="headerlink" href="#my-container-stops-with-status-exited-1" title="Permalink to this heading"></a></h3>
+<p>Check the “Logs” tab for more information on what actually went wrong.</p>
+<p>If you see the error <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">user</span> <span class="pre">process</span> <span class="pre">caused:</span> <span class="pre">exec</span> <span class="pre">format</span> <span class="pre">error</span></code>, the issue
+most likely an architecture issue. Make sure your container is built for the
+proper CPU type, which is <code class="docutils literal notranslate"><span class="pre">linux/arm64</span></code> on most of our devices.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

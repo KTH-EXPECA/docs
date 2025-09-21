@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complex appliances &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Complex appliances</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/complex.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="complex-appliances">
+<span id="complex"></span><h1>Complex appliances<a class="headerlink" href="#complex-appliances" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>Deploying an MPI cluster, an OpenStack installation, or any other type of cluster in which nodes can take on multiple roles can be complex: you have to provision potentially hundreds of nodes, configure them to take on various roles, and make them share information that is generated or assigned only at deployment time, such as hostnames, IP addresses, or security keys. When you want to run a different experiment later you have to redo all this work. When you want to reproduce the experiment, or allow somebody else to reproduce it, you have to take very precise notes and pay great attention to their execution.</p>
+<p>To help solve this problem and facilitate reproducibility and sharing, the Chameleon team configured a tool that allows you to deploy complex clusters with “one click”. This tool requires not just a simple <em>image</em> (i.e., appliance) but also a document, called a <em>template</em>, that contains the information needed to orchestrate the deployment and configuration of such clusters. We call this <em>image + template</em> combination <strong>Complex Appliances</strong> because it consists of more than just the image (i.e., appliance).</p>
+<p>In a nutshell, <em>Complex Appliances</em> allow you to specify not only what image you want to deploy but also on how many nodes you want to deploy that image, what roles the deployed instances should boot into (such as e.g., head node and worker node in a cluster), what information from a specific instance should be passed to another instance in that <em>Complex Appliance</em>, and what scripts should be executed on boot so that this information is properly used for configuring the “one click” cluster.</p>
+<p>This guide will tell you all you need to know in order to use and configure <em>Complex Appliances</em> on Chameleon.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Since <em>Complex Appliances</em> in Chameleon are currently implemented using the <a class="reference external" href="https://docs.openstack.org/heat/latest/">OpenStack Heat</a> orchestration service, we will be using OpenStack terminology and features to work with them. The templates described above are YAML files using the <a class="reference external" href="https://docs.openstack.org/heat/latest/template_guide/hot_spec.html">Heat Orchestration Template (HOT)</a> format (Heat also supports the AWS CloudFormation template format, but this is not covered here). A deployed complex appliance is referred to as a “stack” – just as a deployed single appliance is typically referred to as an “instance”.</p>
+</div>
+</section>
+<section id="complex-appliances-in-the-catalog">
+<h2>Complex Appliances in the Catalog<a class="headerlink" href="#complex-appliances-in-the-catalog" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference external" href="https://www.chameleoncloud.org/appliances/">Chameleon Appliance Catalog</a> has several <em>Complex Appliances</em> for popular technologies that people want to deploy such as OpenStack or MPI or even more advanced deployments such as efficient SR-IOV enabled MPI in KVM virtual machines. We also provide common building blocks for cluster architectures, such as an NFS share. <em>Complex Appliances</em> are identified by a badge in their top-right corner representing a group of machines, as in the screenshot below:</p>
+<figure class="align-default" id="id8">
+<img alt="A Complex Appliance with a badge in the upper right" src="../_images/nfsappliance.png" />
+<figcaption>
+<p><span class="caption-text">A Complex Appliance with a badge in the upper right</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>To view the details of a <em>Complex Appliance</em>, simply click on it.</p>
+<figure class="align-default" id="id9">
+<img alt="A Complex Appliance page" src="../_images/nfsappliancedetail.png" />
+<figcaption>
+<p><span class="caption-text">A Complex Appliance page</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You may download the <em>Template</em> file or copy the <em>Template</em> file URL to clipboard by clicking the <em>Get Template</em> button. The <em>Template</em> file or it’s URL is required when launching a <em>Complex Appliance</em>.</p>
+</div>
+</section>
+<section id="managing-complex-appliances-using-the-gui">
+<h2>Managing Complex Appliances using the GUI<a class="headerlink" href="#managing-complex-appliances-using-the-gui" title="Permalink to this heading"></a></h2>
+<p>Before launching a <em>Complex Appliance</em>, please make sure that you have a reservation for the appropriate node types and a key pair configured. Since most <em>Complex Appliances</em> will consist of multiple nodes, make sure you have set the <em>Minimum Number of Hosts</em> in your Lease. You will also need a <em>Template</em> file or the URL for a <em>Template</em> file from the <a class="reference external" href="https://www.chameleoncloud.org/appliances/">Appliance Catalog</a>. At <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> site or <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a> site, go to <em>Project</em> &gt; <em>Orchestration</em> &gt; <em>Stacks</em> use the navigation side bar.</p>
+<figure class="align-default" id="id10">
+<img alt="The Stacks page" src="../_images/stacks.png" />
+<figcaption>
+<p><span class="caption-text">The Stacks page</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can go to <em>Stacks</em> page directly from the <a class="reference external" href="https://www.chameleoncloud.org/appliances/">Appliance Catalog</a>.</p>
+<ol class="arabic simple">
+<li><p>Go to the <a class="reference external" href="https://www.chameleoncloud.org/appliances/">Appliance Catalog</a> and identify the appliance you want to launch. Click on it to open its details page.</p></li>
+<li><p>Click on the “Launch Complex Appliance at <code class="docutils literal notranslate"><span class="pre">CHI\&#64;TACC</span></code>” or “Launch Complex Appliance at <code class="docutils literal notranslate"><span class="pre">CHI\&#64;UC</span></code>” button depending on where your reservation is created.</p></li>
+</ol>
+</div>
+<section id="launching-a-complex-appliance">
+<h3>Launching a Complex Appliance<a class="headerlink" href="#launching-a-complex-appliance" title="Permalink to this heading"></a></h3>
+<p>To launch a stack, click the <em>Launch Stack</em> button in the upper right of the <em>Stacks</em> page. Then follow the steps:</p>
+<ol class="arabic">
+<li><p>Start setting up a <em>Template</em> by choosing a <em>Template Source</em> in the dropdown. You may either select the <em>File</em> option as <em>Template Source</em> and upload the <em>Template</em> file, or select the <em>URL</em> option and provide the URL of the <em>Template</em> file.</p>
+<figure class="align-default" id="id11">
+<img alt="The Select Template step" src="../_images/selecttemplate.png" />
+<figcaption>
+<p><span class="caption-text">The Select Template step</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Do not</strong> change the environment source settings!</p>
+</div>
+</li>
+<li><p>Once you have provided a Template, click the <em>Next</em> button. Chameleon will validate the Template file and proceed to the <em>Launch Stack</em> step.</p>
+<figure class="align-default" id="id12">
+<img alt="The Launch Stack step" src="../_images/launchstack.png" />
+<figcaption>
+<p><span class="caption-text">The Launch Stack step</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Choose a name for your stack. Ignore the “Creation Timeout” and “Rollback On Failure” settings. You also need to enter your Chameleon password. Then, you need to select a value for the parameters of the template. Finally, click the <em>Launch</em> button.</p></li>
+<li><p>Your stack should be in status “Create In Progress” for several minutes while it first launches the server instance, followed by the client instances. It will then move to the status “Create Complete”.</p></li>
+</ol>
+<figure class="align-default" id="id13">
+<img alt="A Complex Appliance with the Create in Progress status" src="../_images/createinprogress.png" />
+<figcaption>
+<p><span class="caption-text">A Complex Appliance with the Create in Progress status</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="monitoring-a-complex-appliance">
+<h3>Monitoring a Complex Appliance<a class="headerlink" href="#monitoring-a-complex-appliance" title="Permalink to this heading"></a></h3>
+<p>To monitor and get more details about your <em>Complex Appliance</em>, click on it in the <em>Stacks</em> page.</p>
+<ul>
+<li><p>The <em>Topology</em> tab displays a topology graph of the stack. The rack of machine represents the client instance group. The server’s floating IP (the public IP assigned to a resource) is represented by an IP in a circle; while an IP in a circle is also used to represent the association of the IP with the server instance (not the greatest idea to use the same symbol for both the IP and the association – we agree but can’t do much about it at the moment). Blow off some steam by dragging the visualization across the screen, it can be rather fun!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Blinking nodes indicates that they are still provisioning.</p>
+</div>
+<figure class="align-default" id="id14">
+<img alt="The Topology tab" src="../_images/topology.png" />
+<figcaption>
+<p><span class="caption-text">The Topology tab</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>The <em>Overview</em> tab displays various parameters, including the <em>ID</em> of the stack and <em>Outputs</em> such as IP addresses assigned to each node. If you have a floating IP associated to the server, you can now <code class="docutils literal notranslate"><span class="pre">ssh</span></code> to the server using the floating IP just as you do with regular instances. The client may not have a floating IP attached to it, but you can connect to it via the server node with the client’s private IP.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To talk to the client without an associated floating IP, connect to the server with <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-A</span></code> to enable the SSH agent forwarding after loading your key to your SSH agent with <code class="docutils literal notranslate"><span class="pre">ssh-add</span> <span class="pre">&lt;path-to-your-key&gt;</span></code>.</p>
+</div>
+<figure class="align-default" id="id15">
+<img alt="The Overview tab" src="../_images/overview1.png" />
+<figcaption>
+<p><span class="caption-text">The Overview tab</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Under the <em>Resources</em> tab you will see the resources of the stack (the server, clients, server’s public/floating IP, and its the association) and information about them.</p>
+<figure class="align-default" id="id16">
+<img alt="The Resources tab" src="../_images/resources.png" />
+<figcaption>
+<p><span class="caption-text">The Resources tab</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>In the <em>Events</em> tab you will see information about the history of the deployment so far.</p>
+<figure class="align-default" id="id17">
+<img alt="The Events tab" src="../_images/events.png" />
+<figcaption>
+<p><span class="caption-text">The Events tab</span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>In <em>Template</em> tab, you will see the template that was used to deploy this stack.</p>
+<figure class="align-default" id="id18">
+<img alt="The Template tab" src="../_images/template.png" />
+<figcaption>
+<p><span class="caption-text">The Template tab</span><a class="headerlink" href="#id18" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+</ul>
+</section>
+<section id="deleting-a-complex-appliance">
+<h3>Deleting a Complex Appliance<a class="headerlink" href="#deleting-a-complex-appliance" title="Permalink to this heading"></a></h3>
+<p>To delete a <em>Complex Appliance</em>, select it in the <em>Stacks</em> page and click the <em>Delete Stacks</em> button. This will delete all resources of the stack, such as nodes and floating IP addresses.</p>
+</section>
+</section>
+<section id="managing-complex-appliances-using-the-cli">
+<h2>Managing Complex Appliances using the CLI<a class="headerlink" href="#managing-complex-appliances-using-the-cli" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Reading <a class="reference internal" href="cli.html#cli"><span class="std std-ref">Command Line Interface (CLI)</span></a> is highly recommanded before continuing on the following sections.</p>
+</div>
+<p>In addition to <a class="reference internal" href="cli.html#cli-installing"><span class="std std-ref">Installing the CLI</span></a>, you will need to install the <code class="docutils literal notranslate"><span class="pre">python-heatclient</span></code> package using the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>python-heatclient
+</pre></div>
+</div>
+<p>Then, set up your environment for OpenStack command line usage, as described in <a class="reference internal" href="cli.html#cli-rc-script"><span class="std std-ref">The OpenStack RC Script</span></a>. You can get a list of your <em>Complex Appliances</em> in your project using the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>stack<span class="w"> </span>list
+</pre></div>
+</div>
+<p>The output should look like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------------------------------------+---------------+-------------------+----------------------+----------------------+</span>
+<span class="o">|</span> <span class="n">ID</span>                                   <span class="o">|</span> <span class="n">Stack</span> <span class="n">Name</span>    <span class="o">|</span> <span class="n">Stack</span> <span class="n">Status</span>      <span class="o">|</span> <span class="n">Creation</span> <span class="n">Time</span>        <span class="o">|</span> <span class="n">Updated</span> <span class="n">Time</span>         <span class="o">|</span>
+<span class="o">+--------------------------------------+---------------+-------------------+----------------------+----------------------+</span>
+<span class="o">|</span> <span class="n">e5df33b5</span><span class="o">-</span><span class="mi">5282</span><span class="o">-</span><span class="mi">4935</span><span class="o">-</span><span class="mi">8097</span><span class="o">-</span><span class="mi">973328</span><span class="n">ca71e5</span> <span class="o">|</span> <span class="n">my_stack</span>      <span class="o">|</span> <span class="n">CREATE_COMPLETE</span>   <span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">23</span><span class="n">T22</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">12</span><span class="n">Z</span> <span class="o">|</span> <span class="kc">None</span>                 <span class="o">|</span>
+<span class="o">+--------------------------------------+---------------+-------------------+----------------------+----------------------+</span>
+</pre></div>
+</div>
+<section id="id3">
+<h3>Launching a Complex Appliance<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>To launch a <em>Complex Appliance</em> using <em>Template</em>, run the command on your local machine:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>stack<span class="w"> </span>create<span class="w"> </span>--template<span class="w"> </span>&lt;template_file&gt;<span class="w"> </span>--parameter<span class="w"> </span>&lt;parameter&gt;<span class="o">=</span>&lt;value&gt;<span class="w"> </span>&lt;stack_name&gt;
+</pre></div>
+</div>
+<p>Provide the path to and the name of the <em>Template</em> file in your local file system via the <code class="docutils literal notranslate"><span class="pre">template</span></code> switch.  The <code class="docutils literal notranslate"><span class="pre">&lt;stack_name&gt;</span></code> is the name of the <em>Complex Appliance</em>. In addition, you may provide the parameters required in the <em>Template</em> file with their values by <code class="docutils literal notranslate"><span class="pre">parameter</span></code> switch. For example, the <a class="reference external" href="https://www.chameleoncloud.org/appliances/api/appliances/25/template">NFS Server Template</a> lists the following <code class="docutils literal notranslate"><span class="pre">parameters</span></code> section:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">parameters</span><span class="p">:</span>
+  <span class="n">nfs_client_count</span><span class="p">:</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">number</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">NFS</span> <span class="n">client</span> <span class="n">instances</span>
+    <span class="n">default</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="n">constraints</span><span class="p">:</span>
+      <span class="o">-</span> <span class="nb">range</span><span class="p">:</span> <span class="p">{</span> <span class="nb">min</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span>
+        <span class="n">description</span><span class="p">:</span> <span class="n">There</span> <span class="n">must</span> <span class="n">be</span> <span class="n">at</span> <span class="n">least</span> <span class="n">one</span> <span class="n">client</span><span class="o">.</span>
+  <span class="n">key_name</span><span class="p">:</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">string</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">a</span> <span class="n">KeyPair</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">SSH</span> <span class="n">access</span> <span class="n">to</span> <span class="n">the</span> <span class="n">instance</span>
+    <span class="n">default</span><span class="p">:</span> <span class="n">default</span>
+    <span class="n">constraints</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">custom_constraint</span><span class="p">:</span> <span class="n">nova</span><span class="o">.</span><span class="n">keypair</span>
+  <span class="n">reservation_id</span><span class="p">:</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">string</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">ID</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Blazar</span> <span class="n">reservation</span> <span class="n">to</span> <span class="n">use</span> <span class="k">for</span> <span class="n">launching</span> <span class="n">instances</span><span class="o">.</span>
+    <span class="n">constraints</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">custom_constraint</span><span class="p">:</span> <span class="n">blazar</span><span class="o">.</span><span class="n">reservation</span>
+</pre></div>
+</div>
+<p>Therefore, in order to use this <em>Template</em>, you must provide values for <code class="docutils literal notranslate"><span class="pre">nfs_client_count</span></code>, <code class="docutils literal notranslate"><span class="pre">key_name</span></code> and <code class="docutils literal notranslate"><span class="pre">reservation_id</span></code>.</p>
+</section>
+<section id="id4">
+<h3>Monitoring a Complex Appliance<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>You can get details about your <em>Complex Appliance</em>, such as <em>Outputs</em>, <em>Events</em> and <em>Resources</em>, via the CLI. You will need the <em>UUID</em> of the <em>Complex Appliance</em>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To get the <em>UUID</em> of your <em>Complex Appliance</em>, use the <em>Stacks</em> page on the GUI or retrieve it by <code class="docutils literal notranslate"><span class="pre">openstack</span> <span class="pre">stack</span> <span class="pre">list</span></code> command.</p>
+</div>
+<ul>
+<li><p>To view the <em>Outputs</em>, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>stack<span class="w"> </span>output<span class="w"> </span>list<span class="w"> </span>&lt;uuid&gt;
+</pre></div>
+</div>
+<p>For example, the list of the outputs for the <a class="reference external" href="https://www.chameleoncloud.org/appliances/25/">NFS Share</a> stack is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------------+-----------------------------------------+</span>
+<span class="o">|</span> <span class="n">output_key</span> <span class="o">|</span> <span class="n">description</span>                             <span class="o">|</span>
+<span class="o">+------------+-----------------------------------------+</span>
+<span class="o">|</span> <span class="n">client_ips</span> <span class="o">|</span> <span class="n">Private</span> <span class="n">IP</span> <span class="n">addresses</span> <span class="n">of</span> <span class="n">the</span> <span class="n">NFS</span> <span class="n">clients</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">server_ip</span>  <span class="o">|</span> <span class="n">Public</span> <span class="n">IP</span> <span class="n">address</span> <span class="n">of</span> <span class="n">the</span> <span class="n">NFS</span> <span class="n">server</span>     <span class="o">|</span>
+<span class="o">+------------+-----------------------------------------+</span>
+</pre></div>
+</div>
+<p>You can get more details about the outputs by using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>stack<span class="w"> </span>output<span class="w"> </span>show<span class="w"> </span>--all<span class="w"> </span>&lt;uuid&gt;
+</pre></div>
+</div>
+</li>
+<li><p>To view the <em>Events</em>, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>stack<span class="w"> </span>event<span class="w"> </span>list<span class="w"> </span>&lt;uuid&gt;
+</pre></div>
+</div>
+</li>
+<li><p>To view the <em>Resources</em>, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>stack<span class="w"> </span>resource<span class="w"> </span>list<span class="w"> </span>&lt;uuid&gt;
+</pre></div>
+</div>
+<p>Your output may look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---------------------------+--------------------------------------+---------------------------------+-----------------+----------------------+</span>
+<span class="o">|</span> <span class="n">resource_name</span>             <span class="o">|</span> <span class="n">physical_resource_id</span>                 <span class="o">|</span> <span class="n">resource_type</span>                   <span class="o">|</span> <span class="n">resource_status</span> <span class="o">|</span> <span class="n">updated_time</span>         <span class="o">|</span>
+<span class="o">+---------------------------+--------------------------------------+---------------------------------+-----------------+----------------------+</span>
+<span class="o">|</span> <span class="n">nfs_server_ip_association</span> <span class="o">|</span>                                      <span class="o">|</span> <span class="n">OS</span><span class="p">::</span><span class="n">Neutron</span><span class="p">::</span><span class="n">FloatingIPAssociation</span> <span class="o">|</span> <span class="n">INIT_COMPLETE</span>   <span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span><span class="n">T18</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">05</span><span class="n">Z</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">nfs_server</span>                <span class="o">|</span> <span class="mi">0</span><span class="n">ab0169c</span><span class="o">-</span><span class="n">f762</span><span class="o">-</span><span class="mi">4</span><span class="n">d27</span><span class="o">-</span><span class="mi">8724</span><span class="o">-</span><span class="n">b359caa50f1f</span> <span class="o">|</span> <span class="n">OS</span><span class="p">::</span><span class="n">Nova</span><span class="p">::</span><span class="n">Server</span>                <span class="o">|</span> <span class="n">CREATE_FAILED</span>   <span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span><span class="n">T18</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">05</span><span class="n">Z</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">nfs_server_floating_ip</span>    <span class="o">|</span> <span class="n">ecb391f8</span><span class="o">-</span><span class="mi">4653</span><span class="o">-</span><span class="mi">43</span><span class="n">a6</span><span class="o">-</span><span class="n">b2c6</span><span class="o">-</span><span class="n">bb93a6d89115</span> <span class="o">|</span> <span class="n">OS</span><span class="p">::</span><span class="n">Nova</span><span class="p">::</span><span class="n">FloatingIP</span>            <span class="o">|</span> <span class="n">CREATE_COMPLETE</span> <span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span><span class="n">T18</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">05</span><span class="n">Z</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">nfs_clients</span>               <span class="o">|</span>                                      <span class="o">|</span> <span class="n">OS</span><span class="p">::</span><span class="n">Heat</span><span class="p">::</span><span class="n">ResourceGroup</span>         <span class="o">|</span> <span class="n">INIT_COMPLETE</span>   <span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span><span class="n">T18</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">05</span><span class="n">Z</span> <span class="o">|</span>
+<span class="o">+---------------------------+--------------------------------------+---------------------------------+-----------------+----------------------+</span>
+</pre></div>
+</div>
+<p>Then, you may retrieve information about a specific resource using the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>stack<span class="w"> </span>resource<span class="w"> </span>show<span class="w"> </span>&lt;stack_uuid&gt;<span class="w"> </span>&lt;resource_name&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h3>Deleting a Complex Appliance<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>Use the following command to delete a stack:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>stack<span class="w"> </span>delete<span class="w"> </span>&lt;uuid&gt;
+</pre></div>
+</div>
+<p>It will remove all the resources attached to the stack.</p>
+</section>
+</section>
+<section id="heat-orchestration-templates">
+<h2>Heat Orchestration Templates<a class="headerlink" href="#heat-orchestration-templates" title="Permalink to this heading"></a></h2>
+<p>A <em>Heat Orchestration Template</em> is a YAML file that specifies how resources are used and configured in a <em>Complex Appliance</em>.</p>
+<section id="a-case-example-nfs-share">
+<h3>A Case Example: NFS Share<a class="headerlink" href="#a-case-example-nfs-share" title="Permalink to this heading"></a></h3>
+<p>Let’s look at the <a class="reference external" href="https://www.chameleoncloud.org/appliances/api/appliances/25/template">NFS Share Template</a>. The NFS share appliance deploys:</p>
+<ul class="simple">
+<li><p>An NFS server instance, that exports the directory <code class="docutils literal notranslate"><span class="pre">/exports/example</span></code> to any instance running on Chameleon bare metal,</p></li>
+<li><p>One or several NFS client instances, which configure <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> to mount this NFS share to <code class="docutils literal notranslate"><span class="pre">/mnt</span></code> (and can subsequently read from and write to it).</p></li>
+</ul>
+<p>This template is reproduced further below, and includes inline comments starting with the <code class="docutils literal notranslate"><span class="pre">#</span></code> character. There are three main sections:</p>
+<ul class="simple">
+<li><p>resources</p></li>
+<li><p>parameters</p></li>
+<li><p>outputs</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">resources</span></code> section is the most important part of the template: it defines which OpenStack <em>Resources</em> to create and configure. Inside this section you can see four resources defined:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nfs_server_floating_ip</span></code>: creates a <em>Floating IP</em> on the <code class="docutils literal notranslate"><span class="pre">ext-net</span></code> public network. It is not attached to any instance yet.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nfs_server</span></code>: creates the NFS server instance (an instance is defined with the type <code class="docutils literal notranslate"><span class="pre">OS::Nova::Server</span></code> in <em>Heat</em>). It is a bare metal instance (<code class="docutils literal notranslate"><span class="pre">flavor:</span> <span class="pre">baremetal</span></code>) using the <code class="docutils literal notranslate"><span class="pre">CC-CentOS7</span></code> image and connected to the private network named <code class="docutils literal notranslate"><span class="pre">sharednet1</span></code>. We set the key pair to use the value of the parameter defined earlier, using the <code class="docutils literal notranslate"><span class="pre">get_param</span></code> function. Similarly, the reservation to use is passed to the scheduler. Finally, a <code class="docutils literal notranslate"><span class="pre">user_data</span></code> script is given to the instance, which configures it as an NFS server exporting <code class="docutils literal notranslate"><span class="pre">/exports/example</span></code> to Chameleon instances.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nfs_server_ip_association</span></code>: associates the floating IP created earlier with the NFS server instance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nfs_clients</span></code>: defines a resource group containing instance configured to be NFS clients and mount the directory exported by the NFS server defined earlier. The IP of the NFS server is gathered using the <code class="docutils literal notranslate"><span class="pre">get_attr</span></code> function, and placed into <code class="docutils literal notranslate"><span class="pre">user_data</span></code> using the <code class="docutils literal notranslate"><span class="pre">str_replace</span></code> function.</p></li>
+</ul>
+<p>Once a Resource has been specified, you may provide it as a value for another Resource’s property using the <code class="docutils literal notranslate"><span class="pre">get_resource</span></code> function.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">parameters</span></code> section defines inputs to be used on <em>Complex Appliance</em> launch. Parameters all have the same data structure: each one has a name (<code class="docutils literal notranslate"><span class="pre">key_name</span></code> or <code class="docutils literal notranslate"><span class="pre">reservation_id</span></code> in this case), a data type (<code class="docutils literal notranslate"><span class="pre">number</span></code> or <code class="docutils literal notranslate"><span class="pre">string</span></code>), a comment field called <code class="docutils literal notranslate"><span class="pre">description</span></code>, optionally a <code class="docutils literal notranslate"><span class="pre">default</span> <span class="pre">value</span></code>, and a list of <code class="docutils literal notranslate"><span class="pre">constraints</span></code> (in this case only one per parameter). Constraints tell <em>Heat</em> to match a parameter to a specific type of OpenStack resource. <em>Complex appliances</em> on Chameleon require users to customize at least the key pair name and reservation ID, and will generally provide additional parameters to customize other properties of the cluster, such as its size, as in this example. The values of Parameters can be used in the <code class="docutils literal notranslate"><span class="pre">resources</span></code> section using the <code class="docutils literal notranslate"><span class="pre">get_param</span></code> function.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">outputs</span></code> section defines what values are returned to the user. <em>Outputs</em> are declared similarly to <em>Parameters</em>: they each have a name, an optional description, and a value. They allow to return information from the stack to the user. You may use the <code class="docutils literal notranslate"><span class="pre">get_attr</span></code> function to retrieve a resource’s attribute for output.</p>
+</section>
+<section id="heat-template-customization">
+<h3>Heat Template Customization<a class="headerlink" href="#heat-template-customization" title="Permalink to this heading"></a></h3>
+<p>Customizing an existing template is a good way to start developing your own. We will use a simpler template than the previous example to start with: it is the <a class="reference external" href="https://www.chameleoncloud.org/appliances/26/">Hello World complex appliance</a>.</p>
+<p>First, delete the stack you launched, because we will need all three nodes to be free. To do this, go back to the <em>Project</em> &gt; <em>Orchestration</em> &gt; <em>Stacks</em> page, select your stack, and then click on the <em>Delete Stacks</em> button. You will be asked to confirm, so click on the <em>Delete Stacks</em> button.</p>
+<blockquote>
+<div><figure class="align-default" id="id19">
+<img alt="Confirm deleting stack dialog" src="../_images/deletestacks.png" />
+<figcaption>
+<p><span class="caption-text">Confirm deleting stack dialog</span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<p>The template for the <a class="reference external" href="https://www.chameleoncloud.org/appliances/26/">Hello World complex appliance</a> is reproduced below. It is similar to the NFS share appliance, except that it deploys only a single client. You can see that it has four resources defined:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nfs_server_floating_ip</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nfs_server</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nfs_server_ip_association</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nfs_client</span></code></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">nfs_client</span></code> instance mounts the NFS directory shared by the <code class="docutils literal notranslate"><span class="pre">nfs_server</span></code> instance, just like in our earlier example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># This describes what is deployed by this template.
+description: NFS server and client deployed with Heat on Chameleon
+
+# This defines the minimum Heat version required by this template.
+heat_template_version: 2015-10-15
+
+# The resources section defines what OpenStack resources are to be deployed and
+# how they should be configured.
+resources:
+  nfs_server_floating_ip:
+    type: OS::Nova::FloatingIP
+    properties:
+      pool: ext-net
+
+  nfs_server:
+    type: OS::Nova::Server
+    properties:
+      flavor: baremetal
+      image: CC-CentOS7
+      key_name: { get_param: key_name }
+      networks:
+         - network: sharednet1
+      scheduler_hints: { reservation: { get_param: reservation_id } }
+      user_data: |
+        #!/bin/bash
+        yum install -y nfs-utils
+        mkdir -p /exports/example
+        chown -R cc:cc /exports
+        echo &#39;/exports/example 10.140.80.0/22(rw,async) 10.40.0.0/23(rw,async)&#39; &gt;&gt; /etc/exports
+        systemctl enable rpcbind &amp;&amp; systemctl start rpcbind
+        systemctl enable nfs-server &amp;&amp; systemctl start nfs-server
+
+  nfs_server_ip_association:
+    type: OS::Neutron::FloatingIPAssociation
+    properties:
+      floatingip_id: {get_resource: nfs_server_floating_ip}
+      port_id: {get_attr: [nfs_server, addresses, sharednet1, 0, port]}
+
+  nfs_client:
+    type: OS::Nova::Server
+    properties:
+      flavor: baremetal
+      image: CC-CentOS7
+      key_name: { get_param: key_name }
+      networks:
+         - network: sharednet1
+      scheduler_hints: { reservation: { get_param: reservation_id } }
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            yum install -y nfs-utils
+            echo &quot;$nfs_server_ip:/exports/example    /mnt/    nfs&quot; &gt; /etc/fstab
+            mount -a
+          params:
+            $nfs_server_ip: { get_attr: [nfs_server, first_address] }
+
+# The parameters section gathers configuration from the user.
+parameters:
+  key_name:
+    type: string
+    description: Name of a KeyPair to enable SSH access to the instance
+    default: default
+    constraints:
+    - custom_constraint: nova.keypair
+  reservation_id:
+    type: string
+    description: ID of the Blazar reservation to use for launching instances.
+    constraints:
+    - custom_constraint: blazar.reservation
+</pre></div>
+</div>
+<p>Download <a class="reference external" href="https://www.chameleoncloud.org/appliances/api/appliances/26/template">this template</a> to your local machine, and open it in your favorite text editor.</p>
+<p>We will customize the template to add a second NFS client by creating a new resource called <code class="docutils literal notranslate"><span class="pre">another_nfs_client</span></code>. Add the following text to your template inside the resources section. Make sure to respect the level of indentation, which is important in YAML.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>another_nfs_client:
+  type: OS::Nova::Server
+  properties:
+    flavor: baremetal
+    image: CC-CentOS7
+    key_name: { get_param: key_name }
+    networks:
+       - network: sharednet1
+    scheduler_hints: { reservation: { get_param: reservation_id } }
+    user_data:
+      str_replace:
+        template: |
+          #!/bin/bash
+          yum install -y nfs-utils
+          echo &quot;$nfs_server_ip:/exports/example    /mnt/    nfs&quot; &gt; /etc/fstab
+          mount -a
+        params:
+          $nfs_server_ip: { get_attr: [nfs_server, first_address] }
+</pre></div>
+</div>
+<p>Now, launch a new stack with this template. Since the customized template is only on your computer and cannot be addressed by a URL, use the <em>Direct Input</em> method instead and copy/paste the content of the customized template. The resulting topology view is shown below: as you can see, the two client instances are shown separately since each one is defined as a separate resource in the template.</p>
+<blockquote>
+<div><figure class="align-default" id="id20">
+<img alt="Topology of the customized Hello World Appliance" src="../_images/topologycustomhelloworld.png" />
+<figcaption>
+<p><span class="caption-text">Topology of the customized Hello World Appliance</span><a class="headerlink" href="#id20" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<p>You may have realized already that while adding just one additional client instance was easy, launching more of them would require to copy / paste blocks of YAML many times while ensuring that the total count is correct. This would be easy to get wrong, especially when dealing with tens or hundreds of instances.</p>
+<p>So instead, we leverage another construct from <em>Heat</em>: resource groups. Resource groups allow to define one kind of resource and request it to be created any number of times.</p>
+<p>Remove the <code class="docutils literal notranslate"><span class="pre">nfs_client</span></code> and <code class="docutils literal notranslate"><span class="pre">another_client</span></code> resources from your customized template, and replace them with the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>nfs_clients:
+  type: OS::Heat::ResourceGroup
+  properties:
+    count: 2
+    resource_def:
+      type: OS::Nova::Server
+      properties:
+        flavor: baremetal
+        image: CC-CentOS7
+        key_name: { get_param: key_name }
+        networks:
+           - network: sharednet1
+        scheduler_hints: { reservation: { get_param: reservation_id } }
+        user_data:
+          str_replace:
+            template: |
+              #!/bin/bash
+              yum install -y nfs-utils
+              echo &quot;$nfs_server_ip:/exports/example    /mnt/    nfs&quot; &gt; /etc/fstab
+              mount -a
+            params:
+              $nfs_server_ip: { get_attr: [nfs_server, first_address] }
+</pre></div>
+</div>
+<p>A resource group is configured with a properties field, containing the definition of the resource to launch (<code class="docutils literal notranslate"><span class="pre">resource_def</span></code>) and the number of resources to launch (<code class="docutils literal notranslate"><span class="pre">count</span></code>). Once launched, you will notice that the topology view groups all client instances under a single <em>Resource Group</em> icon. We use the same <code class="docutils literal notranslate"><span class="pre">resource_def</span></code> than when defining separate instances earlier.</p>
+<p>Another way we can customize this template is by adding outputs to the template. Outputs allow a <em>Heat</em> template to return data to the user. This can be useful to return values like IP addresses or credentials that the user must know to use the system.</p>
+<p>We will create an output returning the floating IP address used by the NFS server. We define an outputs section, and one output with the name <code class="docutils literal notranslate"><span class="pre">server_ip</span></code> and a description. The value of the output is gathered using the <code class="docutils literal notranslate"><span class="pre">get_attr</span></code> function which obtains the IP address of the server instance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">outputs</span><span class="p">:</span>
+  <span class="n">server_ip</span><span class="p">:</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Public</span> <span class="n">IP</span> <span class="n">address</span> <span class="n">of</span> <span class="n">the</span> <span class="n">NFS</span> <span class="n">server</span>
+    <span class="n">value</span><span class="p">:</span> <span class="p">{</span> <span class="n">get_attr</span><span class="p">:</span> <span class="p">[</span><span class="n">nfs_server_floating_ip</span><span class="p">,</span> <span class="n">ip</span><span class="p">]</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>You can get outputs in the <em>Overview</em> tab of the <em>Stack Details</em> page. If you want to use the command line, install <code class="docutils literal notranslate"><span class="pre">python-heatclient</span></code> and use the <code class="docutils literal notranslate"><span class="pre">heat</span> <span class="pre">output-list</span></code> and <code class="docutils literal notranslate"><span class="pre">heat</span> <span class="pre">output-show</span></code> commands, or get a full list in the information returned by <code class="docutils literal notranslate"><span class="pre">heat</span> <span class="pre">stack-show</span></code>.</p>
+<p>Multiple outputs can be defined in the outputs section. Each of them needs to have a unique name. For example, we can add another output to list the private IPs assigned to client instances:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">client_ips</span><span class="p">:</span>
+  <span class="n">description</span><span class="p">:</span> <span class="n">Private</span> <span class="n">IP</span> <span class="n">addresses</span> <span class="n">of</span> <span class="n">the</span> <span class="n">NFS</span> <span class="n">clients</span>
+  <span class="n">value</span><span class="p">:</span> <span class="p">{</span> <span class="n">get_attr</span><span class="p">:</span> <span class="p">[</span><span class="n">nfs_clients</span><span class="p">,</span> <span class="n">first_address</span><span class="p">]</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>The image below shows the resulting outputs as viewed from the web interface. Of course IP addresses will be specific to each deployment.</p>
+<blockquote>
+<div><figure class="align-default" id="id21">
+<img alt="The Outputs of customized Hello World appliance" src="../_images/helloworldoutputs.png" />
+<figcaption>
+<p><span class="caption-text">The Outputs of customized Hello World appliance</span><a class="headerlink" href="#id21" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<p>Finally, we can add a new parameter to replace the hard-coded number of client instances by a value passed to the template. Add the following text to the parameters section:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nfs_client_count</span><span class="p">:</span>
+  <span class="nb">type</span><span class="p">:</span> <span class="n">number</span>
+  <span class="n">description</span><span class="p">:</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">NFS</span> <span class="n">client</span> <span class="n">instances</span>
+  <span class="n">default</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="n">constraints</span><span class="p">:</span>
+    <span class="o">-</span> <span class="nb">range</span><span class="p">:</span> <span class="p">{</span> <span class="nb">min</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span>
+      <span class="n">description</span><span class="p">:</span> <span class="n">There</span> <span class="n">must</span> <span class="n">be</span> <span class="n">at</span> <span class="n">least</span> <span class="n">one</span> <span class="n">client</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Inside the resource group definition, change <code class="docutils literal notranslate"><span class="pre">count:</span> <span class="pre">2</span></code> to <code class="docutils literal notranslate"><span class="pre">count:</span> <span class="pre">{</span> <span class="pre">get_param:</span> <span class="pre">nfs_client_count</span> <span class="pre">}</span></code> to retrieve and use the parameter we just defined. When you launch this template, you will see that an additional parameter allows you to define the number of client instances, like in the NFS share appliance.</p>
+<p>At this stage, we have fully recreated the <em>NFS share</em> appliance starting from the <em>Hello World</em> one! The next section will explain how to write a new template from scratch.</p>
+</section>
+<section id="writing-a-new-template">
+<h3>Writing a New Template<a class="headerlink" href="#writing-a-new-template" title="Permalink to this heading"></a></h3>
+<p>You may want to write a whole new template, rather than customizing an existing one. Each template should follow the same layout and be composed of the following sections:</p>
+<ul class="simple">
+<li><p>Heat template version</p></li>
+<li><p>Description</p></li>
+<li><p>Resources</p></li>
+<li><p>Parameters</p></li>
+<li><p>Outputs</p></li>
+</ul>
+<section id="heat-template-version">
+<h4>Heat template version<a class="headerlink" href="#heat-template-version" title="Permalink to this heading"></a></h4>
+<p>Each Heat template has to include the <code class="docutils literal notranslate"><span class="pre">heat_template_version</span></code> key with a valid version of <a class="reference external" href="https://docs.openstack.org/heat/latest/template_guide/hot_guide.html">HOT (Heat Orchestration Template)</a>. Chameleon bare metal supports any HOT version up to <strong>2015-10-15</strong>, which corresponds to OpenStack Liberty.
+The <a class="reference external" href="https://docs.openstack.org/heat/latest/template_guide/hot_spec.html#hot-spec-template-version">Heat documentation</a> lists all available versions and their features. We recommended that you always use the latest Chameleon supported version to have access to all supported features:</p>
+<p><code class="docutils literal notranslate"><span class="pre">heat_template_version:</span> <span class="pre">2015-10-15</span></code></p>
+</section>
+<section id="description">
+<h4>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h4>
+<p>While not mandatory, it is good practice to describe what is deployed and configured by your template. It can be on a single line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">description</span><span class="p">:</span> <span class="n">This</span> <span class="n">describes</span> <span class="n">what</span> <span class="n">this</span> <span class="n">Heat</span> <span class="n">template</span> <span class="n">deploys</span> <span class="n">on</span> <span class="n">Chameleon</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>If a longer description is needed, you can provide multi-line text in YAML, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">description</span><span class="p">:</span> <span class="o">&gt;</span>
+  <span class="n">This</span> <span class="n">describes</span> <span class="n">what</span> <span class="n">this</span> <span class="n">Heat</span>
+  <span class="n">template</span> <span class="n">deploys</span> <span class="n">on</span> <span class="n">Chameleon</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="resources">
+<h4>Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h4>
+<p>The resources section is required and must contain at least one resource definition. A <a class="reference external" href="https://docs.openstack.org/heat/latest/template_guide/openstack.html">complete list of resources types known to Heat</a> is
+available.</p>
+<p>However, only a subset of them are supported by Chameleon, and some are limited to administrative use. We recommend that you only use:</p>
+<ul class="simple">
+<li><p>OS::Glance::Image</p></li>
+<li><p>OS::Heat::ResourceGroup</p></li>
+<li><p>OS::Heat::SoftwareConfig</p></li>
+<li><p>OS::Heat::SoftwareDeployment</p></li>
+<li><p>OS::Heat::SoftwareDeploymentGroup</p></li>
+<li><p>OS::Neutron::FloatingIP</p></li>
+<li><p>OS::Neutron::FloatingIPAssociation</p></li>
+<li><p>OS::Neutron::Port (advanced users only)</p></li>
+<li><p>OS::Nova::Keypair</p></li>
+<li><p>OS::Nova::Server</p></li>
+</ul>
+<p>If you know of another resource that you would like to use and think it should be supported by the OpenStack services on Chameleon bare metal, please let us know via our <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a>.</p>
+</section>
+<section id="parameters">
+<h4>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h4>
+<p>Parameters allow users to customize the template with necessary or optional values.
+For example, they can customize which Chameleon appliance they want to deploy, or which key pair to install.
+Default values can be provided with the <code class="docutils literal notranslate"><span class="pre">default</span></code> key, as well as constraints to ensure that only valid OpenStack resources can be selected.
+For example, <code class="docutils literal notranslate"><span class="pre">custom_constraint:</span> <span class="pre">glance.image</span></code> restricts the image selection to an available OpenStack image, while providing a pre-filled selection box in the web interface.
+<a class="reference external" href="https://docs.openstack.org/heat/latest/template_guide/hot_spec.html#parameter-constraints">More details about constraints</a> are available in the <em>Heat</em> documentation.</p>
+</section>
+<section id="outputs">
+<h4>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading"></a></h4>
+<p>Outputs allow template to give information from the deployment to users. This can include usernames, passwords, IP addresses, hostnames, paths, etc. The outputs declaration is using the following format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">outputs</span><span class="p">:</span>
+  <span class="n">first_output_name</span><span class="p">:</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Description</span> <span class="n">of</span> <span class="n">the</span> <span class="n">first</span> <span class="n">output</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">first_output_value</span>
+  <span class="n">second_output_name</span><span class="p">:</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Description</span> <span class="n">of</span> <span class="n">the</span> <span class="n">second</span> <span class="n">output</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">second_output_value</span>
+</pre></div>
+</div>
+<p>Generally values will be calls to <code class="docutils literal notranslate"><span class="pre">get_attr</span></code>, <code class="docutils literal notranslate"><span class="pre">get_param</span></code>, or some other function to get information from parameters or resources deployed by the
+template and return them in the proper format to the user.</p>
+</section>
+</section>
+<section id="reserved-networks-and-floating-ips">
+<h3>Reserved Networks and Floating IPs<a class="headerlink" href="#reserved-networks-and-floating-ips" title="Permalink to this heading"></a></h3>
+<p>Chameleon’s reservation service allows users to reserve VLAN segments and floating ips. In order to make use of these
+reserved resources in a (HOT) template, follow the guidelines below. For more information on VLAN and floating ip reservations,
+see documentaiton on <a class="reference internal" href="reservations.html#reservation-cli-vlan"><span class="std std-ref">Creating a Lease to Reserve a VLAN Segment</span></a> and <a class="reference internal" href="reservations.html#reservation-cli-fip"><span class="std std-ref">Creating a Lease to Reserve Floating IPs</span></a></p>
+<p>When you reserve a VLAN segment via blazar, it will automatically create a network for you. However, this network
+is not usable in your template unless a subnet and router have been associated with the network. Once this is done, you can simply
+add the network name as the network parameter for your server as you would <code class="docutils literal notranslate"><span class="pre">sharednet1</span></code>. The below cli commands
+provides an example of how to complete the setup for your reserved network.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openstack</span> <span class="n">subnet</span> <span class="n">create</span> <span class="o">--</span><span class="n">subnet</span><span class="o">-</span><span class="nb">range</span> <span class="mf">192.168.100.0</span><span class="o">/</span><span class="mi">24</span> \
+    <span class="o">--</span><span class="n">allocation</span><span class="o">-</span><span class="n">pool</span> <span class="n">start</span><span class="o">=</span><span class="mf">192.168.100.100</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="mf">192.168.100.108</span> \
+    <span class="o">--</span><span class="n">dns</span><span class="o">-</span><span class="n">nameserver</span> <span class="mf">8.8.8.8</span> <span class="o">--</span><span class="n">dhcp</span> \
+    <span class="o">--</span><span class="n">network</span> <span class="o">&lt;</span><span class="n">my_reserved_network_name</span><span class="o">&gt;</span> \
+    <span class="n">my_subnet_name</span>
+<span class="n">openstack</span> <span class="n">router</span> <span class="n">create</span> <span class="n">my_router_name</span>
+<span class="n">openstack</span> <span class="n">router</span> <span class="n">add</span> <span class="n">subnet</span> <span class="n">my_router_name</span> <span class="n">my_subnet_name</span>
+<span class="n">openstack</span> <span class="n">router</span> <span class="nb">set</span> <span class="o">--</span><span class="n">external</span><span class="o">-</span><span class="n">gateway</span> <span class="n">public</span> <span class="n">my_router_name</span>
+</pre></div>
+</div>
+<p>For reserved floating ips, you need to associate the floating ip with a server using the <code class="docutils literal notranslate"><span class="pre">OS::Neutron::FloatingIPAssociation</span></code> object type.
+Many of our older complex appliance templates use the <code class="docutils literal notranslate"><span class="pre">OS::Nova::FloatingIPAssociation</span></code> object, but this has since been deprecated. See example below
+for proper usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_server_ip_association</span><span class="p">:</span>
+  <span class="nb">type</span><span class="p">:</span> <span class="n">OS</span><span class="p">::</span><span class="n">Neutron</span><span class="p">::</span><span class="n">FloatingIPAssociation</span>
+  <span class="n">properties</span><span class="p">:</span>
+    <span class="n">floatingip_id</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">my_reserved_floating_ip_uuid</span><span class="o">&gt;</span>
+    <span class="n">port_id</span><span class="p">:</span> <span class="p">{</span><span class="n">get_attr</span><span class="p">:</span> <span class="p">[</span><span class="n">my_server</span><span class="p">,</span> <span class="n">addresses</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">my_network_name</span><span class="o">&gt;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">port</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>If you are having trouble finding the <code class="docutils literal notranslate"><span class="pre">uuid</span></code> of the floating ip address then the below command will help you.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openstack</span> <span class="n">floating</span> <span class="n">ip</span> <span class="nb">list</span> <span class="o">-</span><span class="n">c</span> <span class="n">ID</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;Floating IP Address&quot;</span> <span class="o">-</span><span class="n">c</span> <span class="n">Tags</span> <span class="o">--</span><span class="n">long</span>
+</pre></div>
+</div>
+<p>The output should look like the sample output below with the <cite>uuid</cite> listed under the <cite>ID</cite> column. You can check your lease in
+the reservation section of the GUI to find the <cite>reservation id</cite> associated with the floating ip in the <cite>Tags</cite> section of the output.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------------------------------------+---------------------+------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">ID</span>                                   <span class="o">|</span> <span class="n">Floating</span> <span class="n">IP</span> <span class="n">Address</span> <span class="o">|</span> <span class="n">Tags</span>                                                             <span class="o">|</span>
+<span class="o">+--------------------------------------+---------------------+------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="mi">0</span><span class="n">fe31fad</span><span class="o">-</span><span class="mi">60</span><span class="n">ac</span><span class="o">-</span><span class="mi">462</span><span class="n">f</span><span class="o">-</span><span class="n">bb6c</span><span class="o">-</span><span class="mi">4</span><span class="n">d40c1506621</span> <span class="o">|</span> <span class="mf">192.5.87.206</span>        <span class="o">|</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;reservation:d90ad917-300a-4cf7-a836-083534244f56&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;blazar&#39;</span><span class="p">]</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">92</span><span class="n">a347a9</span><span class="o">-</span><span class="mi">31</span><span class="n">a5</span><span class="o">-</span><span class="mi">43</span><span class="n">c1</span><span class="o">-</span><span class="mf">80e2</span><span class="o">-</span><span class="mi">9</span><span class="n">cdb38ebf66f</span> <span class="o">|</span> <span class="mf">192.5.87.224</span>        <span class="o">|</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;reservation:5f470c97-0166-4934-a813-509b743e2d62&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;blazar&#39;</span><span class="p">]</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">c8480d67</span><span class="o">-</span><span class="mi">533</span><span class="n">d</span><span class="o">-</span><span class="mi">4</span><span class="n">f55</span><span class="o">-</span><span class="n">a197</span><span class="o">-</span><span class="mi">8271</span><span class="n">da6d9344</span> <span class="o">|</span> <span class="mf">192.5.87.71</span>         <span class="o">|</span> <span class="p">[]</span>                                                               <span class="o">|</span>
+<span class="o">+--------------------------------------+---------------------+------------------------------------------------------------------+</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sharing-complex-appliances">
+<h2>Sharing Complex Appliances<a class="headerlink" href="#sharing-complex-appliances" title="Permalink to this heading"></a></h2>
+<p>If you have written your own <em>Complex Appliance</em> or substantially customized an existing one, we would love if you shared them with our user community! The process is very similar to regular appliances: log into the Chameleon portal, go to the appliance catalog, and click on the button in the top-right corner: <em>Add an appliance</em> (you need to be logged in to see it).</p>
+<figure class="align-default" id="id22">
+<img alt="The Add an Appliance button" src="../_images/addappliance.png" />
+<figcaption>
+<p><span class="caption-text">The Add an Appliance button</span><a class="headerlink" href="#id22" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>You will be prompted to enter a name, description, and documentation. Instead of providing appliance IDs, copy your template to the dedicated field. Finally, share your contact information and assign a version string to your appliance. Once submitted, your appliance will be reviewed. We will get in touch if a change is needed, but if it’s all good we will publish it right away!</p>
+</section>
+<section id="advanced-topics">
+<h2>Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permalink to this heading"></a></h2>
+<section id="all-to-all-information-exchange">
+<span id="all-to-all-info-exchange"></span><h3>All-to-All Information Exchange<a class="headerlink" href="#all-to-all-information-exchange" title="Permalink to this heading"></a></h3>
+<p>The previous examples have all used <code class="docutils literal notranslate"><span class="pre">user_data</span></code> scripts to provide instances with contextualization information. While it is easy to use, this contextualization method has a major drawback: because it is given to the instance as part of its launch request, it cannot use any context information that is not yet known at this time. In practice, this means that in a client-server deployment, only one of these pattern will be possible:</p>
+<ul class="simple">
+<li><p>The server has to be deployed first, and once it is deployed, the clients can be launched and contextualized with information from the server. The server won’t know about the clients unless there is a mechanism (not managed by <em>Heat</em>) for the client to contact the server.</p></li>
+<li><p>The clients have to be deployed first, and once they are deployed, the server can be launched and contextualized with information from the clients. The clients won’t know about the server unless there is a mechanism (not managed by <em>Heat</em>) for the server to contact the clients.</p></li>
+</ul>
+<p>This limitation was already apparent in our <a class="reference external" href="https://www.chameleoncloud.org/appliances/25/">NFS share</a> appliance: this is why the server instance exports the file system to all bare metal instances on Chameleon, because it doesn’t know which specific IP addresses are allocated to the clients.</p>
+<p>This limitation is even more important if the deployment is not hierarchical, i.e. all instances need to know about all others. For example, a cluster with IP and hostnames populated in <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> required each instance to be known by every other instance.</p>
+<p>This section presents a more advanced form of contextualization that can perform this kind of information exchange.
+This is implemented by <em>Heat</em> agents running inside instances and communicating with the <em>Heat</em> service to send and receive information.
+This means you will need to use an image bundling these agents.
+Currently, all Chameleon-supported images (CC) are supporting this mode of contextualization.
+If you build your own images using the <a class="reference external" href="https://github.com/ChameleonCloud/CC-CentOS7">CC-CentOS7</a> builder, <a class="reference external" href="https://github.com/ChameleonCloud/CC-CentOS">CC-CentOS</a> builder or <a class="reference external" href="https://github.com/ChameleonCloud/CC-Ubuntu">CC-Ubuntu</a> builder, you will automatically have these agents installed. This contextualization is performed with several Heat resources:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OS::Heat::SoftwareConfig</span></code>: This resource describes code to run on an instance. It can be configured with inputs and provide outputs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OS::Heat::SoftwareDeployment</span></code>: This resource applies a SoftwareConfig to a specific instance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OS::Heat::SoftwareDeploymentGroup</span></code>: This resource applies a SoftwareConfig to a specific group of instances.</p></li>
+</ul>
+<p>The template below illustrates how it works. It launches a group of instances that will automatically populates their <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> file with IP and hostnames from other instances in the deployment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>heat_template_version: 2015-10-15
+
+description: &gt;
+  This template demonstrates how to exchange hostnames and IP addresses to populate /etc/hosts.
+
+parameters:
+  flavor:
+    type: string
+    default: baremetal
+    constraints:
+    - custom_constraint: nova.flavor
+  image:
+    type: string
+    default: CC-CentOS8
+    constraints:
+    - custom_constraint: glance.image
+  key_name:
+    type: string
+    default: default
+    constraints:
+    - custom_constraint: nova.keypair
+  instance_count:
+    type: number
+    default: 2
+  reservation_id:
+    type: string
+    description: ID of the Blazar reservation to use for launching instances.
+    constraints:
+    - custom_constraint: blazar.reservation
+
+resources:
+  export_hosts:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      outputs:
+        - name: hosts
+      group: script
+      config: |
+        #!/bin/sh
+        (echo -n $(facter ipaddress); echo -n &#39; &#39;; echo $(facter hostname)) &gt; ${heat_outputs_path}.hosts
+
+  export_hosts_sdg:
+    type: OS::Heat::SoftwareDeploymentGroup
+    properties:
+      config: { get_resource: export_hosts }
+      servers: { get_attr: [server_group, refs_map] }
+      signal_transport: HEAT_SIGNAL
+
+  populate_hosts:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      inputs:
+        - name: hosts
+      group: script
+      config: |
+        #!/usr/bin/env python
+        import ast
+        import os
+        import string
+        import subprocess
+        hosts = os.getenv(&#39;hosts&#39;)
+        if hosts is not None:
+            hosts = ast.literal_eval(string.replace(hosts, &#39;\n&#39;, &#39;\\n&#39;))
+        with open(&#39;/etc/hosts&#39;, &#39;a&#39;) as hosts_file:
+          for ip_host in hosts.values():
+              hosts_file.write(ip_host.rstrip() + &#39;\n&#39;)
+
+  populate_hosts_sdg:
+    type: OS::Heat::SoftwareDeploymentGroup
+    depends_on: export_hosts_sdg
+    properties:
+      config: { get_resource: populate_hosts }
+      servers: { get_attr: [server_group, refs_map] }
+      signal_transport: HEAT_SIGNAL
+      input_values:
+        hosts: { get_attr: [ export_hosts_sdg, hosts ] }
+
+  server_group:
+    type: OS::Heat::ResourceGroup
+    properties:
+      count: { get_param: instance_count }
+      resource_def:
+        type: OS::Nova::Server
+        properties:
+          flavor: { get_param: flavor }
+          image: { get_param: image }
+          key_name: { get_param: key_name }
+          networks:
+             - network: sharednet1
+          scheduler_hints: { reservation: { get_param: reservation_id } }
+          user_data_format: SOFTWARE_CONFIG
+          software_config_transport: POLL_SERVER_HEAT
+
+outputs:
+  deployment_results:
+    value: { get_attr: [export_hosts_sdg, hosts] }
+</pre></div>
+</div>
+<p>There are two <code class="docutils literal notranslate"><span class="pre">SoftwareConfig</span></code> resources:</p>
+<ul class="simple">
+<li><p>The first <code class="docutils literal notranslate"><span class="pre">SoftwareConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">export_hosts</span></code>, uses the <code class="docutils literal notranslate"><span class="pre">facter</span></code> tool to extract IP address and hostname into a single line (in the format expected for <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code>) and writes it to a special path (<code class="docutils literal notranslate"><span class="pre">${heat_outputs_path}.hosts</span></code>). This prompts Heat to assign the content of this file to the output with the name hosts.</p></li>
+<li><p>The second <code class="docutils literal notranslate"><span class="pre">SoftwareConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">populate_hosts</span></code>, takes as input a variable named hosts, and applies a script that reads the variable from the environment, parses it with <code class="docutils literal notranslate"><span class="pre">ast.literal_eval</span></code> (as it is formatted as a Python dict), and writes each value of the dictionary to <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code>.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">SoftwareDeploymentGroup</span></code> resources <code class="docutils literal notranslate"><span class="pre">export_hosts_sdg</span></code> and <code class="docutils literal notranslate"><span class="pre">populate_hosts_sdg</span></code> apply each <code class="docutils literal notranslate"><span class="pre">SoftwareConfig</span></code> to the instance <code class="docutils literal notranslate"><span class="pre">ResourceGroup</span></code> with the correct configuration.</p>
+<p>Finally, the instance <code class="docutils literal notranslate"><span class="pre">ResourceGroup</span></code> is configured so that each instance uses the following contextualization method instead of a <code class="docutils literal notranslate"><span class="pre">user_data</span></code> script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">user_data_format</span><span class="p">:</span> <span class="n">SOFTWARE_CONFIG</span>
+<span class="n">software_config_transport</span><span class="p">:</span> <span class="n">POLL_SERVER_HEAT</span>
+</pre></div>
+</div>
+<p>You can follow the same template pattern to configure your own deployment requiring all-to-all information exchange.</p>
+</section>
+<section id="automated-deployment">
+<span id="automated-deployemnt"></span><h3>Automated Deployment<a class="headerlink" href="#automated-deployment" title="Permalink to this heading"></a></h3>
+<p>On Chameleon you can configure a Heat Stack to launch as soon as your lease begins. Whether your experiments require a large cluster or a single node, automated deployment saves you time configuring your environment and even allows you to run your entire experiment automatically when the necessary resources become available.</p>
+<p>At present, you will need to use our customized versions of the Heat and Blazar CLI tools to implement this feature.</p>
+<section id="install-custom-cli">
+<h4>Install Custom CLI<a class="headerlink" href="#install-custom-cli" title="Permalink to this heading"></a></h4>
+<p>You can install Chameleon’s <code class="docutils literal notranslate"><span class="pre">python-heatclient</span></code> and <code class="docutils literal notranslate"><span class="pre">python-blazarclient</span></code> packages via <code class="docutils literal notranslate"><span class="pre">pip</span></code> by running the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ChameleonCloud</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">heatclient</span><span class="o">.</span><span class="n">git</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ChameleonCloud</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">blazarclient</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</section>
+<section id="initialize-stack">
+<h4>Initialize Stack<a class="headerlink" href="#initialize-stack" title="Permalink to this heading"></a></h4>
+<p>Next you will need to configure a Heat stack with the <code class="docutils literal notranslate"><span class="pre">--initialize</span></code> flag on the CLI and a dummy <code class="docutils literal notranslate"><span class="pre">reservation_id</span></code> parameter. The <code class="docutils literal notranslate"><span class="pre">dummy</span></code> id can be anything (even an empty string) so long as the <code class="docutils literal notranslate"><span class="pre">reservation_id</span></code> parameter is specified so that Blazar can overwrite it once your advanced reservation is scheduled and the stack is ready to launch. Once your stack is initialized, the status should read <code class="docutils literal notranslate"><span class="pre">INIT_COMPLETE</span></code>. This indicates that your template was validated and all the data required to launch a stack has been stored. See example command below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openstack</span> <span class="n">stack</span> <span class="n">create</span> <span class="o">-</span><span class="n">t</span> <span class="o">&lt;</span><span class="n">template_file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">initialize</span> <span class="o">--</span><span class="n">parameter</span> <span class="n">reservation_id</span><span class="o">=</span><span class="n">dummy</span> <span class="o">&lt;</span><span class="n">stack_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="create-reservation-with-stack-id">
+<h4>Create Reservation with Stack_ID<a class="headerlink" href="#create-reservation-with-stack-id" title="Permalink to this heading"></a></h4>
+<p>Finally, for a stack to launch when your reservation begins, we need to let Blazar know which stack to notify Heat to update. This is done via the command line by specifying <code class="docutils literal notranslate"><span class="pre">orchestration</span></code> as an <code class="docutils literal notranslate"><span class="pre">on_start</span></code> action with a stack_id (e.g. <code class="docutils literal notranslate"><span class="pre">on_start=orchestration:&lt;stack_id&gt;</span></code>) under the <code class="docutils literal notranslate"><span class="pre">--reservation</span></code> flag. Under the hood, Blazar will update your initialized Heat stack with the reservation_id assigned to the lease. See example below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openstack</span> <span class="n">reservation</span> <span class="n">lease</span> <span class="n">create</span> <span class="o">--</span><span class="n">start</span><span class="o">-</span><span class="n">date</span> <span class="s2">&quot;&lt;start_date&gt;&quot;</span> <span class="o">--</span><span class="n">end</span><span class="o">-</span><span class="n">date</span> <span class="s2">&quot;&lt;end_date&gt;&quot;</span> \
+  <span class="o">--</span><span class="n">reservation</span> <span class="nb">min</span><span class="o">=&lt;</span><span class="nb">min</span><span class="o">&gt;</span><span class="p">,</span><span class="nb">max</span><span class="o">=&lt;</span><span class="nb">max</span><span class="o">&gt;</span><span class="p">,</span><span class="n">resource_type</span><span class="o">=</span><span class="n">physical</span><span class="p">:</span><span class="n">host</span><span class="p">,</span><span class="n">on_start</span><span class="o">=</span><span class="n">orchestration</span><span class="p">:</span><span class="o">&lt;</span><span class="n">stack_id</span><span class="o">&gt;</span> \
+  <span class="o">&lt;</span><span class="n">lease_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

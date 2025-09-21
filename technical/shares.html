@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shares &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Shares</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/shares.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="shares">
+<span id="id1"></span><h1>Shares<a class="headerlink" href="#shares" title="Permalink to this heading"></a></h1>
+<p>Chameleon provides a shared file system service through the <a class="reference external" href="https://docs.openstack.org/manila/latest/">OpenStack Manila</a> interface.
+With the service, you can create a shared file system, mount to the bare metal instances, and manage some of its properties, such as visibility.</p>
+<blockquote>
+<div><div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Chameleon shared file system service is currently backed by a CephFS. Same as our <a class="reference internal" href="swift.html#object-store"><span class="std std-ref">object store</span></a> service, the data is
+replicated and the replication should provide good availability in case of hardware failures.</p>
+<dl class="simple">
+<dt><em>Difference between shared file system and object store</em></dt><dd><p>You can choose either shared file system or object store to store, manage, and share your data with your collaborators. The object store
+is suitable for storing large objects at scale, but isn’t suitable for transactional data, as objects are immutable and updated in their
+entirety. Chameleon shared file system instead provides a NFS mount to the bare metal instances, with the NFS protocol managing locking
+and data integrity processes required to provide multiple concurrent access to data.</p>
+</dd>
+</dl>
+</div>
+</div></blockquote>
+<p>The shared file system service is available at <a class="reference external" href="https://chi.uc.chameleoncloud.org/">CHI&#64;UC</a> and <a class="reference external" href="https://chi.tacc.chameleoncloud.org/">CHI&#64;TACC</a>.
+Each region has its own service and the shares created at one region are not available to the other. As all other Chameleon services, you can create
+and manage your shares using both GUI and CLI.</p>
+<section id="storage-networks">
+<span id="storage-network"></span><h2>Storage Networks<a class="headerlink" href="#storage-networks" title="Permalink to this heading"></a></h2>
+<p>To provide isolation among shares created by different projects, accessing a share requires a storage network, which are special networks you can
+reserve to use. When reserving a storage network, add <cite>usage_type=storage</cite> to the resource properties. To learn more about reserving networks, read
+the <a class="reference internal" href="reservations.html#reservations"><span class="std std-ref">reservations documentation</span></a>. All bare metal instances that are created on the storage network have access to all the project
+shares.</p>
+<blockquote>
+<div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To attach floating IP to your instance created on a storage network, you need to create a router with <cite>public</cite> external network. Then connect
+the storage subnet to the router. You must specify an unused IP address which belongs to the selected subnet. To learn more about creating
+router and connecting subnet, please read <a class="reference internal" href="networks/networks_vlan.html#network-isolation"><span class="std std-ref">isolated network VLANs</span></a>.</p>
+</div>
+</div></blockquote>
+</section>
+<section id="id2">
+<h2>Shares<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<section id="visibility">
+<h3>Visibility<a class="headerlink" href="#visibility" title="Permalink to this heading"></a></h3>
+<p>Shares are owned by the project. By default, all shares have <cite>private</cite> visibility and can only be listed and accessed within your project.
+All bare metal instances owned by the project have read and write permissions to the project’s shares. You can also make your shares <cite>public</cite>.
+All Chameleon users and projects can list public shares, and with a storage network, all projects have read-only access to a public share.</p>
+</section>
+<section id="accessibility">
+<h3>Accessibility<a class="headerlink" href="#accessibility" title="Permalink to this heading"></a></h3>
+<p>A share is a pre-allocated storage space at a CephFS. You can <a class="reference internal" href="#mount-share"><span class="std std-ref">mount your shares to your bare metal instances via NFS protocol</span></a>.
+The accessibility of the shares are controlled internally by the reservation service. You are not allowed to edit the access rules of a share.</p>
+</section>
+<section id="quotas">
+<h3>Quotas<a class="headerlink" href="#quotas" title="Permalink to this heading"></a></h3>
+<p>We do not charge SUs for the storage spaces of your shares. However, we do limit the total size and the number of shares you can create within
+your project. The maximum number of shares is 10 and the maximum size allowed for all shares in a project is 2000 GiB. If you need to increase
+the default quota, please submit a ticket via the <a class="reference external" href="https://chameleoncloud.org/user/help/">Help Desk</a>.</p>
+</section>
+</section>
+<section id="managing-shares-using-gui">
+<h2>Managing Shares using GUI<a class="headerlink" href="#managing-shares-using-gui" title="Permalink to this heading"></a></h2>
+<p>To manage your share, use the <cite>Shares</cite> page at <a class="reference external" href="https://chi.uc.chameleoncloud.org/">CHI&#64;UC</a> or <a class="reference external" href="https://chi.tacc.chameleoncloud.org/">CHI&#64;TACC</a>
+by navigating to <cite>Project &gt; Share &gt; Shares</cite>.</p>
+<blockquote>
+<div><figure class="align-default" id="id9">
+<img alt="The Shares page" src="../_images/sharespage.png" />
+<figcaption>
+<p><span class="caption-text">The Shares page</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<section id="create-share">
+<h3>Create Share<a class="headerlink" href="#create-share" title="Permalink to this heading"></a></h3>
+<p>Click the <cite>Create Share</cite> button. In the <cite>Create Share</cite> dialog, provide a name and the size of your share, and then click the <cite>Create</cite> button to
+create a share.</p>
+<blockquote>
+<div><figure class="align-default" id="id10">
+<img alt="The Create Share dialog" src="../_images/createshare.png" />
+<figcaption>
+<p><span class="caption-text">The Create Share dialog</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A storage network is not required for creating shares. It’s only required to access the shares.</p>
+</div>
+</div></blockquote>
+</section>
+<section id="view-share">
+<span id="view-share-gui"></span><h3>View Share<a class="headerlink" href="#view-share" title="Permalink to this heading"></a></h3>
+<p>You can look at the details of a share by clicking the share name in the <cite>Shares</cite> page. Note that the paths of the <cite>export locations</cite> are important
+as you will use this path to mount your share to your bare metal instances. You can also see the other properties, such as visibility and size.
+The access rules are listed in the <cite>share details</cite> page, though you can not edit the rules, as they are controlled by the reservation service.</p>
+<blockquote>
+<div><figure class="align-default" id="id11">
+<img alt="The Share details" src="../_images/sharedetails.png" />
+<figcaption>
+<p><span class="caption-text">The Share details</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+<section id="edit-share">
+<h3>Edit Share<a class="headerlink" href="#edit-share" title="Permalink to this heading"></a></h3>
+<p>You can manage the properties and extend the size of a share by clicking the <cite>Action</cite> dropdown in the <cite>Shares</cite> page.</p>
+<blockquote>
+<div><figure class="align-default" id="id12">
+<img alt="The Action dropdown" src="../_images/manageshare.png" />
+<figcaption>
+<p><span class="caption-text">The Action dropdown</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+<section id="delete-share">
+<h3>Delete Share<a class="headerlink" href="#delete-share" title="Permalink to this heading"></a></h3>
+<p>You can use the <cite>Action</cite> dropdown to delete a single share, or select multiple shares and click the <cite>Delete Shares</cite> button.</p>
+<blockquote>
+<div><div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Be careful when deleting shares, as the action is irreversible. However, the termination of your storage network reservation <strong>DOES NOT</strong> delete your share.
+Your shares persist until you manually delete them.</p>
+</div>
+</div></blockquote>
+</section>
+</section>
+<section id="managing-shares-using-cli">
+<h2>Managing Shares using CLI<a class="headerlink" href="#managing-shares-using-cli" title="Permalink to this heading"></a></h2>
+<p>As all other Chameleon services, you can manage your shares via CLI as well.</p>
+<blockquote>
+<div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Reading <a class="reference internal" href="cli.html#cli"><span class="std std-ref">Command Line Interface (CLI)</span></a> is highly recommended before continuing on the following sections.</p>
+</div>
+</div></blockquote>
+<p>In addition to installing the CLI, you must also install <cite>python-manilaclient</cite> package:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>python-manilaclient
+</pre></div>
+</div>
+</div></blockquote>
+<p>Then, you must set environment variables for your account and project using <a class="reference internal" href="cli.html#cli-rc-script"><span class="std std-ref">The OpenStack RC Script</span></a>.</p>
+<blockquote>
+<div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you get HTTP 406 error of <code class="docutils literal notranslate"><span class="pre">version</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">supported</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">API</span></code>, please add <code class="docutils literal notranslate"><span class="pre">--os-share-api-version</span> <span class="pre">2.65</span></code> to
+the command to specify manila minor version.</p>
+</div>
+</div></blockquote>
+<section id="list-shares">
+<h3>List Shares<a class="headerlink" href="#list-shares" title="Permalink to this heading"></a></h3>
+<p>To list all shares of your project, run the following command:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>share<span class="w"> </span>list
+</pre></div>
+</div>
+</div></blockquote>
+<p>You can filter the results by the share name via adding a <code class="docutils literal notranslate"><span class="pre">--name</span></code> argument to the list command.</p>
+</section>
+<section id="id5">
+<h3>Create Share<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>To create a share, using the following command:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>share<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>&lt;name<span class="w"> </span>of<span class="w"> </span>your<span class="w"> </span>share&gt;<span class="w"> </span>NFS<span class="w"> </span>&lt;size<span class="w"> </span><span class="k">in</span><span class="w"> </span>GiB&gt;
+</pre></div>
+</div>
+</div></blockquote>
+<p>For example, for creating a 1 GiB share with name of <code class="docutils literal notranslate"><span class="pre">my-first-share</span></code>, run:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>share<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>my-first-share<span class="w"> </span>NFS<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only the NFS protocol is supported.</p>
+</div>
+</div></blockquote>
+<p>You can add the <code class="docutils literal notranslate"><span class="pre">--public</span> <span class="pre">true</span></code> to make your share public.</p>
+</section>
+<section id="id6">
+<h3>Edit Share<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>To change the visibility of a share, run:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>share<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--public<span class="w"> </span>&lt;true/false&gt;<span class="w"> </span>&lt;name/id<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>share&gt;
+</pre></div>
+</div>
+</div></blockquote>
+<p>To update the name or the description of a share, run:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>share<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--name<span class="w"> </span>&lt;new<span class="w"> </span>name&gt;<span class="w"> </span>--description<span class="w"> </span>&lt;description&gt;<span class="w"> </span>&lt;name/id<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>share&gt;
+</pre></div>
+</div>
+</div></blockquote>
+<p>To extend/shrink the size of a share, run:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>share<span class="w"> </span>resize<span class="w"> </span>&lt;name/id<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>share&gt;<span class="w"> </span>&lt;new<span class="w"> </span>size<span class="w"> </span><span class="k">in</span><span class="w"> </span>GiB&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="view-share-cli">
+<span id="id7"></span><h3>View Share<a class="headerlink" href="#view-share-cli" title="Permalink to this heading"></a></h3>
+<p>To view the details of a share, run:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>share<span class="w"> </span>show<span class="w"> </span>&lt;name/id<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>share&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="id8">
+<h3>Delete Share<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<p>To delete a share, run the following command:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>share<span class="w"> </span>delete<span class="w"> </span>&lt;name/id<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>share&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+<section id="mounting-shares-to-instances">
+<span id="mount-share"></span><h2>Mounting Shares to Instances<a class="headerlink" href="#mounting-shares-to-instances" title="Permalink to this heading"></a></h2>
+<p>In order to allow your instances to access the share, you need to create your instances using the <a class="reference internal" href="#storage-network"><span class="std std-ref">pre-reserved storage network</span></a>.
+To learn more about how to create a bare metal instance on a network, read <a class="reference internal" href="baremetal.html#baremetal-gui-launch"><span class="std std-ref">the bare metal instances section</span></a>.</p>
+<blockquote>
+<div><div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The shares are independent of the storage networks. You can create shares any time regardless of the status of the storage networks.
+The storage networks are only used to access your data stored in the share.</p>
+</div>
+</div></blockquote>
+<p>After your instance becomes active, find the export location path of the share using <a class="reference internal" href="#view-share-gui"><span class="std std-ref">GUI</span></a> or <a class="reference internal" href="#view-share-cli"><span class="std std-ref">CLI</span></a>.
+To mount the share, run the following command:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>nfs<span class="w"> </span>-o<span class="w"> </span><span class="nv">nfsvers</span><span class="o">=</span><span class="m">4</span>.2,proto<span class="o">=</span>tcp<span class="w"> </span>&lt;<span class="nb">export</span><span class="w"> </span>location<span class="w"> </span>path&gt;<span class="w"> </span>&lt;mount<span class="w"> </span>dir&gt;
+</pre></div>
+</div>
+</div></blockquote>
+<p>Now, you can read and write to the share and it behaves identically to a regular file system.</p>
+<p>To unmount, run the following command:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>umount<span class="w"> </span>&lt;mount<span class="w"> </span>dir&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

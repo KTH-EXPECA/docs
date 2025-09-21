@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservations &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Reservations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/reservations.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reservations">
+<span id="id1"></span><h1>Reservations<a class="headerlink" href="#reservations" title="Permalink to this heading"></a></h1>
+<p>Unlike virtual resources on a regular on-demand cloud, physical resources on
+Chameleon must be reserved before using them for an experiment. Once a
+reservation has been accepted, users are guaranteed that resources will be
+available at the time they chose (except in extraordinary circumstances such as
+hardware or platform failures), which helps to plan large scale experiments.</p>
+<p>Chameleon resources are reserved via <a class="reference external" href="https://docs.openstack.org/blazar/latest/">Blazar</a> which provides Reservation as a
+Service for OpenStack.</p>
+<p>Three types of resources can be reserved: physical bare metal hosts, network
+segments (VLANs), and floating IPs.</p>
+<section id="provisioning-and-managing-resources-using-the-gui">
+<h2>Provisioning and Managing Resources Using the GUI<a class="headerlink" href="#provisioning-and-managing-resources-using-the-gui" title="Permalink to this heading"></a></h2>
+<p>To make reservations of the resources, first log into the Horizon web interface
+- either <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> or <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>. Then, choose a project and configure your local
+timezone. For details on how to choose a project and update personalized
+settings, please see <a class="reference internal" href="gui.html#gui"><span class="std std-ref">Graphical User Interface (GUI)</span></a>.</p>
+<p>In the navigation sidebar, go to the <em>Reservations</em> section and click <em>Leases</em>.</p>
+<figure class="align-default" id="id4">
+<img alt="The Leases page in the GUI" src="../_images/leasespage.png" />
+<figcaption>
+<p><span class="caption-text">The Leases page in the GUI</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="the-lease-calendars">
+<h3>The Lease Calendars<a class="headerlink" href="#the-lease-calendars" title="Permalink to this heading"></a></h3>
+<p>To discover when resources are available, You can access the lease calendars by
+clicking on the <em>Host Calendar</em> button for physical hosts and clicking on the
+<em>Network Calendar</em> button for VLANs. This will display a Gantt chart of the
+reservations which allows you to find when resources are available. The <em>Y</em> axis
+represents the different physical nodes in the system and the <em>X</em> axis
+represents time.</p>
+<figure class="align-default" id="id5">
+<img alt="The Host Calendar" src="../_images/hostcalendar.png" />
+<figcaption>
+<p><span class="caption-text">The Host Calendar</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id6">
+<img alt="The Network Calendar" src="../_images/networkcalendar.png" />
+<figcaption>
+<p><span class="caption-text">The Network Calendar</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The nodes and VLANs are identified by their <em>UUIDs</em>. The colors are used to
+indicate different reservations, i.e. the resources that belong to the same
+reservation are colored the same. Hovering over the chart provides the
+details about the reservation. To change the display time frame, click on
+<code class="docutils literal notranslate"><span class="pre">1d</span></code>, <code class="docutils literal notranslate"><span class="pre">1w</span></code>, and <code class="docutils literal notranslate"><span class="pre">1m</span></code> buttons or fill in the start and end times.</p>
+</div>
+</section>
+<section id="creating-a-lease-to-reserve-resources">
+<span id="reservations-create-lease-gui"></span><h3>Creating a Lease to Reserve Resources<a class="headerlink" href="#creating-a-lease-to-reserve-resources" title="Permalink to this heading"></a></h3>
+<p>Once you have chosen a time period when you want to reserve resources, go back
+to the <em>Leases</em> screen and click on the <em>Create Lease</em> button. It should bring
+up the window displayed below:</p>
+<figure class="align-default" id="id7">
+<img alt="The Create Lease dialog" src="../_images/createleasedialog.png" />
+<figcaption>
+<p><span class="caption-text">The Create Lease dialog</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic">
+<li><p>Pick a name for the lease. The name needs to be unique across your project.</p></li>
+<li><p>Pick a start time and lease duration in days. If you would like to start your
+lease as soon as possible, you may leave the start time blank and Chameleon
+will attempt to reserve your nodes to begin immediately with a default Lease
+duration of 1 day.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have not selected a timezone earlier, the default timezone is
+<strong>UTC</strong>. Therefore, the date must be entered in <strong>UTC</strong>!</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can get the UTC time by running <code class="docutils literal notranslate"><span class="pre">date</span> <span class="pre">-u</span></code> in your terminal.</p>
+</div>
+</li>
+<li><p>To reserve a bare metal node, navigate to the “Hosts” tab.</p>
+<blockquote>
+<div><blockquote>
+<div><figure class="align-default" id="id8">
+<img alt="The Create Lease dialog Host reservation tab" src="../_images/nodereservationdialog.png" />
+<figcaption>
+<p><span class="caption-text">The Create Lease dialog Host reservation tab</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<ol class="loweralpha">
+<li><p>Check “Reserve Hosts”.</p></li>
+<li><p>Choose the minimum and maximum number of hosts.</p></li>
+<li><p>Choose a node type in the drop down menu below the <em>node_type</em> and <em>=</em> drop down lists.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may only request one type of node in each individual lease. If you
+wish to request multiple node types, you must create separate Leases for
+each node type.</p>
+</div>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>To reserve a vlan segment, navigate to the “Networks” tab.</p>
+<blockquote>
+<div><blockquote>
+<div><figure class="align-default" id="id9">
+<img alt="The Create Lease dialog Network reservation tab" src="../_images/networkreservationdialog.png" />
+<figcaption>
+<p><span class="caption-text">The Create Lease dialog Network reservation tab</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<ol class="loweralpha">
+<li><p>Check “Reserve Network”</p></li>
+<li><p>Enter the network name and description</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When a VLAN segment reservation ends, all Neutron resources attached to
+the network will be automatically deleted. Bare metal instances using the
+network will lose network connectivity.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Network name is required when reserving VLAN segment.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>To reserve floating IPs, navigate to the “Networks” tab.</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>Check “Reserve Floating IPs”.</p></li>
+<li><p>Choose the number of floating IPs.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>Click on the <em>Create</em> button.</p></li>
+</ol>
+<p>Once created, the lease details will be displayed. At the bottom of the page are
+the details about the reservation. Initially the reservation is in the
+<code class="docutils literal notranslate"><span class="pre">Pending</span></code> status, and stays in this state until it reaches the start time.</p>
+<blockquote>
+<div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want Blazar to launch an instances or complex appliance as soon as
+the lease starts, read the <code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Reservation</span> <span class="pre">Orchestration</span></code> section
+our <a class="reference internal" href="complex.html#complex"><span class="std std-ref">Complex appliances</span></a> documentation.</p>
+</div>
+</div></blockquote>
+<figure class="align-default" id="id10">
+<img alt="Lease details page" src="../_images/leasedetails.png" />
+<figcaption>
+<p><span class="caption-text">Lease details page</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Once the start time of the lease is reached, the lease will be started and its
+reservation will change to <code class="docutils literal notranslate"><span class="pre">Active</span></code>; you may need to refresh the page to see
+the updates.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The lease is identified by a <em>UUID</em>. You may find it useful when using the
+CLI or submitting tickets on our <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a>.</p>
+</div>
+<div class="admonition attention" id="lease-policy">
+<p class="admonition-title">Attention</p>
+<p>To ensure fairness to all users, resource reservations (leases) are limited
+to a duration of <span class="redbold">7 days</span>. However, an active lease within
+<span class="redbold">48 hours</span> of its end time can be prolonged by <span class="redbold">up to 7
+days</span> from the moment of request if resources are available.</p>
+<p>Chameleon will send an email reminder to you 48 hours before your lease ends.
+If your lease duration is less than 48 hours, Chameleon will send you an
+email right after your lease is created. You can <a class="reference internal" href="#disable-blazar-notification"><span class="std std-ref">disable the email
+notification by using the command line</span></a>.</p>
+</div>
+</section>
+<section id="extending-a-lease">
+<h3>Extending a Lease<a class="headerlink" href="#extending-a-lease" title="Permalink to this heading"></a></h3>
+<p>To prolong a lease, click on the <em>Update Lease</em> button in <em>Actions</em> column.</p>
+<figure class="align-default" id="id11">
+<img alt="The Update Lease Parameters dialog" src="../_images/updatelease.png" />
+<figcaption>
+<p><span class="caption-text">The Update Lease Parameters dialog</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Fill out the form by specifying the amount of additional time to add to the
+lease. Then, click on the <em>Update</em> button to finish your request.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If there is an advance reservation blocking your lease prolongation that
+could potentially be moved, you can interact through the users mailing list
+to coordinate with others users. Additionally, if you know from the start
+that your lease will require longer than a week and can justify it, you can
+submit a ticket on our <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a> to request a <strong>one-time exception</strong> of
+creating a longer lease.</p>
+</div>
+<section id="changing-the-number-of-nodes-of-a-lease">
+<h4>Changing the Number of Nodes of a Lease<a class="headerlink" href="#changing-the-number-of-nodes-of-a-lease" title="Permalink to this heading"></a></h4>
+<p>It is now possible to change the number of nodes reserved in a lease. For
+advance reservations that haven’t yet started, the node count can be increased
+or decreased. For reservations already started, only new nodes can be added.</p>
+<p>To change the number of nodes of a lease, click on the <em>Update Lease</em> button in
+<em>Actions</em> column.</p>
+<figure class="align-default" id="id12">
+<img alt="The Update Lease Parameters dialog, changing the number of reserved nodes" src="../_images/updateleasenodecount.png" />
+<figcaption>
+<p><span class="caption-text">The Update Lease Parameters dialog, changing the number of reserved nodes</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Navigate to the “Hosts” tab,  and fill out the form by specifying the new minimum
+and maximum numbers of hosts. Then, click on the <em>Update</em> button to finish your request.</p>
+</section>
+<section id="changing-the-number-of-floating-ips-in-a-lease">
+<h4>Changing the Number of Floating IPs in a Lease<a class="headerlink" href="#changing-the-number-of-floating-ips-in-a-lease" title="Permalink to this heading"></a></h4>
+<p>It is possible to change the number of floating IPs in a lease, whether the
+lease is pending or active. In some situations, you cannot renew a lease due to
+another user reserving the same floating IP in your lease. In this case, you
+can set your lease to have 0 floating IPs, and create a second lease just for
+reserving floating IPs.</p>
+<p>To change the number of floating IPs, click on the <em>Update Lease</em> button in
+<em>Actions</em> column.</p>
+<figure class="align-default" id="id13">
+<img alt="The Update Lease Parameters dialog, changing the number of reserved IPs" src="../_images/updateleasefloatingipcount.png" />
+<figcaption>
+<p><span class="caption-text">The Update Lease Parameters dialog, changing the number of reserved IPs</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Navigate to the “Floating IPs” tab,  and fill out the form by specifying the
+amount of floating IPs. Then, click on the <em>Update</em> button to finish your request.</p>
+</section>
+</section>
+<section id="reserving-a-node-by-uuid">
+<h3>Reserving a Node by UUID<a class="headerlink" href="#reserving-a-node-by-uuid" title="Permalink to this heading"></a></h3>
+<p>You may reserve a specific node by providing its <em>UUID</em>. To learn more about how
+to find a node with a specific type, please see <a class="reference internal" href="discovery.html#resource-discovery"><span class="std std-ref">Resource discovery</span></a>. In
+the <em>Create Lease</em> dialog, select <em>uid</em> in the <em>Resource Type</em> dropdown. Then,
+choose the <em>UUID</em> of the node you would like to reserve.</p>
+<figure class="align-default" id="id14">
+<img alt="Selecting a node by UUID" src="../_images/uid.png" />
+<figcaption>
+<p><span class="caption-text">Selecting a node by UUID</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="provisioning-and-managing-resources-using-the-cli">
+<span id="reservation-cli"></span><span id="reservations-extend-lease-gui"></span><h2>Provisioning and Managing Resources Using the CLI<a class="headerlink" href="#provisioning-and-managing-resources-using-the-cli" title="Permalink to this heading"></a></h2>
+<p>The sections above present the most user friendly mode of usage, with most
+actions performed via the web interface. However, Chameleon can be accessed via
+the OpenStack command line tools which provides more capabilities. This section
+presents some advanced usage using the command line tools.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Reading <a class="reference internal" href="cli.html#cli"><span class="std std-ref">Command Line Interface (CLI)</span></a> is highly recommended before continuing on the following
+sections.</p>
+</div>
+<section id="blazar-client-installation">
+<h3>Blazar Client Installation<a class="headerlink" href="#blazar-client-installation" title="Permalink to this heading"></a></h3>
+<p>To reserve specific nodes, based on their identifier or their resource
+specifications, you must use the <a class="reference external" href="https://docs.openstack.org/blazar/latest/">Blazar</a> command line client. To use the
+CLI, you must install the <code class="docutils literal notranslate"><span class="pre">python-blazarclient</span></code>. To install
+<code class="docutils literal notranslate"><span class="pre">python-blazarclient</span></code>, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/ChameleonCloud/python-blazarclient.git@chameleoncloud/xena
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To reserve VLAN segments or floating IPs, you must use a Chameleon fork of
+the Blazar client, as above.</p>
+</div>
+<p>Before using <em>Blazar Client</em>, You must configure the environment variables for
+your project via <code class="docutils literal notranslate"><span class="pre">source</span></code> <a class="reference internal" href="cli.html#cli-rc-script"><span class="std std-ref">the OpenStack RC Script</span></a> or
+use the CLI switches every time you run the commands. Type <code class="docutils literal notranslate"><span class="pre">blazar</span></code> in your
+terminal session to enter the <em>Interactive Mode</em>. You may also use <code class="docutils literal notranslate"><span class="pre">blazar</span></code> in
+the <em>Shell Mode</em>.</p>
+</section>
+<section id="creating-a-lease-to-reserve-physical-hosts">
+<h3>Creating a Lease to Reserve Physical Hosts<a class="headerlink" href="#creating-a-lease-to-reserve-physical-hosts" title="Permalink to this heading"></a></h3>
+<p>To create a lease, use the <code class="docutils literal notranslate"><span class="pre">lease-create</span></code> command. The following arguments are
+required:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--reservation</span></code> with the <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">resource_type</span></code>, and <code class="docutils literal notranslate"><span class="pre">resource_properties</span></code> attributes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--start-date</span></code> in <code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD</span> <span class="pre">HH:MM&quot;</span></code> format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--end-date</span></code> in <code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD</span> <span class="pre">HH:MM&quot;</span></code> format</p></li>
+<li><p>A lease name</p></li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">--start-date</span></code> is ommitted, then the current date and time will be used by default.</p>
+<p>For example, the following command will create a lease with the name of
+<code class="docutils literal notranslate"><span class="pre">my-first-lease</span></code> and the node type of <code class="docutils literal notranslate"><span class="pre">compute_skylake</span></code> that starts on June
+17th, 2022 at 4:00pm and ends on June 17th, 2022 at 6:00pm:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reservation<span class="w"> </span><span class="nv">min</span><span class="o">=</span><span class="m">1</span>,max<span class="o">=</span><span class="m">1</span>,resource_type<span class="o">=</span>physical:host,resource_properties<span class="o">=</span><span class="s1">&#39;[&quot;=&quot;, &quot;$node_type&quot;, &quot;compute_skylake&quot;]&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--start-date<span class="w"> </span><span class="s2">&quot;2022-06-17 16:00&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--end-date<span class="w"> </span><span class="s2">&quot;2022-06-17 18:00&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>my-first-lease
+</pre></div>
+</div>
+<p>Instead of specifying the node type, you may also reserve a specific node by
+providing it’s <em>UUID</em>. For example, to reserve the node with <em>UUID</em> of
+<code class="docutils literal notranslate"><span class="pre">c9f98cc9-25e9-424e-8a89-002989054ec2</span></code>, you may run the command similar to the
+following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reservation<span class="w"> </span><span class="nv">min</span><span class="o">=</span><span class="m">1</span>,max<span class="o">=</span><span class="m">1</span>,resource_type<span class="o">=</span>physical:host,resource_properties<span class="o">=</span><span class="s1">&#39;[&quot;=&quot;, &quot;$uid&quot;, &quot;c9f98cc9-25e9-424e-8a89-002989054ec2&quot;]&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--start-date<span class="w"> </span><span class="s2">&quot;2022-06-17 16:00&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--end-date<span class="w"> </span><span class="s2">&quot;2022-06-17 18:00&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>my-custom-lease
+</pre></div>
+</div>
+<p>To create a lease with multiple resource properties, you must combine them like
+<code class="docutils literal notranslate"><span class="pre">[&quot;and&quot;,</span> <span class="pre">[property1],</span> <span class="pre">[property2],</span> <span class="pre">[...]</span> <span class="pre">]</span></code>. For example, to reserve a node
+with <em>$architecture.smt_size</em> of <em>48</em> and <em>node_type</em> of <em>compute_haswell</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reservation<span class="w"> </span><span class="nv">min</span><span class="o">=</span><span class="m">1</span>,max<span class="o">=</span><span class="m">1</span>,resource_type<span class="o">=</span>physical:host,resource_properties<span class="o">=</span><span class="s1">&#39;[&quot;and&quot;, [&quot;=&quot;, &quot;$architecture.smt_size&quot;, &quot;48&quot;], [&quot;=&quot;, &quot;$node_type&quot;, &quot;compute_haswell&quot;]]&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--start-date<span class="w"> </span><span class="s2">&quot;2022-06-17 16:00&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--end-date<span class="w"> </span><span class="s2">&quot;2022-06-17 18:00&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>my-custom-lease
+</pre></div>
+</div>
+<div class="admonition attention" id="disable-blazar-notification">
+<p class="admonition-title">Attention</p>
+<p>To specify a <code class="docutils literal notranslate"><span class="pre">before_end</span></code> action, simply add <code class="docutils literal notranslate"><span class="pre">before_end=&lt;action_type&gt;</span></code>
+to <code class="docutils literal notranslate"><span class="pre">reservation</span></code> parameter. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reservation<span class="w"> </span><span class="nv">min</span><span class="o">=</span><span class="m">1</span>,max<span class="o">=</span><span class="m">1</span>,resource_type<span class="o">=</span>physical:host,resource_properties<span class="o">=</span><span class="s1">&#39;[&quot;=&quot;, &quot;$uid&quot;, &quot;c9f98cc9-25e9-424e-8a89-002989054ec2&quot;]&#39;</span>,before_end<span class="o">=</span>email<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--start-date<span class="w"> </span><span class="s2">&quot;2022-06-17 16:00&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--end-date<span class="w"> </span><span class="s2">&quot;2022-06-17 18:00&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>my-custom-lease
+</pre></div>
+</div>
+<p>Currently supported <code class="docutils literal notranslate"><span class="pre">before_end</span></code> action types include</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Action Type</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">email</span></code></p></td>
+<td><p>Send an email notification.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">default</span></code></p></td>
+<td><p>Default action used when no action is specified;
+Currently set to <code class="docutils literal notranslate"><span class="pre">email</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">''</span></code></p></td>
+<td><p>Do nothing.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The default <code class="docutils literal notranslate"><span class="pre">before_end</span></code> action is set to <code class="docutils literal notranslate"><span class="pre">email</span></code>. To disable the email
+notification, set <code class="docutils literal notranslate"><span class="pre">before_end=''</span></code>.</p>
+</div>
+<p>Actually, you may use any resource property that is in the resource registry to
+reserve the nodes. To see the list of properties of nodes, first get the full
+list of nodes with the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>host<span class="w"> </span>list
+</pre></div>
+</div>
+<p>The output should look like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+------+--------------------------------------+-------+-----------+----------+
+| id   | hypervisor_hostname                  | vcpus | memory_mb | local_gb |
++------+--------------------------------------+-------+-----------+----------+
+| 151  | 00401ba8-4fb0-4f1e-a7dc-e93065ebdd15 |    24 |    128000 |      200 |
+| 233  | 004c89fa-ff13-4563-9012-f2d62c1a7aff |    24 |    128000 |      200 |
+| 330  | 01029fb8-0a0b-4949-92b0-a756fb8588e5 |    24 |    128000 |      200 |
+| 146  | 036b16e3-9fa6-442c-8e6d-cfe12ed5c8a3 |    24 |    128000 |      200 |
+| 992  | 05dd5e25-440f-4492-b3b8-9d39af83b8bc |     8 |      3200 |      100 |
+| 219  | 066d92f5-7cb9-49ea-8f05-842566672ebf |    24 |    128000 |      200 |
+| 3216 | 06b164d5-3514-4ebe-8928-0bd2f9508b80 |     0 |         0 |        0 |
+| 156  | 07030786-d6e8-46b4-b0f2-79b0b303b518 |    24 |    128000 |      200 |
+| 212  | 07051549-c404-44af-8e73-8beb5891864a |    24 |    128000 |      200 |
+| 175  | 07fd65f0-b814-429b-a2fb-3a4afa52de41 |    24 |    128000 |      200 |
+| 255  | 081d2cb1-b6b5-4014-b226-7a42d8588307 |    24 |    128000 |      200 |
+</pre></div>
+</div>
+<p>To get resource properties of a host, run <code class="docutils literal notranslate"><span class="pre">host-show</span></code> command with the <code class="docutils literal notranslate"><span class="pre">id</span></code>
+listed in the first column. For example, to get the resource properties of the
+host 151,  run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>host<span class="w"> </span>show<span class="w"> </span><span class="m">151</span>
+</pre></div>
+</div>
+<p>The output should look like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+----------------------------------+---------------------------------------------+
+| Field                            | Value                                       |
++----------------------------------+---------------------------------------------+
+| architecture.platform_type       | x86_64                                      |
+| architecture.smp_size            | 2                                           |
+| architecture.smt_size            | 48                                          |
+| bios.release_date                | 03/09/2022                                  |
+| bios.vendor                      | Dell Inc.                                   |
+| bios.version                     | 1.2                                         |
+| chassis.manufacturer             | Dell Inc.                                   |
+| chassis.name                     | PowerEdge R630                              |
+| chassis.serial                   | 4VJGD42                                     |
+| cpu_info                         | baremetal cpu                               |
+| created_at                       | 2022-06-26 20:50:58                         |
+| gpu.gpu                          | False                                       |
+| hypervisor_hostname              | 00401ba8-4fb0-4f1e-a7dc-e93065ebdd15        |
+| hypervisor_type                  | ironic                                      |
+| hypervisor_version               | 1                                           |
+| id                               | 151                                         |
+| uid                              | c9f98cc9-25e9-424e-8a89-002989054ec2        |
+| updated_at                       |                                             |
+| vcpus                            | 48                                          |
+| version                          | 78dbf26565cf24050718674dcf322331fab8ead5    |
++----------------------------------+---------------------------------------------+
+</pre></div>
+</div>
+<p>Any of the property listed in the field column may be used to reserve the nodes.
+For example, you can use <code class="docutils literal notranslate"><span class="pre">resource_properties='[&quot;=&quot;,</span> <span class="pre">&quot;$architecture.smp_size&quot;,</span>
+<span class="pre">&quot;2&quot;]'</span></code> to reserve a node with two physical processors.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember to use <code class="docutils literal notranslate"><span class="pre">$</span></code> in front of the property.</p>
+</div>
+</section>
+<section id="id3">
+<h3>Extending a Lease<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>To extend your lease, use <code class="docutils literal notranslate"><span class="pre">lease-update</span></code> command, and provide time duration
+via <code class="docutils literal notranslate"><span class="pre">--prolong-for</span></code> switch. The format of the duration is a number followed by
+a letter specifying the time unit. <code class="docutils literal notranslate"><span class="pre">w</span></code> is for weeks, <code class="docutils literal notranslate"><span class="pre">d</span></code> is for days and
+<code class="docutils literal notranslate"><span class="pre">h</span></code> is for hours. For example, if you would like to extend the
+<code class="docutils literal notranslate"><span class="pre">my-first-lease</span></code> by one day, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>update<span class="w"> </span>--prolong-for<span class="w"> </span><span class="s2">&quot;1d&quot;</span><span class="w"> </span>my-first-lease
+</pre></div>
+</div>
+</section>
+<section id="chameleon-node-types">
+<h3>Chameleon Node Types<a class="headerlink" href="#chameleon-node-types" title="Permalink to this heading"></a></h3>
+<p>The following node types are reservable on Chameleon.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Node Type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resource_properties='[&quot;=&quot;,</span> <span class="pre">&quot;$node_type&quot;,</span> <span class="pre">&quot;&lt;Chameleon</span> <span class="pre">node</span> <span class="pre">type</span> <span class="pre">name&gt;&quot;]'</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Skylake compute nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">compute_skylake</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Storage nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">storage</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Haswell Infiniband nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">compute_haswell_ib</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Storage Hierarchy nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">storage_hierarchy</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>NVIDIA K80 nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gpu_k80</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>NVIDIA M40 nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gpu_m40</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>NVIDIA P100 nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gpu_p100</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>NVIDIA P100 NVLink nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gpu_p100_nvlink</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>NVIDIA RTX 6000 nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gpu_rtx_6000</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>FPGA nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fpga</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Low power Xeon nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lowpower_xeon</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Atom nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">atom</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>ARM64 nodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">arm64</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="creating-a-lease-to-reserve-a-vlan-segment">
+<span id="reservation-cli-vlan"></span><h3>Creating a Lease to Reserve a VLAN Segment<a class="headerlink" href="#creating-a-lease-to-reserve-a-vlan-segment" title="Permalink to this heading"></a></h3>
+<p>To create a lease, use the <code class="docutils literal notranslate"><span class="pre">lease-create</span></code> command. The following arguments are
+required:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--reservation</span></code> with the <code class="docutils literal notranslate"><span class="pre">resource_type</span></code> and <code class="docutils literal notranslate"><span class="pre">network_name</span></code> attributes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--start-date</span></code> in <code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD</span> <span class="pre">HH:MM&quot;</span></code> format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--end-date</span></code> in <code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD</span> <span class="pre">HH:MM&quot;</span></code> format</p></li>
+<li><p>A lease name</p></li>
+</ul>
+<p>Optional attributes include <code class="docutils literal notranslate"><span class="pre">network_description</span></code> and <code class="docutils literal notranslate"><span class="pre">resource_properties</span></code>
+which can both be added to the <code class="docutils literal notranslate"><span class="pre">--reservation</span></code> argument.</p>
+<p>For example, the following command will create a lease with the name of
+<code class="docutils literal notranslate"><span class="pre">my-first-vlan-lease</span></code> and the network name <code class="docutils literal notranslate"><span class="pre">my-network</span></code> that starts on June
+17th, 2022 at 4:00pm and ends on June 17th, 2022 at 6:00pm:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span>--reservation<span class="w"> </span><span class="nv">resource_type</span><span class="o">=</span>network,network_name<span class="o">=</span><span class="s2">&quot;my-network&quot;</span><span class="w"> </span>--start-date<span class="w"> </span><span class="s2">&quot;2022-06-17 16:00&quot;</span><span class="w"> </span>--end-date<span class="w"> </span><span class="s2">&quot;2022-06-17 18:00&quot;</span><span class="w"> </span>my-first-vlan-lease
+</pre></div>
+</div>
+<p>Adding the <code class="docutils literal notranslate"><span class="pre">network_description</span></code> attribute provides its value as the
+description field when creating the Neutron network, allowing to leverage
+Chameleon <a class="reference internal" href="networks/networks_sdn.html#sdn"><span class="std std-ref">Software Defined Networking</span></a> features.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span>--reservation<span class="w"> </span><span class="nv">resource_type</span><span class="o">=</span>network,network_name<span class="o">=</span><span class="s2">&quot;my-network&quot;</span>,network_description<span class="o">=</span><span class="s2">&quot;OFController=</span><span class="si">${</span><span class="nv">OF_CONTROLLER_IP</span><span class="si">}</span><span class="s2">:</span><span class="si">${</span><span class="nv">OF_CONTROLLER_PORT</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--start-date<span class="w"> </span><span class="s2">&quot;2022-06-17 16:00&quot;</span><span class="w"> </span>--end-date<span class="w"> </span><span class="s2">&quot;2022-06-17 18:00&quot;</span><span class="w"> </span>my-first-vlan-lease
+</pre></div>
+</div>
+<p>Adding the <code class="docutils literal notranslate"><span class="pre">resource_properties</span></code> attribute allows you to reserve a specific
+<em>network segment</em> or <em>physical network</em> type. There are currently only two
+physical network types <code class="docutils literal notranslate"><span class="pre">physnet1</span></code> and <code class="docutils literal notranslate"><span class="pre">exogeni</span></code>. You can read more about
+both types in <a class="reference internal" href="networks.html#networking"><span class="std std-ref">Networking</span></a>. The following two examples show how to reserve
+a network by <code class="docutils literal notranslate"><span class="pre">segment_id</span></code> or <code class="docutils literal notranslate"><span class="pre">physical_network</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span>--reservation<span class="w"> </span><span class="nv">resource_type</span><span class="o">=</span>network,network_name<span class="o">=</span>my-network,resource_properties<span class="o">=</span><span class="s1">&#39;[&quot;==&quot;,&quot;$segment_id&quot;,&quot;3501&quot;]&#39;</span><span class="w"> </span>--start-date<span class="w"> </span><span class="s2">&quot;2022-06-17 16:00&quot;</span><span class="w"> </span>--end-date<span class="w"> </span><span class="s2">&quot;2022-06-17 18:00&quot;</span><span class="w"> </span>my-first-vlan-lease
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span>--reservation<span class="w"> </span><span class="nv">resource_type</span><span class="o">=</span>network,network_name<span class="o">=</span>my-network,resource_properties<span class="o">=</span><span class="s1">&#39;[&quot;==&quot;,&quot;$physical_network&quot;,&quot;physnet1&quot;]&#39;</span><span class="w"> </span>--start-date<span class="w"> </span><span class="s2">&quot;2022-06-17 16:00&quot;</span><span class="w"> </span>--end-date<span class="w"> </span><span class="s2">&quot;2022-06-17 18:00&quot;</span><span class="w"> </span>my-first-vlan-lease
+</pre></div>
+</div>
+<p>While separate leases can be created to reserve nodes and VLAN segments, it is also possible to combine multiple reservations within a single lease. The following example creates a lease reserving one Skylake compute node and one VLAN segment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span>--reservation<span class="w"> </span><span class="nv">min</span><span class="o">=</span><span class="m">1</span>,max<span class="o">=</span><span class="m">1</span>,resource_type<span class="o">=</span>physical:host,resource_properties<span class="o">=</span><span class="s1">&#39;[&quot;=&quot;, &quot;$node_type&quot;, &quot;compute_skylake&quot;]&#39;</span><span class="w"> </span>--reservation<span class="w"> </span><span class="nv">resource_type</span><span class="o">=</span>network,network_name<span class="o">=</span><span class="s2">&quot;my-network&quot;</span><span class="w"> </span>--start-date<span class="w"> </span><span class="s2">&quot;2022-06-17 16:00&quot;</span><span class="w"> </span>--end-date<span class="w"> </span><span class="s2">&quot;2022-06-17 18:00&quot;</span><span class="w"> </span>my-combined-lease
+</pre></div>
+</div>
+</section>
+<section id="creating-a-lease-to-reserve-floating-ips">
+<span id="reservation-cli-fip"></span><h3>Creating a Lease to Reserve Floating IPs<a class="headerlink" href="#creating-a-lease-to-reserve-floating-ips" title="Permalink to this heading"></a></h3>
+<p>To create a lease, use the <code class="docutils literal notranslate"><span class="pre">lease-create</span></code> command. The following arguments are required:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--reservation</span></code> with the <code class="docutils literal notranslate"><span class="pre">resource_type</span></code> and <code class="docutils literal notranslate"><span class="pre">network_id</span></code> attributes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--start-date</span></code> in <code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD</span> <span class="pre">HH:MM&quot;</span></code> format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--end-date</span></code> in <code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD</span> <span class="pre">HH:MM&quot;</span></code> format</p></li>
+<li><p>A lease name</p></li>
+</ul>
+<p>Multiple floating IPs can be reserved using the <code class="docutils literal notranslate"><span class="pre">amount</span></code> attribute. If ommitted, only one floating IP is reserved.</p>
+<p>For example, the following command will create a lease with the name of
+<code class="docutils literal notranslate"><span class="pre">my-first-fip-lease</span></code> that starts on June 17th, 2022 at 4:00pm and ends on
+June 17th, 2022 at 6:00pm and reserves three floating IPs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>python-openstackclient
+<span class="nv">PUBLIC_NETWORK_ID</span><span class="o">=</span><span class="k">$(</span>openstack<span class="w"> </span>network<span class="w"> </span>show<span class="w"> </span>public<span class="w"> </span>-c<span class="w"> </span>id<span class="w"> </span>-f<span class="w"> </span>value<span class="k">)</span>
+openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>create<span class="w"> </span>--reservation<span class="w"> </span><span class="nv">resource_type</span><span class="o">=</span>virtual:floatingip,network_id<span class="o">=</span><span class="si">${</span><span class="nv">PUBLIC_NETWORK_ID</span><span class="si">}</span>,amount<span class="o">=</span><span class="m">3</span><span class="w"> </span>--start-date<span class="w"> </span><span class="s2">&quot;2022-06-17 16:00&quot;</span><span class="w"> </span>--end-date<span class="w"> </span><span class="s2">&quot;2022-06-17 18:00&quot;</span><span class="w"> </span>my-first-fip-lease
+</pre></div>
+</div>
+</section>
+<section id="reallocating-a-node-in-your-lease">
+<h3>Reallocating a Node in Your Lease<a class="headerlink" href="#reallocating-a-node-in-your-lease" title="Permalink to this heading"></a></h3>
+<p>After creating your lease, you can view its details in the Horizon web
+interface. On this page, at the bottom, you can see a list of nodes in your
+lease. If you wish to reallocate one of the nodes in your lease, you can press
+the red “Re-Allocate Host” button next to it.</p>
+<figure class="align-default" id="id15">
+<img alt="The re-allocate buttons on the lease detail page" src="../_images/reallocatehost.png" />
+<figcaption>
+<p><span class="caption-text">The nodes on the lease detail page.</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>You can also do the same on the command-line. Run the command that follows,
+entering your lease ID and the node ID where appropriate.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>host<span class="w"> </span>reallocate<span class="w"> </span>--lease-id<span class="w"> </span>LEASE_ID<span class="w"> </span>NODE_ID
+</pre></div>
+</div>
+<p>If you re-allocate a host because it is malfunctioning, please make sure to
+report it to the <a class="reference external" href="https://chameleoncloud.org/user/help/">Help Desk</a> so that
+we can fix it.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

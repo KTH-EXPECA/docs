@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bare metal instances &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Bare metal instances</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/baremetal.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bare-metal-instances">
+<h1>Bare metal instances<a class="headerlink" href="#bare-metal-instances" title="Permalink to this heading"></a></h1>
+<p>Before launching an instance, make sure you own a lease. About how to create a
+lease, please see <a class="reference internal" href="reservations.html#reservations"><span class="std std-ref">Reservations</span></a>. Once your lease is started, you are
+almost ready to start an instance. But first, you need to make sure that you
+will be able to connect to it by setting up <a class="reference internal" href="gui.html#gui-key-pairs"><span class="std std-ref">Key Pairs</span></a>.</p>
+<section id="launching-instances-with-the-gui">
+<h2>Launching instances with the GUI<a class="headerlink" href="#launching-instances-with-the-gui" title="Permalink to this heading"></a></h2>
+<section id="launch-an-instance">
+<span id="baremetal-gui-launch"></span><h3>Launch an instance<a class="headerlink" href="#launch-an-instance" title="Permalink to this heading"></a></h3>
+<p>To launch an instance with the GUI, follow the steps:</p>
+<ol class="arabic">
+<li><p>In the navigation side bar, click <em>Project</em> &gt; <em>Compute</em> &gt; <em>Instances</em> to get
+to the <em>Instances</em> page.</p>
+<figure class="align-default" id="id3">
+<img alt="The Instances page" src="../_images/instancespage.png" />
+<figcaption>
+<p><span class="caption-text">The Instances page</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Click the <em>Launch Instance</em> button in the upper right corner. This will open
+the <em>Launch Instance</em> wizard with several configuration steps. Steps with
+<code class="docutils literal notranslate"><span class="pre">*</span></code> are required.</p>
+<figure class="align-default" id="id4">
+<img alt="The Launch Instance wizard." src="../_images/launchinstance.png" />
+<figcaption>
+<p><span class="caption-text">The Launch Instance wizard.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>In the <em>Details</em> step, enter a name for your instance that is unique within
+your project and select a currently active reservation for the instance.</p></li>
+<li><p>In the <em>Source</em> step, select an image for your instance and click the “up”
+arrow. The image should move to the <em>Allocated</em> list, and can be removed by
+clicking the “Down” arrow if you wish to select a different image.</p>
+<figure class="align-default" id="id5">
+<img alt="The Source configuration step" src="../_images/launchsource.png" />
+<figcaption>
+<p><span class="caption-text">The Source configuration step</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>In the <em>Flavor</em> step, select the <em>baremetal</em> flavor by clicking the “up”
+arrow next to it. This is the only flavor available.</p>
+<figure class="align-default" id="id6">
+<img alt="The Flavor configuration step" src="../_images/launchflavor.png" />
+<figcaption>
+<p><span class="caption-text">The Flavor configuration step</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If you are familiar with Openstack, other implementations allow for the
+selection of flavors based on machine disk size and RAM. On Chameleon, the
+only flavor available is “baremetal” because hardware selection is
+performed in reservations.</p>
+</div>
+</li>
+<li><p>In the <em>Networks</em> step, select a network by clicking the “up” arrow next to
+it. To learn about the Chameleon default network and how to create your own
+network, please see <a class="reference internal" href="networks.html#networking"><span class="std std-ref">Networking</span></a>.</p></li>
+<li><p>In the <em>Key Pair</em> step, select one of your SSH key pairs. If you only have
+one key pair associated with your account, then it is selected by default.</p>
+<figure class="align-default" id="id7">
+<img alt="The Key Pair configuration step" src="../_images/launchkeypair.png" />
+<figcaption>
+<p><span class="caption-text">The Key Pair configuration step</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>It is a good practice to make sure that the instance is launching with the
+key pair of your choice, or you will not be able to access your instance.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You may import or create key pairs directly through this step.</p>
+</div>
+</li>
+<li><p>Optionally, you may configure <em>Scheduler Hints</em>. This is useful if you would
+like to launch an instance on a specific node in your multi-node reservation
+by <em>UUID</em>.</p>
+<ul class="simple">
+<li><p>In the <em>Custom</em> text box, type <code class="docutils literal notranslate"><span class="pre">query</span></code> and click the <em>+</em> button. This
+will add a <em>query</em> hint to the list on the right.</p></li>
+<li><p>In the <em>query</em> hint, enter your scheduler hint. For example, if you require
+a specific node, type <code class="docutils literal notranslate"><span class="pre">[&quot;=&quot;,&quot;$hypervisor_hostname&quot;,&quot;&lt;node_uuid&gt;&quot;]</span></code> where
+<code class="docutils literal notranslate"><span class="pre">&lt;node_uuid&gt;</span></code> is the node you are requesting.</p></li>
+</ul>
+<figure class="align-default" id="id8">
+<img alt="Adding a Scheduler Hint" src="../_images/launchscheduler.png" />
+<figcaption>
+<p><span class="caption-text">Adding a Scheduler Hint</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>If you want to customize your instance after it has launched, you can add a
+customization script in the <em>Configuration</em> step.</p>
+<ul class="simple">
+<li><p>You can type in the script in <em>Customization Script</em>.</p></li>
+<li><p>Or you can upload your script via <em>Load script from a file</em>.</p></li>
+</ul>
+<figure class="align-default" id="id9">
+<img alt="Adding a Customization Script" src="../_images/customizationscript.png" />
+<figcaption>
+<p><span class="caption-text">Adding a Customization Script</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+<div class="legend">
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can <a class="reference internal" href="#turn-off-appliance-agents"><span class="std std-ref">disable and turn off appliance agents</span></a> using a customization script.</p>
+</div>
+</div>
+</figcaption>
+</figure>
+</li>
+<li><p>Finish configuring and start launching the instance by clicking on the
+<em>Launch Instance</em> button. The instance will show up in the instance list, at
+first in <em>Build</em> status. It takes a few minutes to deploy the instance on
+bare metal hardware and reboot the machine.</p>
+<figure class="align-default" id="id10">
+<img alt="An Instance with the Build status" src="../_images/instancesbuild.png" />
+<figcaption>
+<p><span class="caption-text">An Instance with the Build status</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>After a few minutes, the instance should become <em>Active</em>. The power state
+will show as <em>Running</em>. You can now <a class="reference internal" href="#baremetal-gui-associate-ip"><span class="std std-ref">Associate a Floating IP</span></a>.</p>
+<figure class="align-default" id="id11">
+<img alt="An Instance with the Active status" src="../_images/instancesactive.png" />
+<figcaption>
+<p><span class="caption-text">An Instance with the Active status</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>To view instance details, click on the instance.</p>
+<figure class="align-default" id="id12">
+<img alt="Instance details" src="../_images/instancedetails.png" />
+<figcaption>
+<p><span class="caption-text">Instance details</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+</ol>
+</section>
+<section id="associate-a-floating-ip">
+<span id="baremetal-gui-associate-ip"></span><h3>Associate a Floating IP<a class="headerlink" href="#associate-a-floating-ip" title="Permalink to this heading"></a></h3>
+<p>To make your instance publicly accessible over the Internet, you must associate
+a <em>Floating IP Address</em> to it.</p>
+<ol class="arabic">
+<li><p>On the <em>Floating IPs</em> page (under the <em>Network</em> section in the left-hand
+sidebar), ensure that there is a free Floating IP available in your project.
+If there is not, click the <em>Allocate IP to Project</em> button to bring up the
+<em>Allocate Floating IP</em> dialog. In this dialog, you may simply click <em>Allocate
+IP</em>. You can optionally specify a description for the IP for your
+convenience.</p>
+<figure class="align-default" id="id13">
+<img alt="the Allocate Floating IP dialog" src="../_images/associate_pool2.png" />
+<figcaption>
+<p><span class="caption-text">The Allocate Floating IP dialog</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Once a Floating IP is allocated to your project, it will display in the list
+view, and you can click the <em>Associate</em> button for the Floating IP to assign
+it to a running or spawning instance. This button will bring up the <em>Manage
+Floating IP Associations</em> dialog.</p>
+<figure class="align-default" id="id14">
+<img alt="The Floating IP list view with a Floating IP available" src="../_images/floating_ip_overview2.png" />
+<figcaption>
+<p><span class="caption-text">The Floating IP list view with a Floating IP available</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>In the dialog, select an instance from the “Port to be associated” dropdown.
+Your instance’s display name will be displayed here. Click <em>Associate</em> to
+complete the process of assigning the IP to your instance.</p>
+<figure class="align-default" id="id15">
+<img alt="The Manage Floating IP Associations dialog with an IP selected" src="../_images/associate_ip1.png" />
+<figcaption>
+<p><span class="caption-text">The Manage Floating IP Associations dialog with an IP selected</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>If you go back to the <em>Instances</em> page, you should now see the <em>floating
+IP</em> attached to the instance.</p>
+<figure class="align-default" id="id16">
+<img alt="An instance with an allocated Floating IP" src="../_images/instanceswithip.png" />
+<figcaption>
+<p><span class="caption-text">An instance with an allocated Floating IP</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+</ol>
+</section>
+</section>
+<section id="launching-instances-with-the-cli">
+<h2>Launching Instances with the CLI<a class="headerlink" href="#launching-instances-with-the-cli" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Reading <a class="reference internal" href="cli.html#cli"><span class="std std-ref">Command Line Interface (CLI)</span></a> is highly recommanded before continuing on the following
+sections.</p>
+</div>
+<section id="creating-an-instance-with-the-cli">
+<h3>Creating an instance with the CLI<a class="headerlink" href="#creating-an-instance-with-the-cli" title="Permalink to this heading"></a></h3>
+<p>To launch an instance inside a reservation, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>server<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+--image<span class="w"> </span>CC-CentOS8<span class="w"> </span><span class="se">\</span>
+--flavor<span class="w"> </span>baremetal<span class="w"> </span><span class="se">\</span>
+--key-name<span class="w"> </span>&lt;key_name&gt;<span class="w"> </span><span class="se">\</span>
+--nic<span class="w"> </span>net-id<span class="o">=</span>&lt;sharednet1_id&gt;<span class="w"> </span><span class="se">\</span>
+--hint<span class="w"> </span><span class="nv">reservation</span><span class="o">=</span>&lt;reservation_id&gt;<span class="w"> </span><span class="se">\</span>
+my-instance
+</pre></div>
+</div>
+<p>The ID of the <code class="docutils literal notranslate"><span class="pre">sharednet1</span></code> network can be obtained using the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>network<span class="w"> </span>list
+</pre></div>
+</div>
+<p>Alternatively, you may look it up in the GUI in the <em>Network</em> &gt; <em>Networks</em> page.
+You can obtain your <em>reservation ID</em> via the web interface or by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>reservation<span class="w"> </span>lease<span class="w"> </span>show<span class="w"> </span>&lt;lease_name&gt;
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The <strong>reservation ID</strong> and the <strong>lease ID</strong> are different</p>
+</div>
+<section id="running-a-script-on-boot">
+<h4>Running a script on boot<a class="headerlink" href="#running-a-script-on-boot" title="Permalink to this heading"></a></h4>
+<p>You might want to automatically execute some code after launching an instance,
+whether it is installing packages, changing configuration files, or running an
+application. OpenStack provides a mechanism called <a class="reference external" href="https://docs.openstack.org/latest/user/#term-user-data">User Data</a> to pass information
+to instances. This information can be any data in any format, but if it is a
+shell script it will be automatically executed after boot by <a class="reference external" href="https://cloudinit.readthedocs.io/en/latest/">cloudinit</a>. You can provide this shell
+script either via the web interface in the <em>Configuration</em> tab when launching an
+instance, or by providing a file to the nova command line using the
+<code class="docutils literal notranslate"><span class="pre">--user-data</span></code> option.</p>
+<div class="admonition tip" id="turn-off-appliance-agents">
+<p class="admonition-title">Tip</p>
+<p>Chameleon supported images are configured with appliance agents, including
+<a class="reference internal" href="metrics.html#metrics"><span class="std std-ref">collectd</span></a> and <a class="reference internal" href="complex.html#all-to-all-info-exchange"><span class="std std-ref">Heat agents</span></a>.
+To turn off appliance agents on boot, in order to remove the potential impact
+on experimental measurements, pass the following script as <code class="docutils literal notranslate"><span class="pre">user-data</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+systemctl<span class="w"> </span>stop<span class="w"> </span>collectd.service
+systemctl<span class="w"> </span>disable<span class="w"> </span>collectd.service
+systemctl<span class="w"> </span>stop<span class="w"> </span>os-collect-config.service
+systemctl<span class="w"> </span>disable<span class="w"> </span>os-collect-config.service
+</pre></div>
+</div>
+<p>Turning off <code class="docutils literal notranslate"><span class="pre">collectd</span></code> will <strong>stop</strong> collecting <a class="reference internal" href="metrics.html#metrics"><span class="std std-ref">Gnocchi metrics</span></a>, but you can <a class="reference internal" href="metrics.html#configure-collectd"><span class="std std-ref">turn on and configure the daemon</span></a> anytime for monitoring your experiment.</p>
+</div>
+</section>
+</section>
+<section id="customizing-the-kernel">
+<h3>Customizing the Kernel<a class="headerlink" href="#customizing-the-kernel" title="Permalink to this heading"></a></h3>
+<p>It is easy to customize the operating system kernel or modify the kernel command
+line. You now have the option of modifying the boot loader configuration (e.g.,
+<code class="docutils literal notranslate"><span class="pre">/boot/grub2/grub.cfg</span></code> on CentOS 7 images) to point it to a new kernel on the
+local disk, or specifying kernel parameters and then rebooting using this
+modified configuration.</p>
+<p>To do this, you must be using a whole disk image rather than a partition image.
+Whole disk images contain their own kernel and ramdisk files and do not have
+<code class="docutils literal notranslate"><span class="pre">kernel_id</span></code> and <code class="docutils literal notranslate"><span class="pre">ramdisk_id</span></code> properties in the image repository, unlike
+partition images. Most Chameleon base images are whole disk images, giving you
+a good place to start if you’re interested in custom kernels.</p>
+</section>
+<section id="running-virtual-machines-on-bare-metal">
+<h3>Running virtual machines on bare metal<a class="headerlink" href="#running-virtual-machines-on-bare-metal" title="Permalink to this heading"></a></h3>
+<p>For cloud computing and virtualization experiments, you might want to run
+virtual machines on bare hardware that you fully control rather than use the
+shared OpenStack KVM cloud. There are many different ways to configure
+networking for virtual machines. The configuration described below will enable
+you to connect your virtual machines to the Internet using a <a class="reference external" href="http://www.linux-kvm.org/page/Networking#public_bridge">KVM Public Bridge</a> which you must first
+configure manually on your host on the default network interface.</p>
+<p>First, set up your environment for the OpenStack command line tools by following
+<a class="reference internal" href="cli.html#cli"><span class="std std-ref">the instructions</span></a>. Install the <a class="reference external" href="https://docs.openstack.org/neutron/latest/">Neutron</a> client in a virtualenv with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>python-neutronclient
+</pre></div>
+</div>
+<p>Then, for each virtual machine you want to run, request a <a class="reference external" href="https://docs.openstack.org/neutron/latest/">Neutron</a> port with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>port-create<span class="w"> </span>sharednet1
+</pre></div>
+</div>
+<p>This should display, among other information:</p>
+<ul class="simple">
+<li><p>A fixed IP in the same private network as the physical nodes</p></li>
+<li><p>A MAC address</p></li>
+</ul>
+<p>Finally, start your virtual machine while assigning it the <em>MAC address</em>
+provided by OpenStack. If your image is configured to use <em>DHCP</em>, the virtual
+machine should receive the allocated IP.</p>
+<p>Neutron ports allocated this way are not automatically deleted, so please delete
+them after your experiment is over using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>port<span class="w"> </span>delete<span class="w"> </span>&lt;id&gt;
+</pre></div>
+</div>
+<p>You may find the ID of your ports using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>port<span class="w"> </span>list
+</pre></div>
+</div>
+</section>
+<section id="launching-instances-on-specific-nodes">
+<h3>Launching instances on specific nodes<a class="headerlink" href="#launching-instances-on-specific-nodes" title="Permalink to this heading"></a></h3>
+<p>If you have a reservation for multiple physical nodes, explicitly identified
+with their <em>UUIDs</em>, you might want to force an instance to be launched on a
+specific node rather than letting the scheduler select one. This can be done
+with the CLI using a scheduler hint:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>server<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+--image<span class="w"> </span>CC-CentOS8<span class="w"> </span><span class="se">\</span>
+--flavor<span class="w"> </span>baremetal<span class="w"> </span><span class="se">\</span>
+--key-name<span class="w"> </span>&lt;key_name&gt;<span class="w"> </span><span class="se">\</span>
+--nic<span class="w"> </span>net-id<span class="o">=</span>&lt;sharednet1_id&gt;<span class="w"> </span><span class="se">\</span>
+--hint<span class="w"> </span><span class="nv">reservation</span><span class="o">=</span>&lt;reservation_id&gt;<span class="w"> </span><span class="se">\</span>
+--hint<span class="w"> </span><span class="nv">query</span><span class="o">=</span><span class="s1">&#39;[&quot;=&quot;,&quot;$hypervisor_hostname&quot;,&quot;&lt;node_uuid&gt;&quot;]&#39;</span><span class="w"> </span><span class="se">\</span>
+&lt;instance_name&gt;
+</pre></div>
+</div>
+<p>From within an instance you have already launched, you can discover which node
+it is running on by executing</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>http://169.254.169.254/openstack/latest/vendor_data.json
+</pre></div>
+</div>
+<p>This will return a JSON dictionary describing site, cluster, and node.</p>
+</section>
+<section id="customizing-networking">
+<h3>Customizing networking<a class="headerlink" href="#customizing-networking" title="Permalink to this heading"></a></h3>
+<p>In its default configuration, the bare metal deployment system used by Chameleon
+(<a class="reference external" href="https://docs.openstack.org/ironic/latest/">OpenStack Ironic</a>) is restricted
+to using a single shared network per site. The network configuration features
+available in the dashboard are not supported (Networks and Routers). On
+<a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>, network layer 2 isolation is optionally available for compute nodes.
+You may find more details on the documentation for <a class="reference internal" href="networks.html#networking"><span class="std std-ref">Networking</span></a>.</p>
+</section>
+</section>
+<section id="interacting-with-instances">
+<h2>Interacting with instances<a class="headerlink" href="#interacting-with-instances" title="Permalink to this heading"></a></h2>
+<p>Once your bare metal instance has launched, you may interact with it by using
+SSH if you have associated a <em>Floating IP</em> to it or by using the <em>Serial
+Console</em> from the GUI.</p>
+<section id="connecting-via-ssh">
+<span id="id2"></span><h3>Connecting via SSH<a class="headerlink" href="#connecting-via-ssh" title="Permalink to this heading"></a></h3>
+<p>If you have associated a <em>Floating IP</em> with the instance and you have the
+private key in place, you should be able to connect to the instance via SSH
+using the <code class="docutils literal notranslate"><span class="pre">cc</span></code> account.</p>
+<p>To access the instance using SSH, type the command in your terminal:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>cc@&lt;floating_ip&gt;
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>If you get errors:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@<span class="w">    </span>WARNING:<span class="w"> </span>REMOTE<span class="w"> </span>HOST<span class="w"> </span>IDENTIFICATION<span class="w"> </span>HAS<span class="w"> </span>CHANGED!<span class="w">     </span>@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT<span class="w"> </span>IS<span class="w"> </span>POSSIBLE<span class="w"> </span>THAT<span class="w"> </span>SOMEONE<span class="w"> </span>IS<span class="w"> </span>DOING<span class="w"> </span>SOMETHING<span class="w"> </span>NASTY!
+...
+</pre></div>
+</div>
+<p>It is likely that you have saved a previous entry for the instance’s
+<em>Floating IP</em> in your <code class="docutils literal notranslate"><span class="pre">~/.ssh/known_hosts</span></code> file on your computer. Simply
+removing the entry from the file should solve the issue.</p>
+<p>You can remove the entry from the <code class="docutils literal notranslate"><span class="pre">~/.ssh/known_hosts</span></code> file by using the
+command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-R<span class="w"> </span>&lt;floating_ip&gt;
+</pre></div>
+</div>
+</div>
+<p>You may receive the response below. Type <code class="docutils literal notranslate"><span class="pre">yes</span></code> and hit enter:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The authenticity of host &#39;130.202.88.241 (130.202.88.241)&#39; can&#39;t be established.
+RSA key fingerprint is 5b:ca:f0:63:6f:22:c6:96:9f:c0:4a:d8:5e:dd:fd:eb.
+Are you sure you want to continue connecting (yes/no)?
+</pre></div>
+</div>
+</div></blockquote>
+<p>When logged in, your prompt may appear like this:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[cc@my-first-instance ~]$
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you notice SSH errors such as connection refused, password requests, or
+failures to accept your key, it is likely that the physical node is still
+going through the boot process. In that case, please wait before retrying.
+Also make sure that you use the <code class="docutils literal notranslate"><span class="pre">cc</span></code> account. If after 10 minutes you still
+cannot connect to the machine, please open a ticket with our <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a>.</p>
+</div>
+<p>You can now check whether the resource matches its known description in the
+resource registry. For this, simply run:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cc-checks<span class="w"> </span>-v
+</pre></div>
+</div>
+</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">cc-checks</span></code> program prints the result of each check in green if it is
+successful and red if it failed. You can now run your experiment directly on the
+machine via SSH. You can run commands with root privileges by prefixing them
+with <code class="docutils literal notranslate"><span class="pre">sudo</span></code>. To completely switch user and become root, use the <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">su</span> <span class="pre">-</span>
+<span class="pre">root</span></code> command.</p>
+</section>
+<section id="connecting-via-serial-console">
+<h3>Connecting via serial console<a class="headerlink" href="#connecting-via-serial-console" title="Permalink to this heading"></a></h3>
+<p>Chameleon now allows you to connect to the serial console of your bare metal
+nodes via the GUI. Once your instance is deployed, click on the <em>Console</em> button
+in the instance contextual menu.</p>
+<figure class="align-default" id="id17">
+<img alt="The Serial Console button" src="../_images/serialconsole.png" />
+<figcaption>
+<p><span class="caption-text">The serial console button</span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This should open a screen showing an interactive serial console (it could take
+some time to show up, give it 30 seconds or so).</p>
+<figure class="align-default" id="id18">
+<img alt="An open Console" src="../_images/instanceconsole.png" />
+<figcaption>
+<p><span class="caption-text">An open console</span><a class="headerlink" href="#id18" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Our latest images are configured to auto-login into the <code class="docutils literal notranslate"><span class="pre">cc</span></code> account. Other
+images may show you a login prompt. You can set a password on the <code class="docutils literal notranslate"><span class="pre">cc</span></code> account
+by accessing it via SSH, using the command <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">passwd</span> <span class="pre">cc</span></code>, and then using
+this password to connect to the console.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

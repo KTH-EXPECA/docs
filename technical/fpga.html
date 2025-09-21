@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FPGAs &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">FPGAs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/fpga.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fpgas">
+<h1>FPGAs<a class="headerlink" href="#fpgas" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>Chameleon provides access to five FPGA nodes.
+Four nodes are located at <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a>. Each of these nodes is fitted with a <a class="reference external" href="http://www.nallatech.com/store/pcie-accelerator-cards/nallatech-385a-arria10-1150-fpga/">Nallatech 385A board</a> with an Altera Arria 10 1150 GX FPGA (up to 1.5 TFlops), 8 GB DDR3 on-card memory, and dual QSFP 10/40 GbE support.
+One node is located at <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>. The node is fitted with a <a class="reference external" href="https://www.intel.com/content/www/us/en/programmable/solutions/partners/partner-profile/terasic-inc-/board/arria-10-device-family---de5a-net--fpga-development-kit.html">Terasic DE5a-Net board</a> with an <a class="reference external" href="https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&amp;CategoryNo=231&amp;No=970">Altera Arria 10 GX 1150 FPGA</a> (up to 1.5 TFlops), 4 GB DDR3 on-card memory, and four QSFP 10/40 GbE support.
+All FPGA nodes are configured to run OpenCL code, but they can be reconfigured (by a request to our <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a>) to run compiled designs prepared with Altera Quartus.</p>
+<p>Due to export control limitations, access to the development toolchain requires verification of your user profile. This guide explains how to gain access to the development toolchain and execute code on the FPGA nodes. Briefly, the steps for building an FPGA application are:</p>
+<ul class="simple">
+<li><p>Create a TACC account at the <a class="reference external" href="https://portal.tacc.utexas.edu/">TACC Portal</a></p></li>
+<li><p>Setup Multi-Factor Authentication for TACC Resources by following <a class="reference external" href="https://portal.tacc.utexas.edu/tutorials/multifactor-authentication">this documentation</a></p></li>
+<li><p>Request access to the FPGA Build Node project at the <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a></p></li>
+<li><p>SSH to the <code class="docutils literal notranslate"><span class="pre">fpga01.tacc.chameleoncloud.org</span></code> host to build your FPGA application</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">scp</span></code> to copy your FPGA application from <code class="docutils literal notranslate"><span class="pre">fpga01.tacc.chameleoncloud.org</span></code> to the FPGA node you wish to run it on</p></li>
+</ul>
+</section>
+<section id="development">
+<h2>Development<a class="headerlink" href="#development" title="Permalink to this heading"></a></h2>
+<p>Chameleon provides a build system that includes the necessary <a class="reference external" href="https://www.altera.com/products/design-software/embedded-software-developers/opencl/overview.html">Altera SDK for OpenCL</a> tools for developing kernels for use on the <a class="reference external" href="http://www.nallatech.com/store/pcie-accelerator-cards/nallatech-385a-arria10-1150-fpga/">Nallatech 385A cards</a> and the <a class="reference external" href="https://www.intel.com/content/www/us/en/programmable/solutions/partners/partner-profile/terasic-inc-/board/arria-10-device-family---de5a-net--fpga-development-kit.html">Terasic DE5a-Net card</a>, both using the Altera Arria 10 FPGA.</p>
+<p>Due to licensing requirements, you must apply for access to the FPGA build system. Submit a ticket through our help system to request access.</p>
+<p>FPGA resources are only available at <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a>. Due to TACC’s security requirements, multi-factor authentication must be used to access the FPGA build system. You can either use a smartphone app (Apple iOS or Android) or SMS messaging: follow <a class="reference external" href="https://portal.tacc.utexas.edu/tutorials/multifactor-authentication">this documentation</a> to set it up. Once you have set up multi-factor authentication, you can SSH to fpga01.tacc.chameleoncloud.org with your Chameleon username and password; you will also be asked for a TACC security token, which will be provided to you via the app or SMS.</p>
+<p>Each user’s home directory will contain an archive file containing a Hello World OpenCL example: <code class="docutils literal notranslate"><span class="pre">exm_opencl_hello_world_x64_linux_16.0.tgz</span></code>. Extract the archive with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>-zxf<span class="w"> </span>exm_opencl_hello_world_x64_linux_16.0.tgz
+</pre></div>
+</div>
+<p>Two directories will be extracted: <code class="docutils literal notranslate"><span class="pre">common</span></code> and <code class="docutils literal notranslate"><span class="pre">hello_world</span></code>. Change into the <code class="docutils literal notranslate"><span class="pre">hello_world</span></code> directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>hello_world
+</pre></div>
+</div>
+<p>Prior to compiling, load the Quartus environment configuration for either the Nallatech or Terasic board.</p>
+<p>Nallatech:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>nallatech
+</pre></div>
+</div>
+<p>Terasic:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>terasic
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<dl class="simple">
+<dt>The host code contains the function <code class="docutils literal notranslate"><span class="pre">findPlatform(Altera)</span></code>, which searches for the “Altera” platform name. It should instead be instructed to search for “Intel(R) FPGA”. <a class="reference external" href="https://www.intel.com/content/www/us/en/programmable/support/support-resources/knowledge-base/solutions/fb409015.html">This change</a> can be made by editing <code class="docutils literal notranslate"><span class="pre">../hello_world/host/src/main.cpp</span></code>:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">findPlatform(&quot;Intel(R)</span> <span class="pre">FPGA&quot;)</span></code></p>
+</dd>
+</dl>
+</div>
+<p>Compiling an OpenCL kernel often takes a very long time, so it is essential to debug by using the emulation feature of the compiler using <code class="docutils literal notranslate"><span class="pre">-march=emulator</span></code> in the compiler command. Note that the <code class="docutils literal notranslate"><span class="pre">--board</span> <span class="pre">p385a_sch_ax115</span></code> parameter is required for the Nallatech board, and the <code class="docutils literal notranslate"><span class="pre">-board=de5a_net_e1</span></code> parameter is required for the Terasic board. These correctly identify the FPGA boards available on Chameleon. Do not alter these parameters or their syntax. In this example, the host application requires the output name to be <code class="docutils literal notranslate"><span class="pre">hello_world.aocx</span></code>, so this parameter must also be unchanged.</p>
+<p>Nallatech:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aoc<span class="w"> </span>--board<span class="w"> </span>p385a_sch_ax115<span class="w"> </span>device/hello_world.cl<span class="w"> </span>-o<span class="w"> </span>bin/hello_world.aocx<span class="w"> </span>-march<span class="o">=</span>emulator
+</pre></div>
+</div>
+<p>Terasic:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aoc<span class="w"> </span>-board<span class="o">=</span>de5a_net_e1<span class="w"> </span>device/hello_world.cl<span class="w"> </span>-o<span class="w"> </span>bin/hello_world.aocx<span class="w"> </span>-march<span class="o">=</span>emulator
+</pre></div>
+</div>
+<p>Build the host application, which is used to execute the OpenCL kernel.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<p>Now run the emulated kernel.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>env<span class="w"> </span><span class="nv">CL_CONTEXT_EMULATOR_DEVICE_INTELFPGA</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>./bin/host
+</pre></div>
+</div>
+<p>When debugging is complete and the code is ready to be compiled for the FPGA hardware, remove the emulation flag. This may take several hours to complete, so we recommend you run it inside a terminal multiplexer, such as screen or tmux which are both installed on the build node.</p>
+<p>Nallatech:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aoc<span class="w"> </span>--board<span class="w"> </span>p385a_sch_ax115<span class="w"> </span>device/hello_world.cl<span class="w"> </span>-o<span class="w"> </span>bin/hello_world.aocx
+</pre></div>
+</div>
+<p>Terasic:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aoc<span class="w"> </span>-board<span class="o">=</span>de5a_net_e1<span class="w"> </span>device/hello_world.cl<span class="w"> </span>-o<span class="w"> </span>bin/hello_world.aocx
+</pre></div>
+</div>
+</section>
+<section id="execution">
+<h2>Execution<a class="headerlink" href="#execution" title="Permalink to this heading"></a></h2>
+<p>After completing development of an OpenCL kernel on our build node, the kernel and host application must be transferred and executed on a node with an FPGA accelerator.</p>
+<p>When using <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> GUI to reserve nodes, use the <em>Node Type to Reserve</em> selector and choose <em>FPGA</em>. Alternatively, use the <a class="reference external" href="https://www.chameleoncloud.org/user/discovery/">Resource Discovery web interface</a> to reserve a node equipped with an FPGA accelerator card by filtering the node selection using the <em>with FPGA</em> button, and clicking <em>Reserve</em> at the bottom of the selection. Copy the generated CLI command and use it to create your reservation.</p>
+<p>In order to have access to the required runtime environment for using the FPGAs, use the image <strong>CC-CentOS7-FPGA</strong> when launching your instance.</p>
+<p>Log in to the instance, download the application code (both <code class="docutils literal notranslate"><span class="pre">common</span></code> and <code class="docutils literal notranslate"><span class="pre">hello_world</span></code> directories) from the build system using <code class="docutils literal notranslate"><span class="pre">scp</span></code>, and change into the <code class="docutils literal notranslate"><span class="pre">hello_world</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>-r<span class="w"> </span>&lt;username&gt;@fpga01.tacc.chameleoncloud.org:~/common<span class="w"> </span>.
+scp<span class="w"> </span>-r<span class="w"> </span>&lt;username&gt;@fpga01.tacc.chameleoncloud.org:~/hello_world<span class="w"> </span>.
+<span class="nb">cd</span><span class="w"> </span>hello_world
+</pre></div>
+</div>
+<p>Compile the host application, if necessary.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<p>Program FPGA with the OpenCL kernel, using <code class="docutils literal notranslate"><span class="pre">acl0</span></code> as the device name.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aocl<span class="w"> </span>program<span class="w"> </span>acl0<span class="w"> </span>./bin/hello_world.aocx
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>If you are at <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>, please run the following commands (program FPGA as <code class="docutils literal notranslate"><span class="pre">root</span></code>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-i
+<span class="nb">source</span><span class="w"> </span>/etc/profile.d/altera.sh
+<span class="nb">cd</span><span class="w"> </span>/home/cc/hello_world
+aocl<span class="w"> </span>program<span class="w"> </span>acl0<span class="w"> </span>./bin/hello_world.aocx
+</pre></div>
+</div>
+</div>
+<p>Execute the host application to run on FPGA.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./bin/host
+</pre></div>
+</div>
+<p>You should see an output like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Querying platform for info:
+==========================
+CL_PLATFORM_NAME                         = Altera SDK for OpenCL
+CL_PLATFORM_VENDOR                       = Altera Corporation
+CL_PLATFORM_VERSION                      = OpenCL 1.0 Altera SDK for OpenCL, Version 16.0
+
+Querying device for info:
+========================
+CL_DEVICE_NAME                           = p385a_sch_ax115 : nalla_pcie (aclnalla_pcie0)
+CL_DEVICE_VENDOR                         = Nallatech ltd
+CL_DEVICE_VENDOR_ID                      = 4466
+CL_DEVICE_VERSION                        = OpenCL 1.0 Altera SDK for OpenCL, Version 16.0
+CL_DRIVER_VERSION                        = 16.0
+CL_DEVICE_ADDRESS_BITS                   = 64
+CL_DEVICE_AVAILABLE                      = true
+CL_DEVICE_ENDIAN_LITTLE                  = true
+CL_DEVICE_GLOBAL_MEM_CACHE_SIZE          = 32768
+CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE      = 0
+CL_DEVICE_GLOBAL_MEM_SIZE                = 8589934592
+CL_DEVICE_IMAGE_SUPPORT                  = true
+CL_DEVICE_LOCAL_MEM_SIZE                 = 16384
+CL_DEVICE_MAX_CLOCK_FREQUENCY            = 1000
+CL_DEVICE_MAX_COMPUTE_UNITS              = 1
+CL_DEVICE_MAX_CONSTANT_ARGS              = 8
+CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE       = 2147483648
+CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS       = 3
+CL_DEVICE_MEM_BASE_ADDR_ALIGN            = 8192
+CL_DEVICE_MIN_DATA_TYPE_ALIGN_SIZE       = 1024
+CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR    = 4
+CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT   = 2
+CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT     = 1
+CL_DEVICE_PREFERRED_VECTOR_WIDTH_LONG    = 1
+CL_DEVICE_PREFERRED_VECTOR_WIDTH_FLOAT   = 1
+CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE  = 0
+Command queue out of order?              = false
+Command queue profiling enabled?         = true
+Using AOCX: hello_world.aocx
+Reprogramming device with handle 1
+
+Kernel initialization is complete.
+Launching the kernel...
+
+Thread #2: Hello from Altera&#39;s OpenCL Compiler!
+
+Kernel execution is complete.
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

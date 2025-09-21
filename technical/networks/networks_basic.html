@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Networking &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Basic Networking</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/technical/networks/networks_basic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basic-networking">
+<span id="id1"></span><h1>Basic Networking<a class="headerlink" href="#basic-networking" title="Permalink to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Step-by-step instructions for getting started with Chameleon are available in the <a class="reference internal" href="../../getting-started/index%20copy.html#getting-started"><span class="std std-ref">Getting started</span></a> section of this documentation. These instructions include using basic networking functionality.</p>
+</div>
+<section id="shared-network">
+<h2>Shared Network<a class="headerlink" href="#shared-network" title="Permalink to this heading"></a></h2>
+<p>All Chameleon Projects have access to the fixed network <code class="docutils literal notranslate"><span class="pre">sharednet1</span></code> which is used by most experiments. The <code class="docutils literal notranslate"><span class="pre">sharednet1</span></code> is a pre-configured network shared among all Chameleon Projects with one <em>Subnet</em> and includes a <em>Router</em> providing NAT access to the public Internet. All instances using <code class="docutils literal notranslate"><span class="pre">sharednet1</span></code> can communicate directly.</p>
+</section>
+<section id="multiple-networks">
+<h2>Multiple Networks<a class="headerlink" href="#multiple-networks" title="Permalink to this heading"></a></h2>
+<p>Some Chameleon bare metal nodes support connecting to multiple networks. Currently, the number of networks allowed is limited to the number of enabled NICs on the node (currently this is up to 2). It is possible to find such nodes via <a class="reference internal" href="../discovery.html#resource-discovery"><span class="std std-ref">Resource discovery</span></a> by filtering by the “Enabled” flag for a given Network Adapter slot. Note that the slots are 0-indexed, meaning the first NIC is referred to as Network Adapter #0.</p>
+<p>When launching a node that supports multiple networks, simply assign multiple networks to the instance when you are launching it. The networks will be mounted on NICs in the same order that the networks are assigned; that is, the first assigned network will be mounted on Network Adapter #0, and the second on Network Adapter #1, and so on.</p>
+</section>
+<section id="floating-ip-addresses">
+<h2>Floating IP Addresses<a class="headerlink" href="#floating-ip-addresses" title="Permalink to this heading"></a></h2>
+<p>Instances on Chameleon are assigned a <em>fixed</em> IP address that can be used for local connectivity as well as NAT access to the public Internet. A publicly accessible IPv4 address (<em>Floating IP address</em>) is required in order to access Chameleon instances from the Internet or host public services. <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> and <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a> each have a limited number of public IP addresses that can be allocated to your instances.</p>
+<p>The <a class="reference internal" href="../../getting-started/index%20copy.html#getting-started"><span class="std std-ref">Getting started</span></a> guide shows how to allocate <em>Floating IP address</em> to your nodes.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The Chameleon floating IP address pool is a shared and finite resource. <strong>Please be responsible and release any unused floating IP address, so other Chameleon users and projects can use them!</strong></p>
+</div>
+<section id="floating-dns-records">
+<h3>Floating DNS Records<a class="headerlink" href="#floating-dns-records" title="Permalink to this heading"></a></h3>
+<p>Each Floating IP is also contained within a dedicated DNS A record; this means that you can access your instance over the Internet either via its Floating IP or a special hostname. This can be particularly helpful if you want to set up a TLS certificate for HTTPS to secure a service you are exposing over the web, e.g., with <a class="reference external" href="https://letsencrypt.org/">LetsEncrypt</a>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Site</p></th>
+<th class="head"><p>Hostname pattern (for IP <cite>AA.BB.CC.DD</cite>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CHI&#64;TACC</p></td>
+<td><div class="line-block">
+<div class="line"><strong>chi-dyn-AA-BB-CC-DD.tacc.chameleoncloud.org</strong></div>
+<div class="line"><cite>e.g., chi-dyn-129-114-108-147.tacc.chameleoncloud.org</cite></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>CHI&#64;UC</p></td>
+<td><div class="line-block">
+<div class="line"><strong>chi-dyn-AA-BB-CC-DD.uc.chameleoncloud.org</strong></div>
+<div class="line"><cite>e.g., chi-dyn-192-5-87-98.uc.chameleoncloud.org</cite></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Permalink to this heading"></a></h2>
+<p>When your instance has a <em>Floating IP address</em> assigned, it is reachable
+directly over the public Internet. For this reason, it is important to consider
+the security of any services running on your instance. In particular, <strong>ensure
+that you have not allowed SSH authentication with passwords</strong> (this is disabled
+by default on Chameleon-supported images.)</p>
+<p>In order to better protect Chameleon instances, Chameleon Ubuntu and CentOS
+base images come with baked-in firewall rules which allow all communication
+within Chameleon private networks, but severely restrict connections over the public
+internet. If using a different image or if you disable firewall rules, realize
+that any network services can potentially be exposed to the public Internet if
+your instance has a Floating IP attached.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Some commodity systems such as Apache Spark and Hadoop have in the past
+shipped with <em>very insecure</em> default settings. Pay particular attention to
+the security needs of your experiment when selecting what systems you need
+to install on your node, particularly when exposing the node to the Internet.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We’re here to help! If you want advice on how to securely run your
+experiment, feel free to file a <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a> ticket.</p>
+</div>
+<section id="firewall">
+<h3>Firewall<a class="headerlink" href="#firewall" title="Permalink to this heading"></a></h3>
+<p>Chameleon-supported Ubuntu and CentOS images are preconfigured with a firewall
+utility called <code class="docutils literal notranslate"><span class="pre">ufw</span></code> enabled and the following rules set:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ufw<span class="w"> </span>limit<span class="w"> </span>ssh
+ufw<span class="w"> </span>allow<span class="w"> </span>http
+ufw<span class="w"> </span>allow<span class="w"> </span>https
+ufw<span class="w"> </span>allow<span class="w"> </span>from<span class="w"> </span><span class="m">10</span>.0.0.0/8
+ufw<span class="w"> </span>allow<span class="w"> </span>from<span class="w"> </span><span class="m">172</span>.16.0.0/12
+ufw<span class="w"> </span>allow<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.0.0/16
+ufw<span class="w"> </span>default<span class="w"> </span>deny<span class="w"> </span>incoming
+</pre></div>
+</div>
+<p>These rules allow ssh traffic on port 22 over the public internet, but will
+limit the number of attempts to 6 for every 30 seconds.</p>
+<p>HTTP/HTTPS on port 80 and 443 are allowed.</p>
+<p>Communication is fully allowed over the 3 private network ranges use by
+Chameleon.</p>
+<p>Any other incomming connections will be denied.</p>
+<p>You can enable communication over a specifc port using the command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>&lt;port&gt;
+</pre></div>
+</div>
+<p>You can also permit connections from a specific ip or network:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>from<span class="w"> </span>&lt;ip<span class="w"> </span>address<span class="w"> </span>or<span class="w"> </span>network&gt;
+</pre></div>
+</div>
+<p>The <a class="reference external" href="http://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html">man page for ufw</a> has more
+examples.</p>
+</section>
+<section id="security-groups">
+<h3>Security Groups<a class="headerlink" href="#security-groups" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://kvm.tacc.chameleoncloud.org">KVM&#64;TACC</a> supports <em>Security Groups</em>, which can be assigned directly to instances upon launch or after the instance is already running. By default, instances have no <em>Security Groups</em> applied, so all traffic is allowed.</p>
+</section>
+<section id="limit-bound-interfaces">
+<h3>Limit bound interfaces<a class="headerlink" href="#limit-bound-interfaces" title="Permalink to this heading"></a></h3>
+<p>Instead of binding a web service to all interfaces (e.g. <code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code> for IPv4,
+<code class="docutils literal notranslate"><span class="pre">::</span></code> for IPv6), consider listening only on the node’s private IP, which is not
+routable from the public Internet. If you can, listening on localhost
+(<code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>) is even safer. Most web services have a way to specify the bind
+address and some default to binding on all interfaces, which is often insecure.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monitoring &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Monitoring</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/metrics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="monitoring">
+<span id="metrics"></span><h1>Monitoring<a class="headerlink" href="#monitoring" title="Permalink to this heading"></a></h1>
+<p>Chameleon collects monitoring information, representing qualities such as CPU load or power consumption data, from various sources into an <em>aggregation service</em>. Data is kept in this service with resolution that decreases over time. Users can retrieve those metrics via a <em>command line interface (CLI)</em>.</p>
+<p>In Chameleon, the aggregation service is implemented using the <a class="reference external" href="https://gnocchi.xyz">Gnocchi time series database</a>. All Chameleon supported images, from which most of our user’s images are derived, are configured to send a selection of system metrics using the <a class="reference external" href="https://collectd.org">collectd system statistics collection daemon</a>. There is a wide range of qualities this daemon can gather; by default only selected metrics are sent but users can configure the daemon (see <a class="reference internal" href="#configuring-collectd">Configuring collectd</a>) to adapt this set anytime to monitor their experiments better. Another source of metrics is the infrastructure itself, for example the energy and power consumption metrics.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Reading <a class="reference internal" href="cli.html#cli"><span class="std std-ref">Command Line Interface (CLI)</span></a> is highly recommended before continuing on the following sections.</p>
+</div>
+<section id="setting-up-the-gnocchi-cli">
+<h2>Setting up the Gnocchi CLI<a class="headerlink" href="#setting-up-the-gnocchi-cli" title="Permalink to this heading"></a></h2>
+<p>In addition to <a class="reference internal" href="cli.html#cli-installing"><span class="std std-ref">Installing the CLI</span></a>, you must also install the Gnocchi client plugin. To install on your local machine, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>gnocchiclient
+</pre></div>
+</div>
+<p>Then, set up your environment for OpenStack command line usage, as described in <a class="reference internal" href="cli.html#cli-rc-script"><span class="std std-ref">The OpenStack RC Script</span></a>.</p>
+</section>
+<section id="retrieving-metrics">
+<span id="retrieve-metric"></span><h2>Retrieving Metrics<a class="headerlink" href="#retrieving-metrics" title="Permalink to this heading"></a></h2>
+<p>Now, you can run the <code class="docutils literal notranslate"><span class="pre">gnocchi</span></code> command line utility. To show the different kinds of metrics collected for a specific instance, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gnocchi<span class="w"> </span>resource<span class="w"> </span>show<span class="w"> </span>&lt;instance_id&gt;
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can get the instance’ <em>ID</em> from the GUI.</p>
+<p>You can get your list of instances by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gnocchi<span class="w"> </span>resource<span class="w"> </span>list
+</pre></div>
+</div>
+<p>It will print out a chart similar to below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------------------------------------+---------+------------+</span>
+<span class="o">|</span> <span class="nb">id</span>                                   <span class="o">|</span> <span class="nb">type</span>    <span class="o">|</span> <span class="n">project_id</span> <span class="o">|</span>
+<span class="o">+--------------------------------------+---------+------------+</span>
+<span class="o">|</span> <span class="mi">8</span><span class="n">d643431</span><span class="o">-</span><span class="mi">9</span><span class="n">a90</span><span class="o">-</span><span class="mi">4100</span><span class="o">-</span><span class="mf">8e00</span><span class="o">-</span><span class="n">f43d56a68d1e</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="mi">39</span><span class="n">ff85e4</span><span class="o">-</span><span class="n">cf4e</span><span class="o">-</span><span class="mi">4969</span><span class="o">-</span><span class="mi">9408</span><span class="o">-</span><span class="n">af47a372ad06</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="mi">3</span><span class="n">c6c81ba</span><span class="o">-</span><span class="mi">0566</span><span class="o">-</span><span class="mi">4</span><span class="n">cde</span><span class="o">-</span><span class="n">a8c5</span><span class="o">-</span><span class="mi">7</span><span class="n">ae4d4644293</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="mi">219</span><span class="n">f2fec</span><span class="o">-</span><span class="mf">0e90</span><span class="o">-</span><span class="mf">4e04</span><span class="o">-</span><span class="n">a5d7</span><span class="o">-</span><span class="mi">1</span><span class="n">a78c9fde93b</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="mi">57</span><span class="n">f2ba05</span><span class="o">-</span><span class="n">e57c</span><span class="o">-</span><span class="mi">4241</span><span class="o">-</span><span class="n">bd27</span><span class="o">-</span><span class="n">bf95cca9c027</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="n">a0cc7bb7</span><span class="o">-</span><span class="mi">0169</span><span class="o">-</span><span class="mi">4973</span><span class="o">-</span><span class="mi">8</span><span class="n">d4a</span><span class="o">-</span><span class="mi">08151</span><span class="n">c52dec6</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="n">afb1d1e2</span><span class="o">-</span><span class="mi">85</span><span class="n">db</span><span class="o">-</span><span class="mi">463</span><span class="n">c</span><span class="o">-</span><span class="mi">9769</span><span class="o">-</span><span class="mi">2</span><span class="n">a2752eb447e</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="mf">87e52</span><span class="n">c8d</span><span class="o">-</span><span class="n">c66e</span><span class="o">-</span><span class="mi">43</span><span class="n">f5</span><span class="o">-</span><span class="n">b9fc</span><span class="o">-</span><span class="n">da376eccdf2d</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="n">bf383c17</span><span class="o">-</span><span class="n">d76a</span><span class="o">-</span><span class="mf">4e50</span><span class="o">-</span><span class="n">b347</span><span class="o">-</span><span class="mi">426</span><span class="n">c96020d3b</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="mi">9</span><span class="n">f25dffd</span><span class="o">-</span><span class="mi">79</span><span class="n">f5</span><span class="o">-</span><span class="mi">4</span><span class="n">c34</span><span class="o">-</span><span class="mi">86</span><span class="n">b6</span><span class="o">-</span><span class="mi">79767</span><span class="n">b8db086</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="mi">4</span><span class="n">b8ee1ce</span><span class="o">-</span><span class="mi">9733</span><span class="o">-</span><span class="mi">4808</span><span class="o">-</span><span class="mi">921</span><span class="n">f</span><span class="o">-</span><span class="mi">6</span><span class="n">d8ca92a6752</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="mi">5887</span><span class="n">a427</span><span class="o">-</span><span class="mi">286</span><span class="n">f</span><span class="o">-</span><span class="mi">47</span><span class="n">ad</span><span class="o">-</span><span class="n">bd4a</span><span class="o">-</span><span class="n">d7b9278bbc0f</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="n">f5856741</span><span class="o">-</span><span class="mi">89</span><span class="n">d5</span><span class="o">-</span><span class="mi">462</span><span class="n">f</span><span class="o">-</span><span class="n">a0a2</span><span class="o">-</span><span class="n">f2423d9bfc38</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="n">fea54e18</span><span class="o">-</span><span class="mi">9668</span><span class="o">-</span><span class="mi">4</span><span class="n">df0</span><span class="o">-</span><span class="n">a511</span><span class="o">-</span><span class="mi">5</span><span class="n">b2af4c76945</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="mi">304</span><span class="n">dc702</span><span class="o">-</span><span class="n">c57a</span><span class="o">-</span><span class="mi">471</span><span class="n">c</span><span class="o">-</span><span class="mi">81</span><span class="n">df</span><span class="o">-</span><span class="mf">6e711</span><span class="n">d793e50</span> <span class="o">|</span> <span class="n">generic</span> <span class="o">|</span> <span class="kc">None</span>       <span class="o">|</span>
+<span class="o">+--------------------------------------+---------+------------+</span>
+</pre></div>
+</div>
+</div>
+<p>You will get a result like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-----------------------+-------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Field</span>                 <span class="o">|</span> <span class="n">Value</span>                                                             <span class="o">|</span>
+<span class="o">+-----------------------+-------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">created_by_project_id</span> <span class="o">|</span> <span class="mi">2</span><span class="n">c8f25efb722467eb9fc25f38996b7c4</span>                                  <span class="o">|</span>
+<span class="o">|</span> <span class="n">created_by_user_id</span>    <span class="o">|</span> <span class="mi">7961</span><span class="n">a8c338ba4cb8a4ac6dfe0ab333f5</span>                                  <span class="o">|</span>
+<span class="o">|</span> <span class="n">creator</span>               <span class="o">|</span> <span class="mi">7961</span><span class="n">a8c338ba4cb8a4ac6dfe0ab333f5</span><span class="p">:</span><span class="mi">2</span><span class="n">c8f25efb722467eb9fc25f38996b7c4</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">ended_at</span>              <span class="o">|</span> <span class="kc">None</span>                                                              <span class="o">|</span>
+<span class="o">|</span> <span class="nb">id</span>                    <span class="o">|</span> <span class="mi">304</span><span class="n">dc702</span><span class="o">-</span><span class="n">c57a</span><span class="o">-</span><span class="mi">471</span><span class="n">c</span><span class="o">-</span><span class="mi">81</span><span class="n">df</span><span class="o">-</span><span class="mf">6e711</span><span class="n">d793e50</span>                              <span class="o">|</span>
+<span class="o">|</span> <span class="n">metrics</span>               <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno1</span><span class="nd">@if_dropped</span><span class="p">:</span> <span class="mi">511</span><span class="n">abf80</span><span class="o">-</span><span class="n">d9e9</span><span class="o">-</span><span class="mf">4e37</span><span class="o">-</span><span class="n">bde6</span><span class="o">-</span><span class="n">b34de19a7a87</span>   <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno1</span><span class="nd">@if_errors</span><span class="p">:</span> <span class="mi">7</span><span class="n">bf316e3</span><span class="o">-</span><span class="n">ce63</span><span class="o">-</span><span class="mi">424</span><span class="n">c</span><span class="o">-</span><span class="mi">955</span><span class="n">c</span><span class="o">-</span><span class="mi">1654541</span><span class="n">dafea</span>    <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno1</span><span class="nd">@if_octets</span><span class="p">:</span> <span class="mi">0</span><span class="n">b9a204b</span><span class="o">-</span><span class="mi">38</span><span class="n">fd</span><span class="o">-</span><span class="mi">4</span><span class="n">b4f</span><span class="o">-</span><span class="n">a5a1</span><span class="o">-</span><span class="n">c25b9b739c5c</span>    <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno1</span><span class="nd">@if_packets</span><span class="p">:</span> <span class="n">a62006be</span><span class="o">-</span><span class="n">d45a</span><span class="o">-</span><span class="mi">4</span><span class="n">b2c</span><span class="o">-</span><span class="n">a201</span><span class="o">-</span><span class="mi">4</span><span class="n">f1b4770f43c</span>   <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno2</span><span class="nd">@if_dropped</span><span class="p">:</span> <span class="mi">56</span><span class="n">bd5603</span><span class="o">-</span><span class="n">ed8c</span><span class="o">-</span><span class="mi">401</span><span class="n">c</span><span class="o">-</span><span class="mf">891e-05170</span><span class="n">e3b40a7</span>   <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno2</span><span class="nd">@if_errors</span><span class="p">:</span> <span class="mi">5</span><span class="n">d2d1a60</span><span class="o">-</span><span class="mi">1</span><span class="n">ca8</span><span class="o">-</span><span class="mi">4256</span><span class="o">-</span><span class="n">a395</span><span class="o">-</span><span class="mi">0125428</span><span class="n">cf395</span>    <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno2</span><span class="nd">@if_octets</span><span class="p">:</span> <span class="mi">3</span><span class="n">f3daf4b</span><span class="o">-</span><span class="mi">2</span><span class="n">ef8</span><span class="o">-</span><span class="mi">4383</span><span class="o">-</span><span class="n">b031</span><span class="o">-</span><span class="mf">294e51487</span><span class="n">ae9</span>    <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno2</span><span class="nd">@if_packets</span><span class="p">:</span> <span class="mi">0</span><span class="n">aa3fb64</span><span class="o">-</span><span class="mi">764</span><span class="n">f</span><span class="o">-</span><span class="mi">402</span><span class="n">b</span><span class="o">-</span><span class="n">b9eb</span><span class="o">-</span><span class="mi">6</span><span class="n">fb47e3d0efc</span>   <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno3</span><span class="nd">@if_dropped</span><span class="p">:</span> <span class="mi">23</span><span class="n">c59f0f</span><span class="o">-</span><span class="n">d018</span><span class="o">-</span><span class="mi">4538</span><span class="o">-</span><span class="n">a387</span><span class="o">-</span><span class="mi">90</span><span class="n">bd5809a0f0</span>   <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno3</span><span class="nd">@if_errors</span><span class="p">:</span> <span class="n">c8ab32bb</span><span class="o">-</span><span class="mf">02e7</span><span class="o">-</span><span class="mi">48</span><span class="n">f7</span><span class="o">-</span><span class="mi">8</span><span class="n">a67</span><span class="o">-</span><span class="mi">92</span><span class="n">cf96aa6974</span>    <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno3</span><span class="nd">@if_octets</span><span class="p">:</span> <span class="n">be37ef63</span><span class="o">-</span><span class="mi">9</span><span class="n">ed5</span><span class="o">-</span><span class="mi">4547</span><span class="o">-</span><span class="mf">851e-46</span><span class="n">f1aa2e91d6</span>    <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno3</span><span class="nd">@if_packets</span><span class="p">:</span> <span class="mi">149</span><span class="n">ae533</span><span class="o">-</span><span class="mi">2</span><span class="n">f03</span><span class="o">-</span><span class="mi">4</span><span class="n">a87</span><span class="o">-</span><span class="mi">91</span><span class="n">a6</span><span class="o">-</span><span class="mi">6</span><span class="n">aa0f8a541b3</span>   <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno4</span><span class="nd">@if_dropped</span><span class="p">:</span> <span class="mi">6</span><span class="n">b8285d5</span><span class="o">-</span><span class="mf">7e87</span><span class="o">-</span><span class="mi">4</span><span class="n">f10</span><span class="o">-</span><span class="mi">8</span><span class="n">abc</span><span class="o">-</span><span class="mi">1</span><span class="n">ac848bf8240</span>   <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno4</span><span class="nd">@if_errors</span><span class="p">:</span> <span class="mi">0</span><span class="n">dcd9925</span><span class="o">-</span><span class="n">c6e6</span><span class="o">-</span><span class="mi">480</span><span class="n">d</span><span class="o">-</span><span class="mi">88</span><span class="n">cb</span><span class="o">-</span><span class="mi">6</span><span class="n">eb099cd4650</span>    <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno4</span><span class="nd">@if_octets</span><span class="p">:</span> <span class="mi">4</span><span class="n">ff866fd</span><span class="o">-</span><span class="n">d5ef</span><span class="o">-</span><span class="mi">4</span><span class="n">a55</span><span class="o">-</span><span class="n">aeab</span><span class="o">-</span><span class="mi">7</span><span class="n">cfbe1ac1f28</span>    <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">eno4</span><span class="nd">@if_packets</span><span class="p">:</span> <span class="mi">0</span><span class="n">fe10bf7</span><span class="o">-</span><span class="mi">79</span><span class="n">ab</span><span class="o">-</span><span class="mi">4</span><span class="n">bfb</span><span class="o">-</span><span class="n">aa6b</span><span class="o">-</span><span class="mi">64</span><span class="n">efd3b925c1</span>   <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">lo</span><span class="nd">@if_dropped</span><span class="p">:</span> <span class="mi">39318</span><span class="n">dc7</span><span class="o">-</span><span class="n">f008</span><span class="o">-</span><span class="mi">4258</span><span class="o">-</span><span class="mi">8832</span><span class="o">-</span><span class="mi">457</span><span class="n">c90193924</span>     <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">lo</span><span class="nd">@if_errors</span><span class="p">:</span> <span class="n">f3998907</span><span class="o">-</span><span class="mi">786</span><span class="n">f</span><span class="o">-</span><span class="mi">4</span><span class="n">ffd</span><span class="o">-</span><span class="n">a47b</span><span class="o">-</span><span class="n">bea1f4b9ad97</span>      <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">lo</span><span class="nd">@if_octets</span><span class="p">:</span> <span class="n">f01791f8</span><span class="o">-</span><span class="mi">8939</span><span class="o">-</span><span class="mi">4</span><span class="n">bf3</span><span class="o">-</span><span class="n">aae7</span><span class="o">-</span><span class="n">abb1e4bffc2e</span>      <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">interface</span><span class="o">-</span><span class="n">lo</span><span class="nd">@if_packets</span><span class="p">:</span> <span class="mi">6</span><span class="n">aaf06ee</span><span class="o">-</span><span class="mi">5</span><span class="n">a8d</span><span class="o">-</span><span class="mi">49</span><span class="n">f2</span><span class="o">-</span><span class="n">b7b9</span><span class="o">-</span><span class="n">c1d27841a89b</span>     <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">load</span><span class="nd">@load</span><span class="p">:</span> <span class="mi">8</span><span class="n">d6132f8</span><span class="o">-</span><span class="mf">6e60</span><span class="o">-</span><span class="mi">409</span><span class="n">b</span><span class="o">-</span><span class="mi">8</span><span class="n">d64</span><span class="o">-</span><span class="mi">7092491</span><span class="n">aa9db</span>                   <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">memory</span><span class="nd">@memory</span><span class="o">.</span><span class="n">buffered</span><span class="p">:</span> <span class="n">a6ad6e20</span><span class="o">-</span><span class="n">f951</span><span class="o">-</span><span class="mi">4152</span><span class="o">-</span><span class="n">aac3</span><span class="o">-</span><span class="n">d6d081c33c09</span>      <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">memory</span><span class="nd">@memory</span><span class="o">.</span><span class="n">cached</span><span class="p">:</span> <span class="n">ca0e3b30</span><span class="o">-</span><span class="n">b450</span><span class="o">-</span><span class="mi">484</span><span class="n">b</span><span class="o">-</span><span class="n">ac41</span><span class="o">-</span><span class="n">a03424da279b</span>        <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">memory</span><span class="nd">@memory</span><span class="o">.</span><span class="n">free</span><span class="p">:</span> <span class="mi">7</span><span class="n">aee53a8</span><span class="o">-</span><span class="mi">93</span><span class="n">f9</span><span class="o">-</span><span class="mi">4</span><span class="n">bac</span><span class="o">-</span><span class="mf">92e3</span><span class="o">-</span><span class="mi">7694</span><span class="n">b219c698</span>          <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">memory</span><span class="nd">@memory</span><span class="o">.</span><span class="n">slab_recl</span><span class="p">:</span> <span class="mi">074897</span><span class="n">b8</span><span class="o">-</span><span class="n">c40e</span><span class="o">-</span><span class="mi">4538</span><span class="o">-</span><span class="mi">9</span><span class="n">ef6</span><span class="o">-</span><span class="mi">69338764</span><span class="n">bed3</span>     <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">memory</span><span class="nd">@memory</span><span class="o">.</span><span class="n">slab_unrecl</span><span class="p">:</span> <span class="mi">1</span><span class="n">bb6c19d</span><span class="o">-</span><span class="n">e788</span><span class="o">-</span><span class="mi">40</span><span class="n">cd</span><span class="o">-</span><span class="mi">98</span><span class="n">f0</span><span class="o">-</span><span class="mi">0</span><span class="n">c5820e03563</span>   <span class="o">|</span>
+<span class="o">|</span>                       <span class="o">|</span> <span class="n">memory</span><span class="nd">@memory</span><span class="o">.</span><span class="n">used</span><span class="p">:</span> <span class="mi">8</span><span class="n">b56e1ea</span><span class="o">-</span><span class="mi">0</span><span class="n">aaa</span><span class="o">-</span><span class="mi">4</span><span class="n">c1b</span><span class="o">-</span><span class="mi">9462</span><span class="o">-</span><span class="n">f3698bad2ca7</span>          <span class="o">|</span>
+<span class="o">|</span> <span class="n">original_resource_id</span>  <span class="o">|</span> <span class="mi">304</span><span class="n">dc702</span><span class="o">-</span><span class="n">c57a</span><span class="o">-</span><span class="mi">471</span><span class="n">c</span><span class="o">-</span><span class="mi">81</span><span class="n">df</span><span class="o">-</span><span class="mf">6e711</span><span class="n">d793e50</span>                              <span class="o">|</span>
+<span class="o">|</span> <span class="n">project_id</span>            <span class="o">|</span> <span class="kc">None</span>                                                              <span class="o">|</span>
+<span class="o">|</span> <span class="n">revision_end</span>          <span class="o">|</span> <span class="kc">None</span>                                                              <span class="o">|</span>
+<span class="o">|</span> <span class="n">revision_start</span>        <span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">15</span><span class="n">T15</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mf">18.495824</span><span class="o">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>                                  <span class="o">|</span>
+<span class="o">|</span> <span class="n">started_at</span>            <span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">15</span><span class="n">T15</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mf">18.495781</span><span class="o">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>                                  <span class="o">|</span>
+<span class="o">|</span> <span class="nb">type</span>                  <span class="o">|</span> <span class="n">generic</span>                                                           <span class="o">|</span>
+<span class="o">|</span> <span class="n">user_id</span>               <span class="o">|</span> <span class="kc">None</span>                                                              <span class="o">|</span>
+<span class="o">+-----------------------+-------------------------------------------------------------------+</span>
+</pre></div>
+</div>
+<p>To get all the measurements of a particular metric, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gnocchi<span class="w"> </span>measures<span class="w"> </span>show<span class="w"> </span>&lt;metric_name&gt;<span class="w"> </span>--resource-id<span class="w"> </span>&lt;instance_id&gt;<span class="w"> </span>--refresh
+</pre></div>
+</div>
+<p>For example, to get measurements of used memory over time for instance <code class="docutils literal notranslate"><span class="pre">d17d5191-af60-4407-9ed2-e3d48e86ac6d</span></code>, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gnocchi<span class="w"> </span>measures<span class="w"> </span>show<span class="w"> </span>memory@memory.used<span class="w"> </span>--resource-id<span class="w"> </span>d17d5191-af60-4407-9ed2-e3d48e86ac6d<span class="w"> </span>--refresh
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You may notice that each metric has been assigned a <em>UUID</em> to it. Therefore, instead of providing <code class="docutils literal notranslate"><span class="pre">metric</span> <span class="pre">name</span></code>, you can provide <code class="docutils literal notranslate"><span class="pre">metric</span> <span class="pre">uuid</span></code>.</p>
+</div>
+<p>This will show the latest measurements of that metric with granularity set to 1.0, as well as aggregate values (by default, the mean) over one minute and one hour. Other aggregation methods can be used with the <code class="docutils literal notranslate"><span class="pre">--aggregation</span></code> option, such as <code class="docutils literal notranslate"><span class="pre">std</span></code>, <code class="docutils literal notranslate"><span class="pre">count</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code> and <code class="docutils literal notranslate"><span class="pre">sum</span></code>. Your results may appear like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---------------------------+-------------+---------------+</span>
+<span class="o">|</span> <span class="n">timestamp</span>                 <span class="o">|</span> <span class="n">granularity</span> <span class="o">|</span>         <span class="n">value</span> <span class="o">|</span>
+<span class="o">+---------------------------+-------------+---------------+</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>      <span class="mf">3600.0</span> <span class="o">|</span>  <span class="mf">1222193280.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>        <span class="mf">60.0</span> <span class="o">|</span>  <span class="mf">1222684672.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>        <span class="mf">60.0</span> <span class="o">|</span> <span class="mf">1222394538.67</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>        <span class="mf">60.0</span> <span class="o">|</span> <span class="mf">1222147413.33</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">20</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222684672.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">30</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222684672.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">40</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222684672.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">50</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222684672.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222684672.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">10</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222684672.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">20</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222684672.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">30</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1221943296.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">40</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222438912.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">50</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1221931008.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1221931008.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">10</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1221931008.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">20</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1221931008.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">30</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222373376.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">40</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222369280.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="n">T18</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">50</span><span class="o">+</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>  <span class="mf">1222348800.0</span> <span class="o">|</span>
+<span class="o">+---------------------------+-------------+---------------+</span>
+</pre></div>
+</div>
+<p>By default, metrics are stored with an archive policy set to “high”, which is defined to keep data as:</p>
+<ul class="simple">
+<li><p>Per second granularity for the last hour</p></li>
+<li><p>Per minute granularity for the last week</p></li>
+<li><p>Per hour granularity for a year</p></li>
+</ul>
+<p>However, note that since <code class="docutils literal notranslate"><span class="pre">collectd</span></code> is configured to collect metrics only every 10 seconds, there is no metric measurement for each second but every 10 seconds.</p>
+<section id="configuring-collectd">
+<span id="configure-collectd"></span><h3>Configuring <code class="docutils literal notranslate"><span class="pre">collectd</span></code><a class="headerlink" href="#configuring-collectd" title="Permalink to this heading"></a></h3>
+<p>While only a few <code class="docutils literal notranslate"><span class="pre">collectd</span></code> plugins are enabled by default, you can leverage the large collection of <a class="reference external" href="https://collectd.org/wiki/index.php/Table_of_Plugins">available plugins</a>. To enable a plugin on your instance, edit the instance’s <code class="docutils literal notranslate"><span class="pre">/etc/collectd.conf</span></code> file. Uncomment each <code class="docutils literal notranslate"><span class="pre">LoadPlugin</span> <span class="pre">&lt;plugin_name&gt;</span></code> line that you wish to enable. Then, restart collectd with the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>collectd
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">collectd</span></code> configured to send measurements by batch to minimize network traffic. However, if you want to avoid any interference during your experiments, you can disable <code class="docutils literal notranslate"><span class="pre">collectd</span></code> with the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>collectd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>disable<span class="w"> </span>collectd
+</pre></div>
+</div>
+</section>
+<section id="metrics-for-bare-metal-nodes">
+<h3>Metrics for bare metal nodes<a class="headerlink" href="#metrics-for-bare-metal-nodes" title="Permalink to this heading"></a></h3>
+<p>Chameleon automatically collects power usage and temperature data on all nodes in the system. Instantaneous power usage data (in watts) and temperature readings (in Celsius) are collected through the IPMI interface on the chassis controller for the nodes. This “out-of-band” approach does not consume additional power on the node itself and runs even when the node is powered off.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Temperature metrics are currently collected from the CPU sensor on each node. These temperature readings are only reported while the node is powered on.</p>
+</div>
+<p>As with the system metrics, retrieving these automatically collected metrics for a node requires the OpenStack CLI and Gnocchi client plugin (see installation instructions <a class="reference internal" href="#setting-up-the-gnocchi-cli">Setting up the Gnocchi CLI</a> above). To get a list of metrics available for a node, use this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gnocchi<span class="w"> </span>resource<span class="w"> </span>show<span class="w"> </span>&lt;node_uuid&gt;
+</pre></div>
+</div>
+<p>To retrieve a specifc reading:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gnocchi<span class="w"> </span>measures<span class="w"> </span>show<span class="w"> </span>&lt;reading-name&gt;<span class="w"> </span>--resource-id<span class="o">=</span>&lt;node_uuid&gt;<span class="w"> </span>--refresh
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The node UUID and the instance UUID are different. You can get a node’s UUID for a reservation from the Horizon GUI (<a class="reference external" href="https://chi.tacc.chameleoncloud.org">https://chi.tacc.chameleoncloud.org</a> for TACC reservations, <a class="reference external" href="https://chi.uc.chameleoncloud.org">https://chi.uc.chameleoncloud.org</a> for UC reservations).  Click on your lease name from within the list of leases on the Leases subtab within the Reservations tab. The node UUID is at the very bottom under the <code class="docutils literal notranslate"><span class="pre">Nodes</span></code> section.  You can also find an individual instance node UUID on the instance details page.  Click on your instance name on the Instances tab and see <code class="docutils literal notranslate"><span class="pre">Physical</span> <span class="pre">Host</span> <span class="pre">Name</span></code></p>
+</div>
+<p>For example, issuing the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gnocchi<span class="w"> </span>measures<span class="w"> </span>show<span class="w"> </span>power<span class="w"> </span>--resource-id<span class="o">=</span>05dd5e25-440f-4492-b3b8-9d39af83b8bc<span class="w"> </span>--refresh
+</pre></div>
+</div>
+<p>returns the following power results for node with id <code class="docutils literal notranslate"><span class="pre">05dd5e25-440f-4492-b3b8-9d39af83b8bc</span></code>. The output below has been truncated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---------------------------+-------------+--------------------+</span>
+<span class="o">|</span> <span class="n">timestamp</span>                 <span class="o">|</span> <span class="n">granularity</span> <span class="o">|</span>              <span class="n">value</span> <span class="o">|</span>
+<span class="o">+---------------------------+-------------+--------------------+</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="n">T07</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>      <span class="mf">3600.0</span> <span class="o">|</span> <span class="mf">3.6990394736842047</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="n">T08</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>      <span class="mf">3600.0</span> <span class="o">|</span> <span class="mf">3.6944069767441814</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="n">T09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>      <span class="mf">3600.0</span> <span class="o">|</span> <span class="mf">3.7072767295597435</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="n">T10</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>      <span class="mf">3600.0</span> <span class="o">|</span>  <span class="mf">3.674499999999995</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="n">T11</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>      <span class="mf">3600.0</span> <span class="o">|</span>  <span class="mf">3.708236024844716</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="n">T12</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>      <span class="mf">3600.0</span> <span class="o">|</span> <span class="mf">3.6747818181818137</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="n">T13</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>      <span class="mf">3600.0</span> <span class="o">|</span>  <span class="mf">3.706847058823526</span> <span class="o">|</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T08</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">43</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>              <span class="mf">3.537</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>              <span class="mf">3.996</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">23</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>              <span class="mf">3.847</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T08</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>              <span class="mf">4.145</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T08</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">23</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>              <span class="mf">4.145</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T08</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">43</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>              <span class="mf">3.686</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T08</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>              <span class="mf">3.847</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T08</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">23</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>              <span class="mf">3.686</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T08</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">43</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>         <span class="mf">1.0</span> <span class="o">|</span>              <span class="mf">3.847</span> <span class="o">|</span>
+<span class="o">+---------------------------+-------------+--------------------+</span>
+</pre></div>
+</div>
+<p>To retrieve a metric for a specific time interval, pass the <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">stop</span></code> parameters; for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gnocchi measures show temperature_cpu --start 2018-11-27T02:00:00 --stop 2018-11-27T03:00:00 --resource-id=f3f47a67-d805-48d4-9584-f0143ae976cf --refresh
+</pre></div>
+</div>
+<p>returns:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---------------------------+-------------+---------------+</span>
+<span class="o">|</span> <span class="n">timestamp</span>                 <span class="o">|</span> <span class="n">granularity</span> <span class="o">|</span>         <span class="n">value</span> <span class="o">|</span>
+<span class="o">+---------------------------+-------------+---------------+</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">61.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">61.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">61.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">61.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">58.6</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span> <span class="mf">56.5333333333</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">56.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">56.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">56.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">56.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">56.0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">27</span><span class="n">T02</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">00</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="o">|</span>       <span class="mf">300.0</span> <span class="o">|</span>          <span class="mf">56.0</span> <span class="o">|</span>
+<span class="o">+---------------------------+-------------+---------------+</span>
+</pre></div>
+</div>
+</section>
+<section id="energy-and-power-consumption-measurement-with-etrace2">
+<h3>Energy and Power Consumption Measurement with <code class="docutils literal notranslate"><span class="pre">etrace2</span></code><a class="headerlink" href="#energy-and-power-consumption-measurement-with-etrace2" title="Permalink to this heading"></a></h3>
+<p>The <a class="reference external" href="https://www.chameleoncloud.org/appliances/1/">CC-CentOS7</a>, <a class="reference external" href="https://www.chameleoncloud.org/appliances/83/">CC-CentOS8</a>, <a class="reference external" href="https://www.chameleoncloud.org/appliances/19/">CC-Ubuntu16.04</a> and <a class="reference external" href="https://www.chameleoncloud.org/appliances/69/">CC-Ubuntu18.04</a> appliances,
+as well as all Chameleon supported images dervied from them, now include support for reporting energy and power consumption of each CPU socket and of memory DIMMs.
+It is done with the <code class="docutils literal notranslate"><span class="pre">etrace2</span></code> utility which relies on the <a class="reference external" href="https://01.org/blogs/2014/running-average-power-limit-%E2%80%93-rapl">Intel RAPL (Running Average Power Limit)</a> interface.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Currenly, <code class="docutils literal notranslate"><span class="pre">etrace2</span></code> requires a kernel feature that is not supported on our ARM nodes.</p>
+</div>
+<p>To spawn your program and print energy consumption:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>etrace2<span class="w"> </span>&lt;your_program&gt;
+</pre></div>
+</div>
+<p>To print power consumption every 0.5 second:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>etrace2<span class="w"> </span>-i<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>&lt;your_program&gt;
+</pre></div>
+</div>
+<p>To print power consumption every 1 second for 10 seconds:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>etrace2<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span>.0<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span>
+</pre></div>
+</div>
+<p>For example, to report energy consumption during the generation of a large RSA private key:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ etrace2 openssl genrsa -out private.pem 4096
+# ETRACE2_VERSION=0.1
+Generating RSA private key, 4096 bit long modulus
+..............................................................................................................................................................................................................................................................................................................++
+.............................................................................................................................................................++
+e is 65537 (0x10001)
+# ELAPSED=2.579472
+# ENERGY=365.788208
+# ENERGY_SOCKET0=99.037841
+# ENERGY_DRAM0=78.577698
+# ENERGY_SOCKET1=109.230103
+# ENERGY_DRAM1=80.336548
+</pre></div>
+</div>
+<p>The energy consumption is reported in joules.</p>
+<p><code class="docutils literal notranslate"><span class="pre">etrace2</span></code> reports power and energy consumption of CPUs and memory of the node during the entire execution of the program. This will include consumption of other programs running during this period, as well as power and energy consumption of CPUs and memory under idle load.</p>
+<p>Note the following caveats:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://01.org/blogs/2014/running-average-power-limit-%E2%80%93-rapl">Intel</a> documents that the RAPL is not an analog power meter, but rather uses a software power model. This software power model estimates energy usage by using hardware performance counters and I/O models. Based on their measurements, they match actual power measurements.</p></li>
+<li><p>In some situations the total <em>ENERGY</em> value is incorrectly reported as a value equal or close to zero. However, the sum of <em>ENERGY_SOCKET</em> and <em>ENERGY_DRAM</em> values should be accurate.</p></li>
+<li><p>Monitoring periods larger than 10-15 minutes may be inaccurate due to RAPL registers overflowing if they’re not read regularly.</p></li>
+</ul>
+<p>This <a class="reference external" href="https://github.com/coolr-hpc/intercoolr">utility</a>  was contributed by Chameleon user <a class="reference external" href="http://www.mcs.anl.gov/person/kazutomo-yoshii">Kazutomo Yoshii</a> of <a class="reference external" href="http://www.anl.gov/">Argonne National Laboratory</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Linux kernel version of <a class="reference external" href="https://www.chameleoncloud.org/appliances/19/">CC-Ubuntu16.04</a> is too old to use <code class="docutils literal notranslate"><span class="pre">etrace2</span></code> on Chameleon <strong>Skylake</strong> nodes.
+To solve the problem, simply upgrade the Linux kernel.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

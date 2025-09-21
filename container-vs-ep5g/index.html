@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running a container towards EP5G &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running a container towards Telenor Edge" href="../container-vs-telenor/index.html" />
+    <link rel="prev" title="Network definition for EP5G" href="../network-ep5g/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running a container towards EP5G</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-reserve-a-worker-node">Step 1: Reserve a worker node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-reserve-ep5g-and-define-edge-networking">Step 2: Reserve EP5G and define edge networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-create-a-container">Step 3: Create a container</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Running a container towards EP5G</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/container-vs-ep5g/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-a-container-towards-ep5g">
+<span id="container-vs-ep5g"></span><h1>Running a container towards EP5G<a class="headerlink" href="#running-a-container-towards-ep5g" title="Permalink to this heading"></a></h1>
+<p>This guide will walk you through the steps of running a server container on a worker node, complete with networking definitions that allow
+clients using EP5G to communicate with the server container application.</p>
+<section id="step-1-reserve-a-worker-node">
+<h2>Step 1: Reserve a worker node<a class="headerlink" href="#step-1-reserve-a-worker-node" title="Permalink to this heading"></a></h2>
+<p>See the “reservation of a worker node” section.</p>
+</section>
+<section id="step-2-reserve-ep5g-and-define-edge-networking">
+<h2>Step 2: Reserve EP5G and define edge networking<a class="headerlink" href="#step-2-reserve-ep5g-and-define-edge-networking" title="Permalink to this heading"></a></h2>
+<p>See the “Network definittion for EP5G” section. The subnet “10.70.70.0/24” subnet defined at the end there, for
+communication with a container in a worker node, will be used here towards the container application.</p>
+</section>
+<section id="step-3-create-a-container">
+<h2>Step 3: Create a container<a class="headerlink" href="#step-3-create-a-container" title="Permalink to this heading"></a></h2>
+<p>We will here create a container with the “Openrtist” backend application. “Openrtist” has two parts, a client and a backend application.
+The client sends a video feed to the backend, which processes it and sends it back to the client with the appearance
+inspired by famous paintings. The client, in this case, will run on a user of the EP5G system.</p>
+<ul class="simple">
+<li><p>From the ExPECA home page, click <em>Container</em> -&gt; <em>Containers</em></p></li>
+</ul>
+<figure class="screenshot align-default">
+<img alt="Containers main page" src="../_images/containers1.png" />
+</figure>
+<ul class="simple">
+<li><p>Click <em>+ Create Container</em></p></li>
+<li><p>Under <em>Info</em> tab, give the container the name “openrtist”</p></li>
+<li><p>Type “cmusatyalab/openrtist:stable” as image name</p></li>
+</ul>
+<figure class="screenshot align-default">
+<img alt="Create container, first screen" src="../_images/create_container011.png" />
+</figure>
+<ul class="simple">
+<li><p>Under <em>Networks</em> tab, click the arrow to the right of the network you have defined for local communication with containers.
+It will then move up to the “allocated” section. In this case, that network name is “edge-net”</p></li>
+</ul>
+<figure class="screenshot align-default">
+<img alt="Create container, second screen" src="../_images/create_container021.png" />
+</figure>
+<ul class="simple">
+<li><p>Under <em>Labels</em> tab, define the network interface we will use in the worker node, the IP address to use for the container, and the running_container
+we will use to route traffic back towards the EP5G network. In this case, it is
+“networks.1.interface=ens1,networks.1.ip=10.70.70.30/24,networks.1.routes=172.16.0.0/16-10.70.70.1”</p></li>
+<li><p>Note that the interface is picked from the Hardware Discovery section for your chosen worker node, the IP is picked from the subnet of your “local network”,
+and the route back to EP5G uses the subnet of EP5G (172.16.0.0/16) and the default gateway of your “local network”. “Local network”, in this case, is
+“edge-net”.</p></li>
+</ul>
+<figure class="screenshot align-default">
+<img alt="Create container, second screen" src="../_images/create_container03a.png" />
+</figure>
+<figure class="screenshot align-default">
+<img alt="Create container, second screen" src="../_images/create_container031.png" />
+</figure>
+<ul class="simple">
+<li><p>Under <em>Scheduler Hints</em> tab, add “reservation” as hint</p></li>
+<li><p>Paste the “reservation ID” for the worker node lease you have created. Note that the
+“reservation ID” can be obtained from <em>Reservations</em> -&gt; <em>Leases</em> -&gt; click on your lease.</p></li>
+</ul>
+<figure class="screenshot align-default">
+<img alt="Create container, second screen" src="../_images/create_container04.png" />
+</figure>
+<figure class="screenshot align-default">
+<img alt="Create container, third screen" src="../_images/create_container05.png" />
+</figure>
+<ul class="simple">
+<li><p>Now click on <em>Create</em> to create your container. After a short time, the container is created, and by default should be running.</p></li>
+<li><p>You should now be able to run the “openrtist” client from a user device using the EP5G system. The IP address of the server application would
+be the 10.70.70.30 address picked for the container in the worker node.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../network-ep5g/index.html" class="btn btn-neutral float-left" title="Network definition for EP5G" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../container-vs-telenor/index.html" class="btn btn-neutral float-right" title="Running a container towards Telenor Edge" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
