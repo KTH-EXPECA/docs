@@ -69,7 +69,7 @@ Step 2: Create a router
   :alt: Router interface defined
   :figclass: screenshot
 
-* Under *Static Routes* tab, type destination CIDR 172.16.0.0/16 and next hop 10.30.111.10, so traffic in direction towards end users
+* Under *Static Routes* tab, type destination CIDR 172.16.0.0/16 and next hop 10.30.111.10, so that traffic in direction towards end users
   (wireless Advantech routers, in this case) is routed
 
 .. figure:: router8.png
