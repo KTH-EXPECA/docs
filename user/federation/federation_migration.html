@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Migrating to federated identity &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Migrating to federated identity</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/user/federation/federation_migration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="migrating-to-federated-identity">
+<span id="federation-migration"></span><h1>Migrating to federated identity<a class="headerlink" href="#migrating-to-federated-identity" title="Permalink to this heading"></a></h1>
+<p>Federated login enables users to use a single set of credentials to log into
+many different services. For example, federated login allows you to use your
+institutional credentials to log into Chameleon–there is no need to create a
+new account. To leverage its <a class="reference external" href="https://www.chameleoncloud.org/learn/frequently-asked-questions/#toc-why-did-chameleon-move-to-federated-login-">many benefits</a>,
+Chameleon is migrating to federated identity and will eventually drop support
+for signing in via legacy Chameleon accounts. Existing Chameleon users can link
+their existing Chameleon account to a federated identity account so that they
+preserve their project memberships, disk images, volumes, SSH key pairs, and
+other data saved over time.</p>
+<p>To ease the transition, during the <a class="reference external" href="https://www.chameleoncloud.org/learn/frequently-asked-questions/#toc-what-is-the-schedule-for-migration-to-federated-identity-">migration period</a>
+you can log in via your old Chameleon account as well as the federated account.
+Existing users however are highly encouraged to migrate to a federated account
+as soon as possible. Read more about federated identity, how it has been
+implemented, as well as the migration schedule in <a class="reference external" href="https://www.chameleoncloud.org/learn/frequently-asked-questions/#toc-federated-login">our FAQ</a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Existing Chameleon users should go through the following account linking
+process <strong>before</strong> attempting to sign in with federated identity. Signing in
+before linking accounts can lead to you accidentally creating a new Chameleon
+account, if we cannot match the email address on your federated account to
+the one you used when registering for Chameleon.</p>
+</div>
+<section id="step-by-step-instructions">
+<h2>Step-by-step instructions<a class="headerlink" href="#step-by-step-instructions" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Sign in</strong> to the <a class="reference external" href="https://auth.chameleoncloud.org/auth/realms/chameleon/protocol/openid-connect/auth?client_id=account&amp;redirect_uri=https%3A%2F%2Fauth.chameleoncloud.org%2Fauth%2Frealms%2Fchameleon%2Faccount%2Fidentity&amp;response_type=code&amp;scope=openid&amp;kc_idp_hint=tacc">Chameleon identity management interface</a>.
+You will see a screen that prompts you for your existing Chameleon username
+and password.</p>
+<figure class="screenshot align-default">
+<img alt="Sign in to identity management with your Chameleon credentials" src="../../_images/idp-tas-authenticate.png" />
+</figure>
+</li>
+<li><p>Once authenticated, you will be taken to a page showing all the identities
+(credentials) linked to your Chameleon user account. <strong>Click the “Add”
+button</strong> next to the entry for the Globus identity to iniate another login
+via federated identity. You can pick whichever login method you choose; your
+federated identity need not be tied to the same email address or username as
+your existing Chameleon account if you wish.</p>
+<figure class="screenshot align-default">
+<img alt="Link your Chameleon user account to a federated identity" src="../../_images/idp-link-identity.png" />
+</figure>
+<p>Once added, your linked federated identity can be used to log in to your
+existing Chameleon account in the future, and you no longer need to use your
+Chameleon username and password to login to any part of the Chameleon
+infrastructure.</p>
+</li>
+<li><p>If you try to log in to any of the testbed sites with your linked federated
+identity, you may notice that some of your data is missing, namely:</p>
+<ul class="simple">
+<li><p><em>disk images</em>, <em>snapshots</em> and <em>volumes</em> you or other project members have
+created in the past,</p></li>
+<li><p><em>active or pending leases</em> you made,</p></li>
+<li><p><em>SSH keypairs</em> you previously associated with your account, and</p></li>
+<li><p><em>active server instances</em> launched recently</p></li>
+</ul>
+<p>Migrating to federated identity effectively creates a new account for you in
+the system, so in order to retain access to some of your saved data, a short
+data migration is necessary.</p>
+<p><strong>Go to the</strong> <a class="reference external" href="https://www.chameleoncloud.org/user/migrate/"><strong>migration page</strong></a> in the Chameleon user
+portal to start this process (<strong>note</strong>: ensure you now log in to the user
+portal using federated login, and not the old sign-in page!)</p>
+<p>You should see a page that looks like the following.</p>
+<figure class="screenshot align-default">
+<img alt="The account migration helper page." src="../../_images/account-migration-page.png" />
+</figure>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Not all data can be migrated to your new account. Leases and active server
+instances will remain on your old account. If you wish to access these,
+you can log in to the testbed site using the old sign in method.</p>
+</div>
+</li>
+<li><p><strong>Trigger a migration of your user</strong> to copy over any SSH keypairs you
+previously associated with your account.</p></li>
+<li><p><strong>Trigger migrations of projects</strong> you are a member of to associate any disk
+images, snapshots and volumes to your new account. This only needs to be
+done once by any member of the project, but can also be re-run in the event
+that you or other project members create disk images/snapshots under their
+old account.</p></li>
+<li><p>You should now have access to your old data via your new account linked to
+your federated identity!</p></li>
+</ol>
+</section>
+<section id="using-the-cli">
+<h2>Using the CLI<a class="headerlink" href="#using-the-cli" title="Permalink to this heading"></a></h2>
+<p>If you use the <a class="reference internal" href="../../technical/cli.html#cli"><span class="std std-ref">command line interface</span></a> when interacting with
+Chameleon (or use another tool that interfaces directly with Chameleon’s APIs),
+you will no longer be able to authenticate with a username and password. You
+should re-download your <a class="reference internal" href="../../technical/cli.html#cli-rc-script"><span class="std std-ref">RC file</span></a> and use it when invoking
+the CLI, as it will have new authentication parameters compatible with your
+account pre-filled.</p>
+<p>You can also look in to generating an <a class="reference internal" href="../../technical/cli.html#cli-application-credential"><span class="std std-ref">application credential</span></a> for your command line client or app, which may be
+simpler.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

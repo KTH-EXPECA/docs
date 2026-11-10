@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command Line Interface (CLI) &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Command Line Interface (CLI)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/cli.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="command-line-interface-cli">
+<span id="cli"></span><h1>Command Line Interface (CLI)<a class="headerlink" href="#command-line-interface-cli" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>The Command Line Interface (CLI) provides a way to interact with Chameleon
+resources using shell and scripting tools. Chameleon uses the <a class="reference external" href="https://docs.openstack.org/python-openstackclient/latest/">OpenStack Client</a> to provide CLI
+functionality. This documentation section provides an overview on how to install
+the client and configure your shell environment to access Chameleon features.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Some of the Chameleon features are <strong>only</strong> accessable via the CLI, such as
+the Gnocchi metrics and the advanced networking features.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Chameleon Cloud is primarily designed to support Unix-like environments.
+Threfore, it is highly recommended using CLI in a Unix-like system. For
+Windows 10 users, you may want to enable <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux</a> to get better
+experience with the Chameleon CLI.</p>
+</div>
+</section>
+<section id="installing-the-cli">
+<span id="cli-installing"></span><h2>Installing the CLI<a class="headerlink" href="#installing-the-cli" title="Permalink to this heading"></a></h2>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Python</strong> - Check if you have Python installed.</p></li>
+<li><p><strong>pip</strong> - If you’re using Python 3.4 (or greater), then pip comes installed
+with Python by default.</p></li>
+</ol>
+</section>
+<section id="openstack-client-installation">
+<h3>OpenStack Client Installation<a class="headerlink" href="#openstack-client-installation" title="Permalink to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Install the CLI by typing <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">python-openstackclient</span></code> in the
+terminal.</p></li>
+<li><p>Verify that it has installed correctly by typing <code class="docutils literal notranslate"><span class="pre">openstack</span></code>. You will
+enter the Openstack Client in interactive mode and your prompt should change
+to <code class="docutils literal notranslate"><span class="pre">(openstack)</span></code>.</p></li>
+<li><p>Exit the client by typing <code class="docutils literal notranslate"><span class="pre">exit</span></code>.</p></li>
+<li><p>There are some clients with new features or bugfixes not yet in the upstream
+release branches, notably the Blazar CLI client. If you want to make
+reservations via the CLI, you should install that here:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/chameleoncloud/python-blazarclient@chameleoncloud/xena
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="cli-authentication">
+<span id="id1"></span><h2>CLI authentication<a class="headerlink" href="#cli-authentication" title="Permalink to this heading"></a></h2>
+<p>When using the CLI, you have to provide some credentials so the system trusts
+that the operations are really being executed by your user account. There are
+two ways of doing this.</p>
+<section id="setting-a-cli-password">
+<h3>Setting a CLI password<a class="headerlink" href="#setting-a-cli-password" title="Permalink to this heading"></a></h3>
+<p>You can set a CLI password via the <a class="reference external" href="https://auth.chameleoncloud.org/auth/realms/chameleon/account/#/security/signingin">Chameleon Authentication Portal</a>. The
+password you associate with your account can not be used to log in to the GUI or
+Jupyter interfaces and can only be used to authenticate a command-line client.</p>
+<figure class="align-default" id="id2">
+<img alt="Setting a password in the Chameleon Authentication Portal" src="../_images/set_cli_password.png" />
+<figcaption>
+<p><span class="caption-text">Setting a password in the Chameleon Authentication Portal</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The benefit of this method is that this password will work on any Chameleon
+site.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should set a strong password for your CLI password, and it should not be
+a password you use elsewhere. Otherwise, your account risks being compromised
+by an attacker who has possibly obtained your password from another breached
+service. We <strong>highly</strong> recommend using a password manager e.g., <a class="reference external" href="https://bitwarden.com/">BitWarden</a>, <cite>LastPass
+&lt;https://www.lastpass.com/password-manager&gt;</cite>, or <a class="reference external" href="https://1password.com/">1Password</a> to assist.</p>
+</div>
+</section>
+<section id="creating-an-application-credential">
+<span id="cli-application-credential"></span><h3>Creating an application credential<a class="headerlink" href="#creating-an-application-credential" title="Permalink to this heading"></a></h3>
+<p>You can also generate <em>application credentials</em>, which act as dedicated one-off
+passwords that are authorized with the same permissions as your user account,
+within a single project. If you work on multiple projects simultaneously, you
+will need to generate one application credential for each project.</p>
+<p>To create an application credential, navigate to the “Identity” dashboard in the
+<a class="reference internal" href="gui.html#gui"><span class="std std-ref">Graphical User Interface (GUI)</span></a>, and go to the “Application Credentials” panel. Create a new
+application credential and name it something meaningful (such as “CLI access for
+project CH-XXX”). <strong>You will also need to check the “unrestricted” checkbox in
+order to use the CLI to make leases in Blazar</strong>. If you do not need to make
+reservations via the CLI, you can leave the box unchecked, as it is the safer
+option.</p>
+<figure class="align-default">
+<img alt="Creating an application credential via the GUI" src="../_images/applicationcredentials.png" />
+</figure>
+<p>Once the system generates the credential, you will be given the option to
+download an <a class="reference internal" href="#cli-rc-script"><span class="std std-ref">RC file</span></a> that configures the CLI to use the
+application credential for authentication. You will only see the secret
+credentials once, so make sure to save the RC file or the secret somewhere, as
+if it’s lost, you will have to delete the credential and create a new one.</p>
+</section>
+</section>
+<section id="the-openstack-rc-script">
+<span id="cli-rc-script"></span><h2>The OpenStack RC Script<a class="headerlink" href="#the-openstack-rc-script" title="Permalink to this heading"></a></h2>
+<p>You must use the <em>OpenStack RC Scripts</em> to configure the environment variables
+for accessing Chameleon features. You can downloaded the script from the
+Chameleon GUI at the <a class="reference internal" href="gui.html#gui-api-access"><span class="std std-ref">API Access</span></a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If you use the Chameleon supported (CC) images, you’ll find an <code class="docutils literal notranslate"><span class="pre">openrc</span></code>
+file with a service token in the home directory for the <code class="docutils literal notranslate"><span class="pre">cc</span></code> user. The file
+will be auto-sourced when you login, so you can use the
+<a class="reference internal" href="#using-cli"><span class="std std-ref">openstack</span></a> and the <a class="reference internal" href="swift.html#object-store-cli"><span class="std std-ref">swift</span></a> CLI
+directly, as well as the
+<a class="reference internal" href="images.html#cc-snapshot-utility"><span class="std std-ref">cc-snapshot</span></a> and the
+<a class="reference internal" href="swift.html#cc-cloudfuse"><span class="std std-ref">cc-cloudfuse</span></a> tools.</p>
+</div>
+<ol class="arabic">
+<li><p>Log in to the GUI at <a class="reference external" href="https://chi.tacc.chameleoncloud.org">CHI&#64;TACC</a> or <a class="reference external" href="https://chi.uc.chameleoncloud.org">CHI&#64;UC</a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Download the RC file from the site you would like to interact with. The
+RC files are different for each site.</p>
+</div>
+</li>
+<li><p>Select the project you wish to access via <a class="reference internal" href="gui.html#gui-project-menu"><span class="std std-ref">Project and Site Menu</span></a>.</p>
+<figure class="align-default" id="id3">
+<img alt="The Project Dropdown" src="../_images/project_dropdown.png" />
+<figcaption>
+<p><span class="caption-text">The Project Dropdown</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Download <em>OpenStack RC Script</em> using <a class="reference internal" href="gui.html#gui-user-menu"><span class="std std-ref">User Menu</span></a> by clicking on
+<em>Openstack RC File v3</em>.</p>
+<figure class="align-default" id="id4">
+<img alt="The OpenStack RC File v3 link in the User Dropdown" src="../_images/userdropdown.png" />
+<figcaption>
+<p><span class="caption-text">The OpenStack RC File v3 link in the User Dropdown</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Run the following command in the terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>&lt;path/to/openstack_rc_file&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command <strong>will not</strong> work for Windows users. Skip this step and the
+next step if you are using Windows system.</p>
+</div>
+</li>
+<li><p>Enter your password when prompted.</p></li>
+<li><p>For macOS/Linux users, your current terminal session has been configured to
+access your project. Now type <code class="docutils literal notranslate"><span class="pre">openstack</span></code> in your terminal session.</p>
+<p>For Windows users, you have to provide the environment variables in the
+<em>OpenStack RC</em> script as <code class="docutils literal notranslate"><span class="pre">openstack</span></code> command parameters. Run the following
+command in your Windows prompt:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>--os-auth-url<span class="w"> </span>&lt;OS_AUTH_URL&gt;<span class="w"> </span><span class="se">\</span>
+--os-project-id<span class="w"> </span>&lt;OS_PROJECT_ID&gt;<span class="w"> </span><span class="se">\</span>
+--os-project-name<span class="w"> </span>&lt;OS_PROJECT_NAME&gt;<span class="w"> </span><span class="se">\</span>
+--os-user-domain-name<span class="w"> </span>&lt;OS_USER_DOMAIN_NAME&gt;<span class="w"> </span><span class="se">\</span>
+--os-username<span class="w"> </span>&lt;OS_USERNAME&gt;<span class="w"> </span><span class="se">\</span>
+--os-password<span class="w"> </span>&lt;OS_PASSWORD&gt;<span class="w"> </span><span class="se">\</span>
+--os-region-name<span class="w"> </span>&lt;OS_REGION_NAME&gt;<span class="w"> </span><span class="se">\</span>
+--os-interface<span class="w"> </span>&lt;OS_INTERFACE&gt;<span class="w"> </span><span class="se">\</span>
+--os-identity-api-version<span class="w"> </span>&lt;OS_IDENTITY_API_VERSION&gt;
+</pre></div>
+</div>
+<p>Replace values of the parameters by reading from the <em>OpenStack RC</em> script.</p>
+<p>Another way to configure the OpenStack client for Windows users is to
+add/edit environment variables manually via <em>System Properties</em> window. Then,
+click on <em>Environment Variables…</em> button and manually add/edit the
+environment variables in <em>OpenStack RC Script</em>  to <em>Environment Variable</em>
+window.</p>
+<figure class="align-default" id="id5">
+<img alt="System Properties Window of Windows System" src="../_images/systemproperties.png" />
+<figcaption>
+<p><span class="caption-text">System Properties Window of Windows System</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For macOS/Linux users, every time when open a new terminal, you have to
+run the <code class="docutils literal notranslate"><span class="pre">source</span></code> command to access the OpenStack client.</p>
+</div>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>If you get authentication error, check if you input your password
+correctly.</p>
+</div>
+</li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">list</span></code> at the <code class="docutils literal notranslate"><span class="pre">(openstack)</span></code> prompt. You should see a list of
+the projects you belong to.</p>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>If you get permission error at this step, please check that:</p>
+<ul class="simple">
+<li><p>the terminal session has been configured correctly with the environment
+variables</p></li>
+<li><p>the <em>OpenStack RC</em> script you <code class="docutils literal notranslate"><span class="pre">source</span></code> is <strong>v3</strong></p></li>
+<li><p>the OpenStack client version is the latest. To check the OpenStack
+client version, use <code class="docutils literal notranslate"><span class="pre">openstack</span> <span class="pre">--version</span></code> command. Some older versions
+may cause errors.</p></li>
+</ul>
+</div>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>If you get the <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">value</span></code> error when using a command, it is likely
+that your terminal session has not been configured correctly and
+completely with the environment variables. The error may be fixed by
+re-running the <code class="docutils literal notranslate"><span class="pre">source</span></code> command over the OpenStack RC Script or using
+the command line switches.</p>
+</div>
+</li>
+</ol>
+</section>
+<section id="using-the-cli">
+<span id="using-cli"></span><h2>Using the CLI<a class="headerlink" href="#using-the-cli" title="Permalink to this heading"></a></h2>
+<p>You can use the CLI in either Interactive Mode or Shell Mode. In either mode,
+the OpenStack client has to be configured by using the <em>OpenStack RC Script</em> or
+by providing the command line switches. For more information about the usage of
+the OpenStack client, run <code class="docutils literal notranslate"><span class="pre">openstack</span> <span class="pre">--help</span></code>.</p>
+<section id="interactive-mode">
+<h3>Interactive Mode<a class="headerlink" href="#interactive-mode" title="Permalink to this heading"></a></h3>
+<p>The Interactive Mode allows you to use the <code class="docutils literal notranslate"><span class="pre">openstack</span></code> commands through an
+interactive prompt. To start the Interactive Mode, type <code class="docutils literal notranslate"><span class="pre">openstack</span></code> in the
+configured terminal. Once entering the Interactive Mode, you will see a
+<code class="docutils literal notranslate"><span class="pre">(openstack)</span></code> prompt. Type the command you would like to run at the prompt. To
+find out the commands, type <code class="docutils literal notranslate"><span class="pre">help</span></code>.</p>
+</section>
+<section id="shell-mode">
+<h3>Shell Mode<a class="headerlink" href="#shell-mode" title="Permalink to this heading"></a></h3>
+<p>Each CLI command can be used in your terminal exactly the same way that it
+appears in the Interactive Mode, simply by preceding the command with
+<code class="docutils literal notranslate"><span class="pre">openstack</span></code>. For example, the command <code class="docutils literal notranslate"><span class="pre">image</span> <span class="pre">list</span></code> in the Interactive Mode
+is equivalent to the command <code class="docutils literal notranslate"><span class="pre">openstack</span> <span class="pre">image</span> <span class="pre">list</span></code> in the Shell Mode.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

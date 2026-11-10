@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservation of an Advantech router &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reservation of EP5G" href="../reservation-ep5g/index.html" />
+    <link rel="prev" title="Reservation of an SDR" href="../reservation-sdr/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reservation of an Advantech router</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-check-hardware-discovery">Step 1: Check Hardware discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-reserving-an-advantech-router">Step 2: Reserving an Advantech router</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Reservation of an Advantech router</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reservation-advantech/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reservation-of-an-advantech-router">
+<span id="reservation-advantech"></span><h1>Reservation of an Advantech router<a class="headerlink" href="#reservation-of-an-advantech-router" title="Permalink to this heading"></a></h1>
+<p>This guide will walk you through the steps of looking up Advantech router resources and
+reserving a router.</p>
+<section id="step-1-check-hardware-discovery">
+<h2>Step 1: Check Hardware discovery<a class="headerlink" href="#step-1-check-hardware-discovery" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>From the ExPECA home page, click <em>Hardware discovery</em></p></li>
+<li><p>Look up an Advantech router that satisfies your requirements. Note the “segment ID” for the router. You will use it later to make your reservation.</p></li>
+</ul>
+<figure class="screenshot align-default">
+<img alt="Hardware discovery, Advantech router" src="../_images/hw_discovery_advantech.png" />
+</figure>
+</section>
+<section id="step-2-reserving-an-advantech-router">
+<h2>Step 2: Reserving an Advantech router<a class="headerlink" href="#step-2-reserving-an-advantech-router" title="Permalink to this heading"></a></h2>
+<p>We need to reserve an Advantech router for our use.
+When you create a reservation for one or more Advantech routers, only you
+and other users on your project will be able to use those routers for the time
+specified. We will create a single day reservation for an Advantech router.</p>
+<ul class="simple">
+<li><p>In the sidebar, click <em>Reservations</em> -&gt; <em>Leases</em></p></li>
+</ul>
+<figure class="screenshot align-default">
+<img alt="Main lease view" src="../_images/lease01.png" />
+</figure>
+<ul class="simple">
+<li><p>Click <em>Network Calendar</em>. This shows the current Advantech router reservations (identified by “segment ID”) in the system. Make sure the Advantech router
+you want is not reserved for the time you need it.</p></li>
+</ul>
+<figure class="screenshot align-default">
+<img alt="Network calendar" src="../_images/network_calendar.png" />
+</figure>
+<ul class="simple">
+<li><p>Go back to the main lease page</p></li>
+<li><p>Click on the <em>+ Create Lease</em> button in the toolbar</p></li>
+<li><p>Type <em>my_advantech_lease</em> for the lease name (or any name you want to call it)</p></li>
+<li><p>Make sure you always select a Start Date</p></li>
+</ul>
+<figure class="screenshot align-default">
+<img alt="Create lease, image 1" src="../_images/create_lease01.png" />
+</figure>
+<ul class="simple">
+<li><p>Check the <em>Networks</em> -&gt; <em>Reserve Network</em> box</p></li>
+<li><p>Type <em>advantech01_network</em> for the network name (or any name you want to call it, depending on which SDR you want)</p></li>
+<li><p>Find the <em>Networks</em> -&gt; <em>Resource Properties</em> section. In the dropdown below <em>vlan_id</em>, select the “segment ID” you have for the Advantech router you want.</p></li>
+<li><p>Click the <em>Next</em> button, and then <em>Create</em></p></li>
+</ul>
+<figure class="screenshot align-default">
+<img alt="The Create Lease, image 2" src="../_images/create_lease02.png" />
+</figure>
+<p>The reservation will start shortly, at which point you can continue.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you set taday as start date and <em>now</em> as start time, the reservation will start as soon as possible
+and will last one day.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Do not attempt to stack reservations to circumvent the 7-day lease
+limitation. Your leases may be deleted. Please refer to the <a class="reference external" href="https://www.chameleoncloud.org/learn/frequently-asked-questions/#toc-what-are-the-best-practices-of-chameleon-usage-">best practices</a>
+if you require a longer reservation.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../reservation-sdr/index.html" class="btn btn-neutral float-left" title="Reservation of an SDR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../reservation-ep5g/index.html" class="btn btn-neutral float-right" title="Reservation of EP5G" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

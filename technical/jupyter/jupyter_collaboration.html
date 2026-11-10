@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collaboration Strategies &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Collaboration Strategies</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/technical/jupyter/jupyter_collaboration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="collaboration-strategies">
+<span id="jupyter-collaboration"></span><h1>Collaboration Strategies<a class="headerlink" href="#collaboration-strategies" title="Permalink to this heading"></a></h1>
+<p>It is often desirable to share your in-progress Notebooks with peers or
+supervisors for feedback, perhaps before publishing in <a class="reference internal" href="../sharing.html#trovi"><span class="std std-ref">Trovi sharing portal</span></a>.
+This can be accomplished in many different ways, each
+suiting different use-cases. We have identified a few current tools that offer
+the best range of functionality.</p>
+<section id="trovi">
+<h2><a class="reference internal" href="#trovi"><strong>Trovi sharing portal</strong></a><a class="headerlink" href="#trovi" title="Permalink to this heading"></a></h2>
+<p>The easiest way to share and collaborate on a Notebook is to publish it to
+<a class="reference internal" href="../sharing.html#trovi"><span class="std std-ref">Trovi</span></a>.</p>
+<p><strong>Pros</strong></p>
+<ul class="simple">
+<li><p>Already integrated into Jupyter; no need to sign up or log in to anything
+else.</p></li>
+<li><p>No need to download and copy Notebooks and other data around.</p></li>
+<li><p>Supports sharing with other Chameleon users and projects.</p></li>
+</ul>
+<p><strong>Cons</strong></p>
+<ul class="simple">
+<li><p>Limited support for real-time collaboration; last edit wins.</p></li>
+<li><p>No support (yet!) for sharing one-time or expiring links with collaborators
+outside of Chameleon.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2><a class="reference external" href="https://colab.research.google.com"><strong>Google Colaboratory</strong></a><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>Google provides a free Jupyter Notebook execution environment that can run your
+Notebook files in a private VM on Google’s cloud infrastructure. As it is a
+Google product, a Google account is required to use it. Notebooks can be edited
+by users concurrently, similar to functionality present in Google Docs.
+Notebooks are stored in Google Drive and as such can be easily shared using the
+existing Drive sharing mechanisms. Finally, and notably, hardware-accelerated
+computation via GPUs and TPUs is available for free exploration. For more
+details see the <a class="reference external" href="https://research.google.com/colaboratory/faq.html">FAQ</a>.</p>
+<p><strong>Pros</strong></p>
+<ul class="simple">
+<li><p>Supports rich real-time collaboration on Notebook files.</p></li>
+<li><p>Notebooks easily sharable via Google Drive to others with Google accounts.</p></li>
+<li><p>Can manage access to private Notebooks via ACLs.</p></li>
+<li><p>Free to use.</p></li>
+</ul>
+<p><strong>Cons</strong></p>
+<ul class="simple">
+<li><p>Not intended for long-running tasks. Your experiment may be terminated
+prematurely if it is deemed an invalid use of resources.</p></li>
+<li><p>Chameleon libraries not pre-installed. You can however install the Python API
+client to your Notebook via the special <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">python-chi</span></code> syntax.
+See the <a class="reference external" href="https://colab.research.google.com/notebooks/snippets/importing_libraries.ipynb">Importing Libraries</a>
+example notebook for examples on how to install new libraries.</p></li>
+<li><p>Requires Google account.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2><a class="reference external" href="https://help.github.com/articles/working-with-jupyter-notebook-files-on-github/"><strong>GitHub + Nbviewer</strong></a><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>A common pattern that works for many use-cases is using GitHub as the backing
+store for your Notebooks. This is nice because you get version history for free
+due to Git VCS being used behind the scenes. GitHub Notebooks are easily
+sharable (you just send a link) and there is decent support in GitHub for
+viewing the current state of the Notebook and its rendered outputs. To allow
+others to actually run your Notebook, you can either import the Notebook files
+back in to your Chameleon JupyterLab instance, or use <a class="reference external" href="https://mybinder.org/">Binder</a>, which allows spinning up a Jupyter instance for a
+given GitHub link.</p>
+<p><strong>Pros</strong></p>
+<ul class="simple">
+<li><p>Supports version history via Git VCS.</p></li>
+<li><p>Supports easily sharing rendered Notebooks (read-only) via GitHub links.</p></li>
+<li><p>Can import the Notebook into a personal Jupyter server (such as the one
+provided by Chameleon) or via a hosted tool like Binder.</p></li>
+<li><p>Changes can be proposed using Pull Request workflows you may already be
+familiar with.</p></li>
+</ul>
+<p><strong>Cons</strong></p>
+<ul class="simple">
+<li><p>Running the Notebook requires getting it into a Jupyter server somehow.</p></li>
+<li><p>Requires GitHub account if you want to keep your Notebooks private.</p></li>
+<li><p>Services like Binder don’t create Jupyter servers with Chameleon tools (like
+the <a class="reference external" href="https://github.com/chameleoncloud/python-chi"><code class="docutils literal notranslate"><span class="pre">python-chi</span></code></a> Python API) built in by default.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

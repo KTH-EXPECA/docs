@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trovi sharing portal &mdash; ExPECA Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../contents.html" class="icon icon-home">
+            ExPECA Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ExPECA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/index.html">Workshop Media</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testbed operation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-worker/index.html">Reservation of a worker node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-sdr/index.html">Reservation of an SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-advantech/index.html">Reservation of an Advantech router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reservation-ep5g/index.html">Reservation of EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-basic/index.html">Running a basic container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-ep5g/index.html">Network definition for EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-ep5g/index.html">Running a container towards EP5G</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-telenor/index.html">Running a container towards Telenor Edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container-vs-public/index.html">Assigning a public IP to a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-notebook/index.html">Running a Python Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images/index.html">ExPECA Docker Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launch-oai-core-gnb/index.html">Launching OAI Core and GnodeB with SDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">ExPECA Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Trovi sharing portal</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technical/sharing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="trovi-sharing-portal">
+<span id="trovi"></span><h1>Trovi sharing portal<a class="headerlink" href="#trovi-sharing-portal" title="Permalink to this heading"></a></h1>
+<p><a class="reference external" href="https://www.chameleoncloud.org/experiment/share">Chameleon Trovi</a> is a
+sharing portal that allows you to share digital research and education
+artifacts, such as packaged experiments, workshop tutorials, or class materials.
+Each research artifact is represented as a deposition (a remotely accessible
+folder) where a user can put Jupyter notebooks, links to images, orchestration
+templates, data, software, and other digital representations that together
+represent a focused contribution that can be run on Chameleon. Users can use
+these artifacts to recreate and rerun experiments or class exercises on a
+Jupyter Notebook within Chameleon. They can also create their own artifacts and
+publish them directly to Trovi from within <a class="reference internal" href="jupyter.html#jupyter"><span class="std std-ref">Chameleon’s Jupyter server</span></a>.</p>
+<p>To get started, find the “Trovi” dropdown option under the “Experiment” section
+of chameleoncloud.org. Once you’re on the Trovi homepage, you’ll see a list of
+publicly available experiments and other digital artifacts. You can now browse
+those artifacts or upload your own.</p>
+<figure class="screenshot align-default" id="id1">
+<img alt="Location of Trovi in the UI." src="../_images/sharing_dropdown.png" />
+<figcaption>
+<p><span class="caption-text">The “Trovi” option under the “Experiment” section takes you to Trovi.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="browsing-artifacts">
+<h2>Browsing artifacts<a class="headerlink" href="#browsing-artifacts" title="Permalink to this heading"></a></h2>
+<p>Trovi allows you to browse artifacts, presented in a scrolling list format. On
+the right hand side, there are multiple filtering options. The
+“All” choice shows you all of the artifacts you have access to. You can also see
+how many times people have downloaded and launched your notebook with the icons
+in the bottom left corner of an artifact.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some Trovi artifacts are supported by the Chameleon team and are denoted
+with a small Chameleon logo. You can contact the <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a> if you are
+using these artifacts and encounter issues.</p>
+</div>
+<section id="launching-an-artifact">
+<h3>Launching an artifact<a class="headerlink" href="#launching-an-artifact" title="Permalink to this heading"></a></h3>
+<p>The most powerful feature available via Trovi is the ability to re-launch the
+available artifacts within Chameleon. Clicking “Launch with JupyterHub” will
+open a new Jupyter Notebook server with the artifacts downloaded (we support
+artifacts up to 500MB in total size, please contact the <a class="reference external" href="https://www.chameleoncloud.org/user/help/">Help Desk</a> if you need
+more space). The animation below shows how easy it is:</p>
+<figure class="screenshot align-default" id="id2">
+<img alt="Animation of clicking launch button." src="../_images/sharing_launching.gif" />
+<figcaption>
+<p><span class="caption-text">Clicking the “Launch with JupyterHub” button to import a Trovi artifact into
+your own Jupyter server.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="packaging-shared-artifacts">
+<h2>Packaging shared artifacts<a class="headerlink" href="#packaging-shared-artifacts" title="Permalink to this heading"></a></h2>
+<p>You can publish new artifacts to Trovi either from your primary Jupyter server
+or by editing a previously-shared artifact. In the latter case, you are
+effectively creating a new “forked” artifact owned by you.</p>
+<p>When you’ve finished creating or making changes to an experiment, in the Jupyter
+interface, select the directory (not a single file) you wish to package. Then,
+click on the “Share” tab and select “Package as a new artifact”. Your artifact
+is now packaged and uploaded to Chameleon file storage, and you’ll be prompted
+to fill out descriptions about the artifact. Don’t worry if you want to change
+this later—you will be able to <a class="reference internal" href="#trovi-edit"><span class="std std-ref">edit them on the Trovi portal or within
+Jupyter</span></a>.</p>
+<p>Congratulations! Your artifact is now uploaded to Trovi—but to make it
+accessible to others you need to <a class="reference internal" href="#trovi-sharing"><span class="std std-ref">adjust its sharing settings</span></a>.</p>
+<figure class="screenshot align-default">
+<img alt="Animation of packaging a new artifact from Jupyter." src="../_images/sharing_packaging.gif" />
+</figure>
+<section id="saving-new-versions">
+<span id="trovi-new-version"></span><h3>Saving new versions<a class="headerlink" href="#saving-new-versions" title="Permalink to this heading"></a></h3>
+<p>If you make changes to your artifact, you can submit an updated version. Within
+Jupyter, you navigate to the “Sharing” tab, but this time you click “Create new
+artifact version”. The different versions are viewable on the Trovi portal
+after clicking on the artifact.</p>
+<figure class="screenshot align-default">
+<img alt="Animation of uploading a new artifact version from Jupyter." src="../_images/sharing_new_version.gif" />
+</figure>
+</section>
+<section id="editing-artifacts">
+<span id="trovi-edit"></span><h3>Editing artifacts<a class="headerlink" href="#editing-artifacts" title="Permalink to this heading"></a></h3>
+<p>You can edit an artifact’s metadata, including its title, description, and list
+of authors at any time via the Jupyter interface. To delete single artifact
+versions, click the “trashcan” icon next to it in the edit view. To delete the
+entire artifact, click the red “Delete All” button.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any artifacts published to <a class="reference internal" href="#trovi-zenodo"><span class="std std-ref">Zenodo</span></a> cannot be deleted.</p>
+</div>
+<figure class="screenshot align-default">
+<img alt="Animation of editing an artifact's metadata." src="../_images/sharing_edit_meta.gif" />
+</figure>
+<p>This edit view is also available from Trovi via the “Edit” button.</p>
+<section id="creating-a-version-from-git">
+<span id="create-git-version"></span><h4>Creating a version from Git<a class="headerlink" href="#creating-a-version-from-git" title="Permalink to this heading"></a></h4>
+<p>Under an artifact’s edit settings, you will also see a button for creating a
+new version from Git. This will allow you to enter a Git URL, the same one used
+to clone your repository, and also a reference (lease as HEAD for the latest
+commit). When a user launches your artifact, their notebook will checkout the
+specified commit.</p>
+</section>
+</section>
+<section id="adjusting-sharing-settings">
+<span id="trovi-sharing"></span><h3>Adjusting sharing settings<a class="headerlink" href="#adjusting-sharing-settings" title="Permalink to this heading"></a></h3>
+<p>When you first upload your packaged artifact to Trovi, its visibility is set as
+private, meaning only you can see or launch it. There are multiple options to
+change the visibility of the artifact, and you have the option to decide how
+visible you want it to be.</p>
+<ol class="arabic simple">
+<li><p><strong>Publish with DOI</strong>: this option allows you to <a class="reference internal" href="#trovi-zenodo"><span class="std std-ref">publish a version of your
+artifact to Zenodo</span></a> and receive a DOI, which you can use to
+cite your artifact in, e.g., an academic paper.</p></li>
+<li><p><strong>Publish without DOI</strong>: this option allows any Chameleon user to find and
+launch your artifact. It can be useful if you want to distribute the artifact
+widely but do not necessarily with to publish it to Zenodo and get a DOI
+for citation.</p></li>
+<li><p><strong>Share via private link</strong>: this option allows you to share the experiment to
+select people, like individual colleagues, advisors, or students. Anybody in
+possession of the link can view and launch any version of the artifact.</p></li>
+</ol>
+<p>To make your artifact shareable, select it in Trovi, click “Share”, and check the box before “Enable all users to find and share”.</p>
+<section id="publishing-to-zenodo">
+<span id="trovi-zenodo"></span><h4>Publishing to Zenodo<a class="headerlink" href="#publishing-to-zenodo" title="Permalink to this heading"></a></h4>
+<p>Trovi is intended for sharing work in progress with a limited group of “friends
+and family”. However, once you complete your experiment package you may want to
+publish it so that you can reference it from your paper. To do that Chameleon
+supports integration with Zenodo, an open-access storage repository backed by
+CERN, for permanent artifact hosting. To share your artifact and store it on
+Zenodo, go to the “Share” page for the artifact. On the right-hand side you’ll
+see a list of all versions you’ve saved. Pick the version you want to publish to
+Zenodo and check “Request DOI”, then click “Save.”</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Once published, <strong>Zenodo artifacts cannot be deleted</strong> and are additionally
+<strong>publicly available</strong>. Your artifact will appear in Trovi in the “Public”
+section, and any Chameleon user can access it, as can anybody on the
+Internet via Zenodo’s own listing.</p>
+<p>If you wish to make your artifact public but don’t to publish it, use the
+“Publish without DOI” option. With this option it is possible to make the
+artifact private later on if you wish; this is not possible when publishing
+to Zenodo.</p>
+</div>
+<p>This also creates a DOI, which you can easily include in your
+paper. The artifacts shared on Zenodo also appear on Trovi.</p>
+</section>
+</section>
+<section id="importing-an-artifact">
+<h3>Importing an artifact<a class="headerlink" href="#importing-an-artifact" title="Permalink to this heading"></a></h3>
+<p>Instead of creating an artifact inside Jupyterhub, you can package an existing
+Git repository into an artifact. When a user launches the artifact, the
+contents of the repository will be added to a Jupyter notebook.</p>
+<p>To create an artifact, click “Import Artifact” on the sidebar of Trovi. You are
+first asked for the artifact’s metadata. At the bottom of the form, there is
+a button for “Import from Git.” After clicking this, you will need to enter a
+git remote URL, and choose which commit to tie the version to.</p>
+<p>To update the artifact, you must create a <a class="reference internal" href="#create-git-version"><span class="std std-ref">new version</span></a>.
+This ensures that a given version of your artifact always has the same contents.</p>
+</section>
+<section id="exporting-via-git">
+<h3>Exporting via git<a class="headerlink" href="#exporting-via-git" title="Permalink to this heading"></a></h3>
+<p>If you wish to move your code and notebooks outside of your Jupyter notebook,
+one option is to export it into a git repository.</p>
+<ol class="arabic simple">
+<li><p>Click the “+” button on the top left of your notebook, and choose “Terminal”.</p></li>
+<li><p>Run the command <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">work</span></code>. If there is a specific directory you wish to
+export, you can <code class="docutils literal notranslate"><span class="pre">cd</span></code> again into it.</p></li>
+<li><p>Follow the instructions to set up a repository per your git host. For GitHub
+see <a class="reference external" href="https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github">this document</a>.</p></li>
+<li><p>After the repository is setup, you should be able to commit and push with
+the git CLI.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ExPECA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
